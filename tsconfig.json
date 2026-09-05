@@ -1,0 +1,27 @@
+{
+	/* Visit https://aka.ms/tsconfig.json to read more about this file */
+	"compilerOptions": {
+		"target": "es6",
+		"module": "es2020",
+		"lib": [
+			"dom",
+			"es6",
+		],
+		"outDir": "./build",
+		"sourceMap": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+
+		// With importHelpers=true, TS helper functions are prevented from
+		// being duplicated for every source file
+		"importHelpers": true,
+		"esModuleInterop": true,
+		"newLine": "lf"
+	},
+	"include": [
+		"src/**/*",
+		"./node_modules/types-mediawiki",
+		"./node_modules/twinkle-core/morebits/index.d.ts"
+	],
+	"compileOnSave": true
+}
