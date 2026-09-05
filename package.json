@@ -1,7 +1,7 @@
 {
-	"name": "#{REPO_NAME}#",
+	"name": "twinkle-viwiki",
 	"version": "1.0.0",
-	"description": "#{DESC}#",
+	"description": "Rewritten version of Twinkle for vi.wikipedia",
 	"scripts": {
 		"format": "prettier --write .",
 		"lint": "eslint . --ext .js --ext .ts",
@@ -18,11 +18,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#.git"
+		"url": "git://github.com/hideonrosie/twinkle-viwiki.git"
 	},
-	"author": "#{USER_OR_ORG}#",
+	"author": "hideonrosie",
 	"license": "CC-BY-SA-3.0",
-	"homepage": "https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#",
+	"homepage": "https://github.com/hideonrosie/twinkle-viwiki",
 	"sideEffects": [
 		"src/globals.ts"
 	],
