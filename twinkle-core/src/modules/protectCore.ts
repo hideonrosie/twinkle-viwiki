@@ -34,22 +34,22 @@ export abstract class ProtectCore extends TwinkleModule {
 	moduleName = 'protect';
 	static moduleName = 'protect';
 
-	portletName = Morebits.userIsSysop ? 'PP' : 'RPP';
+	portletName = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Khóa trang' : 'Yêu cầu khóa trang';
 	portletId = 'twinkle-protect';
-	portletTooltip = Morebits.userIsSysop ? 'Protect page' : 'Request page protection';
-	windowTitle = Morebits.userIsSysop ? 'Apply, request or tag page protection' : 'Request or tag page protection';
+	portletTooltip = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Khóa trang' : 'Yêu cầu khóa trang';
+	windowTitle = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Áp dụng, yêu cầu hoặc đánh dấu khóa trang' : 'Yêu cầu hoặc đánh dấu khóa trang';
 
 	/**
 	 * Full name of the page where protection requests are placed.
 	 */
-	requestPageName = 'Wikipedia:Requests for page protection';
+	requestPageName = 'Wikipedia:Yêu cầu khóa hay mở khóa trang';
 
 	/**
 	 * Short form or acronym for the {@link requestPageName}. Used in text.
 	 * Usage is not in form of a link so this doesn't necessarily need to be a
 	 * redirect to the {@link requestPageName}.
 	 */
-	requestPageAcronym = 'RfPP';
+	requestPageAcronym = 'YCKT';
 
 	constructor() {
 		super();
@@ -84,8 +84,8 @@ export abstract class ProtectCore extends TwinkleModule {
 				{
 					label: msg('protect-request-label'),
 					value: 'request',
-					tooltip: Morebits.userIsSysop ? msg('protect-request-sysop-tooltip') : msg('protect-request-tooltip'),
-					checked: !Morebits.userIsSysop,
+					tooltip: (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? msg('protect-request-sysop-tooltip') : msg('protect-request-tooltip'),
+					checked: !(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')),
 				},
 				{
 					label: msg('protect-tag-label'),
@@ -150,8 +150,8 @@ export abstract class ProtectCore extends TwinkleModule {
 				// don't check log entries that have already been checked (e.g. don't go into an infinite loop!)
 				var event = data.query
 					? $.grep(data.query.logevents, (le: LogEvent) => {
-							return $.inArray(le.logid, logIds);
-					  })[0]
+						return $.inArray(le.logid, logIds);
+					})[0]
 					: null;
 				if (!event) {
 					// fail gracefully
@@ -957,9 +957,9 @@ export abstract class ProtectCore extends TwinkleModule {
 		var protectReason = form.protectReason.value.replace(
 			new RegExp(
 				'(?:' +
-					msg('semicolon-separator') +
-					')?' +
-					mw.util.escapeRegExp(this.protectReasonAnnotations.join(msg('colon-separator')))
+				msg('semicolon-separator') +
+				')?' +
+				mw.util.escapeRegExp(this.protectReasonAnnotations.join(msg('colon-separator')))
 			),
 			''
 		);
@@ -1328,9 +1328,8 @@ export abstract class ProtectCore extends TwinkleModule {
 			(reason ? ":''' " + Morebits.string.formatReasonText(reason) : ".'''") +
 			' ~~~~';
 
-		let summary = `/* ${Morebits.pageNameNorm} */ Requesting ${typename}${
-			typename === 'pending changes' ? ' on [[:' : ' of [[:'
-		}${Morebits.pageNameNorm}]].`;
+		let summary = `/* ${Morebits.pageNameNorm} */ Requesting ${typename}${typename === 'pending changes' ? ' on [[:' : ' of [[:'
+			}${Morebits.pageNameNorm}]].`;
 
 		return [text, summary];
 	}

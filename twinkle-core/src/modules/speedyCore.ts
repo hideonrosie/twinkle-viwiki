@@ -57,7 +57,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 	portletName = 'Xóa nhanh';
 	portletId = 'twinkle-csd';
-	portletTooltip = Morebits.userIsSysop
+	portletTooltip = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator'))
 		? 'Xóa nhanh trang này theo WP:XN'
 		: 'Đề xuất xóa nhanh trang này theo WP:XN';
 	windowTitle = 'Chọn tiêu chí xóa nhanh';
@@ -81,7 +81,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		);
 		this.form = form;
 
-		if (Morebits.userIsSysop) {
+		if (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) {
 			form.append({
 				type: 'checkbox',
 				list: [
@@ -151,16 +151,16 @@ export abstract class SpeedyCore extends TwinkleModule {
 				type: 'checkbox',
 				list: [
 					{
-						label: 'Also delete all redirects',
+						label: 'Xóa tất cả trang đổi hướng',
 						value: 'deleteRedirects',
 						name: 'deleteRedirects',
 						tooltip:
-							'This option deletes all incoming redirects in addition. Avoid this option for procedural (e.g. move/merge) deletions.',
+							'Xóa thêm các trang đổi hướng đến trang này. Tránh sử dụng tùy chọn này khi xóa trang theo quy trình (ví dụ: xóa trang do di chuyển/hợp nhất).',
 						checked: getPref('deleteRedirectsOnDelete'),
 						event: (event) => event.stopPropagation(),
 					},
 					{
-						label: 'Delete under multiple criteria',
+						label: 'Xóa với nhiều tiêu chí',
 						value: 'delmultiple',
 						name: 'delmultiple',
 						tooltip:
@@ -171,12 +171,12 @@ export abstract class SpeedyCore extends TwinkleModule {
 						},
 					},
 					{
-						label: 'Notify page creator of page deletion',
+						label: 'Thông báo cho người tạo trang',
 						value: 'warnusertalk',
 						name: 'warnusertalk',
 						tooltip:
-							'A notification template will be placed on the talk page of the creator, IF you have a notification enabled in your Twinkle preferences ' +
-							'for the criterion you choose AND this box is checked. The creator may be welcomed as well.',
+							'Một bản mẫu thông báo sẽ được đặt trên trang thảo luận của người tạo, NẾU bạn đã bật thông báo trong tùy chọn Twinkle ' +
+							'cho tiêu chí bạn chọn VÀ mục này được chọn. Người tạo cũng có thể được chào mừng.',
 						checked: !this.hasCSD,
 						event: (event) => event.stopPropagation(),
 					},
@@ -189,10 +189,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 			name: 'tag_options',
 		});
 
-		if (Morebits.userIsSysop) {
+		if (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) {
 			tagOptions.append({
 				type: 'header',
-				label: 'Tag-related options',
+				label: 'Tùy chọn gán thẻ trang',
 			});
 		}
 
@@ -200,29 +200,28 @@ export abstract class SpeedyCore extends TwinkleModule {
 			type: 'checkbox',
 			list: [
 				{
-					label: 'Notify page creator if possible',
+					label: 'Thông báo cho người tạo trang nếu có thể',
 					value: 'notify',
 					name: 'notify',
 					tooltip:
-						'A notification template will be placed on the talk page of the creator, IF you have a notification enabled in your Twinkle preferences ' +
-						'for the criterion you choose AND this box is checked. The creator may be welcomed as well.',
-					checked: !Morebits.userIsSysop || !(this.hasCSD || getPref('deleteSysopDefaultToDelete')),
+						'Thông báo sẽ được gửi đến người tạo trang nếu bạn kích hoạt chức năng này',
+					checked: !(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) || !(this.hasCSD || getPref('deleteSysopDefaultToDelete')),
 					event: (event) => event.stopPropagation(),
 				},
 				{
-					label: 'Tag for creation protection (salting) as well',
+					label: 'Đánh dấu để yêu cầu khóa khởi tạo trang',
 					value: 'requestsalt',
 					name: 'requestsalt',
 					tooltip:
-						'When selected, the speedy deletion tag will be accompanied by a {{salt}} tag requesting that the deleting administrator apply creation protection. Only select if this page has been repeatedly recreated.',
+						'Khi được chọn, thẻ xóa nhanh sẽ được kèm theo một thẻ {{salt}} yêu cầu bảo quản viên hoặc điều phối viên áp dụng khóa khởi tạo trang. Chỉ chọn nếu trang này đã được tạo lại nhiều lần.',
 					event: (event) => event.stopPropagation(),
 				},
 				{
-					label: 'Tag with multiple criteria',
+					label: 'Đánh dấu với nhiều tiêu chí',
 					value: 'multiple',
 					name: 'multiple',
 					tooltip:
-						'When selected, you can select several criteria that apply to the page. For example, G11 and A7 are a common combination for articles.',
+						'Khi được chọn, bạn có thể chọn nhiều tiêu chí áp dụng cho trang. ',
 					event: (event) => {
 						this.modeChanged(event.target.form);
 						event.stopPropagation();
@@ -240,7 +239,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		form.append({
 			type: 'div',
 			name: 'work_area',
-			label: 'Failed to initialize the CSD module. Please try again, or tell the Twinkle developers about the issue.',
+			label: 'Lỗi khởi tạo mô đun xóa trang. Hãy thử lại hoặc báo cáo với nhà phát triển.',
 		});
 
 		if (getPref('speedySelectionStyle') !== 'radioClick') {
@@ -269,15 +268,15 @@ export abstract class SpeedyCore extends TwinkleModule {
 			lelimit: 5, // A little bit goes a long way
 		};
 
-		new Api('Checking for past deletions', query).post().then((apiobj) => {
+		new Api('Kiểm tra các lần xóa trước', query).post().then((apiobj) => {
 			let response = apiobj.getResponse();
 			let delCount = response.query.logevents.length;
 			if (delCount) {
-				let message = delCount + ' previous deletion';
+				let message = delCount + ' lần xóa trước';
 				if (delCount > 1) {
 					message += 's';
 					if (response.continue) {
-						message = 'More than ' + message;
+						message = 'Hơn ' + message;
 					}
 
 					// 3+ seems problematic
@@ -322,12 +321,12 @@ export abstract class SpeedyCore extends TwinkleModule {
 		if (this.mode.isMultiple && this.mode.isRadioClick) {
 			work_area.append({
 				type: 'div',
-				label: 'When finished choosing criteria, click:',
+				label: 'Khi chọn xong tiêu chí, nhấn:',
 			});
 			work_area.append({
 				type: 'button',
 				name: 'submit-multiple',
-				label: this.mode.isSysop ? 'Delete page' : 'Tag page',
+				label: this.mode.isSysop ? 'Xóa trang' : 'Gán thẻ trang',
 				event: (event) => {
 					this.evaluate(event);
 					event.stopPropagation();
@@ -433,7 +432,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 					criterion.subgroup = makeArray(criterion.subgroup).concat({
 						type: 'button',
 						name: 'submit', // ends up being called "csd.submit" so this is OK
-						label: mode.isSysop ? 'Delete page' : 'Tag page',
+						label: mode.isSysop ? 'Xóa trang' : 'Gán thẻ trang',
 						event: submitSubgroupHandler,
 					});
 					// FIXME: does this do anything?
@@ -492,7 +491,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		}
 
 		tm.execute().then(() => {
-			Morebits.status.actionCompleted(this.mode.isSysop ? 'Deletion completed' : 'Tagging completed');
+			Morebits.status.actionCompleted(this.mode.isSysop ? 'Đã xóa trang' : 'Đã gán thẻ trang');
 			setTimeout(() => {
 				window.location.href = mw.util.getUrl(Morebits.pageNameNorm);
 			}, 50000);
