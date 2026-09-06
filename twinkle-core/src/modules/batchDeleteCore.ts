@@ -20,10 +20,10 @@ export class BatchDeleteCore extends TwinkleModule {
 	moduleName = 'batchdelete';
 	static moduleName = 'batchdelete';
 
-	portletName = 'Xóa nhiều';
+	portletName = 'Xóa nhiều trang';
 	portletId = 'twinkle-batchdelete';
 	portletTooltip = 'Xóa nhiều trang trong thể loại/trang này';
-	windowTitle = 'Xóa hàng loạt';
+	windowTitle = 'Xóa nhiều trang';
 
 	constructor() {
 		super();

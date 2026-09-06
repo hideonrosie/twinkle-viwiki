@@ -17,10 +17,10 @@ export class BatchUndeleteCore extends TwinkleModule {
 	moduleName = 'batchundelete';
 	static moduleName = 'batchundelete';
 
-	portletName = 'Phục hồi nhiều';
+	portletName = 'Phục hồi nhiều trang';
 	portletId = 'twinkle-batchundelete';
 	portletTooltip = 'Phục hồi hàng loạt các trang';
-	windowTitle = 'Phục hồi hàng loạt';
+	windowTitle = 'Phục hồi hàng loạt các trang';
 
 	constructor() {
 		super();
@@ -98,9 +98,9 @@ export class BatchUndeleteCore extends TwinkleModule {
 						title +
 						(editProt
 							? msg('word-separator') +
-							  (editProt.expiry === 'infinity'
-									? msg('create-protected-indef')
-									: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
+							(editProt.expiry === 'infinity'
+								? msg('create-protected-indef')
+								: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
 							: ''),
 					value: title,
 					checked: true,
