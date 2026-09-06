@@ -72,5 +72,32 @@ SiteConfig.flaggedRevsNamespaces = [];
 
 SiteConfig.redirectTagAliases = ['#ĐỔI', '#REDIRECT'];
 
+// Patch Morebits.date month headers
+{
+	const MB = (window as any).Morebits;
+	if (MB && MB.date) {
+		MB.date.localeData.months = [
+			'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+			'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
+		];
+		MB.date.localeData.monthsShort = MB.date.localeData.months;
+
+		MB.date.prototype.monthHeaderRegex = function () {
+			return new RegExp('^(==+)\\s*(?:' + this.getUTCMonthName() + '|' + this.getUTCMonthNameAbbrev() +
+				')\\s+năm\\s+' + this.getUTCFullYear() + '\\s*\\1', 'mg');
+		};
+		MB.date.prototype.monthHeader = function (level: any) {
+			level = parseInt(level, 10);
+			level = isNaN(level) ? 2 : level;
+			var header = Array(level + 1).join('=');
+			var text = this.getUTCMonthName() + ' năm ' + this.getUTCFullYear();
+			if (header.length) {
+				return header + ' ' + text + ' ' + header;
+			}
+			return text;
+		};
+	}
+}
+
 // Go!
 init();
