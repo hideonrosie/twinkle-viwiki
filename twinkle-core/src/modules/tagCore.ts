@@ -60,7 +60,7 @@ export class TagCore extends TwinkleModule {
 	 */
 	static modeList: typeof TagMode[];
 
-	portletName = 'Tag';
+	portletName = 'Gán thẻ';
 	portletId = 'twinkle-tag';
 
 	constructor() {
@@ -129,7 +129,7 @@ export class TagCore extends TwinkleModule {
 			'href',
 			mw.util.getUrl(
 				(tagname.indexOf(':') === -1 ? 'Template:' : '') +
-					(tagname.indexOf('|') === -1 ? tagname : tagname.slice(0, tagname.indexOf('|')))
+				(tagname.indexOf('|') === -1 ? tagname : tagname.slice(0, tagname.indexOf('|')))
 			)
 		);
 		link.setAttribute('target', '_blank');
@@ -412,7 +412,7 @@ export abstract class TagMode {
 	 * Should be overridden for tag modes where removalSupported is true.
 	 * Populate this.existingTags with the names of tags present on the page.
 	 */
-	parseExistingTags() {}
+	parseExistingTags() { }
 
 	/**
 	 * Create a flat object for speeding up lookup for the tag properties
@@ -555,7 +555,7 @@ export abstract class TagMode {
 	 * If inputs are invalid, return a string that is shown to the user via alert().
 	 * If inputs are valid, don't return anything.
 	 */
-	validateInput(): string | void {}
+	validateInput(): string | void { }
 
 	preprocessParams() {
 		this.getTemplateParameters();
@@ -765,7 +765,7 @@ export abstract class TagMode {
 	/**
 	 * Any initial cleanup of the page.
 	 */
-	initialCleanup(): void {}
+	initialCleanup(): void { }
 
 	/**
 	 * Returns true if a group template is to be added to the page, otherwise false.
@@ -793,10 +793,10 @@ export abstract class TagMode {
 		// Add new tags into group, and put the updated group wikitext into this.pageText
 		let miRegex = new RegExp(
 			'(\\{\\{\\s*' + // Opening braces
-				groupRgxExec[1] + // template name
-				// XXX: unnecessarily overspecific from this point onwards
-				'\\s*(?:\\|(?:\\{\\{[^{}]*\\}\\}|[^{}])*)?)' + // ??? Copied from friendlytag
-				'\\}\\}\\s*', // Closing braces, followed by spaces/newlines
+			groupRgxExec[1] + // template name
+			// XXX: unnecessarily overspecific from this point onwards
+			'\\s*(?:\\|(?:\\{\\{[^{}]*\\}\\}|[^{}])*)?)' + // ??? Copied from friendlytag
+			'\\}\\}\\s*', // Closing braces, followed by spaces/newlines
 			'im'
 		);
 		this.pageText = this.pageText.replace(miRegex, '$1' + tagText + '}}\n');
@@ -858,7 +858,7 @@ export abstract class TagMode {
 		});
 	}
 
-	sortTags() {}
+	sortTags() { }
 
 	addAndRearrangeTags() {
 		this.pageText = this.insertTagText(this.makeTagSetText(this.params.tags), this.pageText);

@@ -18,9 +18,9 @@ export class XfdCore extends TwinkleModule {
 	fieldset: Morebits.quickForm.element;
 	result: HTMLFormElement;
 
-	portletName = 'XFD';
+	portletName = 'Biểu quyết xóa';
 	portletId = 'twinkle-xfd';
-	windowTitle = 'Start a deletion discussion (XfD)';
+	windowTitle = 'Bắt đầu một cuộc biểu quyết xóa trang này';
 
 	constructor() {
 		super();
@@ -279,20 +279,20 @@ export abstract class XfdMode {
 	 * Actions performed after the form is rendered.
 	 * @param renderedFieldset
 	 */
-	postRender(renderedFieldset: HTMLFieldSetElement) {}
+	postRender(renderedFieldset: HTMLFieldSetElement) { }
 
 	/**
 	 * Return any warnings about the choice of the selected venue (e.g. using
 	 * Articles for Deletion for requesting deletion of template).
 	 * This is displayed in red.
 	 */
-	getVenueWarning(): string | void {}
+	getVenueWarning(): string | void { }
 
 	// Overridden for tfd, cfd, cfds
 	/**
 	 * Pre-process parameters, called from evaluate() and preview().
 	 */
-	preprocessParams(): void {}
+	preprocessParams(): void { }
 
 	// Overridden for ffd and rfd, which need special treatment
 	preview(form: HTMLFormElement) {
@@ -382,8 +382,8 @@ export abstract class XfdMode {
 				var number = 0;
 				var order_re = new RegExp(
 					'^' +
-						Morebits.string.escapeRegExp(this.discussionPagePrefix + '/' + Morebits.pageNameNorm) +
-						'\\s*\\(\\s*(\\d+)(?:(?:th|nd|rd|st) nom(?:ination)?)?\\s*\\)\\s*$'
+					Morebits.string.escapeRegExp(this.discussionPagePrefix + '/' + Morebits.pageNameNorm) +
+					'\\s*\\(\\s*(\\d+)(?:(?:th|nd|rd|st) nom(?:ination)?)?\\s*\\)\\s*$'
 				);
 				for (var i = 0; i < titles.length; ++i) {
 					var title = titles[i].title;

@@ -37,10 +37,10 @@ export abstract class WarnCore extends TwinkleModule {
 	dialog: Dialog;
 	warnings: Record<string, warningLevel>;
 
-	portletName = 'Warn';
+	portletName = 'Cảnh báo';
 	portletId = 'twinkle-warn';
-	portletTooltip = 'Warn/notify user';
-	windowTitle = 'Warn/notify user';
+	portletTooltip = 'Cảnh báo hoặc gửi thông báo cho người dùng';
+	windowTitle = 'Cảnh báo hoặc gửi thông báo cho người dùng';
 
 	constructor() {
 		super();
@@ -385,12 +385,12 @@ export abstract class WarnCore extends TwinkleModule {
 			mw.util.addCSS(
 				// Increase height
 				'.select2-container .select2-dropdown .select2-results > .select2-results__options { max-height: 350px; }' +
-					// Reduce padding
-					'.select2-results .select2-results__option { padding-top: 1px; padding-bottom: 1px; }' +
-					'.select2-results .select2-results__group { padding-top: 1px; padding-bottom: 1px; } ' +
-					// Adjust font size
-					'.select2-container .select2-dropdown .select2-results { font-size: 13px; }' +
-					'.select2-container .selection .select2-selection__rendered { font-size: 13px; }'
+				// Reduce padding
+				'.select2-results .select2-results__option { padding-top: 1px; padding-bottom: 1px; }' +
+				'.select2-results .select2-results__group { padding-top: 1px; padding-bottom: 1px; } ' +
+				// Adjust font size
+				'.select2-container .select2-dropdown .select2-results { font-size: 13px; }' +
+				'.select2-container .selection .select2-selection__rendered { font-size: 13px; }'
 			);
 		}
 	}
@@ -461,7 +461,7 @@ export abstract class WarnCore extends TwinkleModule {
 		this.showPreview(form);
 	}
 
-	validateInputs(params: Record<string, any>): string | void {}
+	validateInputs(params: Record<string, any>): string | void { }
 
 	evaluate(e) {
 		var userTalkPage = new mw.Title(mw.config.get('wgRelevantUserName'), NS_USER_TALK);
@@ -529,7 +529,7 @@ export abstract class WarnCore extends TwinkleModule {
 	 *  1) captures the name of the template (without the namespace prefix)
 	 *  2) captures the comment timestamp - it is assumed that this timestamp can be parsed by Morebits.date()
 	 */
-	getHistoryRegex(): RegExp | void {}
+	getHistoryRegex(): RegExp | void { }
 
 	// build the edit summary
 	// Function to handle generation of summary prefix for custom templates
@@ -584,8 +584,8 @@ export abstract class WarnCore extends TwinkleModule {
 			new Morebits.date(history[params.sub_group]).add(1, 'day').isAfter(now) &&
 			!confirm(
 				'An identical ' +
-					params.sub_group +
-					' has been issued in the last 24 hours.  \nWould you still like to add this warning/notice?'
+				params.sub_group +
+				' has been issued in the last 24 hours.  \nWould you still like to add this warning/notice?'
 			)
 		) {
 			statelem.error('aborted per user request');

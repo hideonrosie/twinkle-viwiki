@@ -17,10 +17,10 @@ export class BatchUndeleteCore extends TwinkleModule {
 	moduleName = 'batchundelete';
 	static moduleName = 'batchundelete';
 
-	portletName = 'Und-batch';
+	portletName = 'Phục hồi nhiều';
 	portletId = 'twinkle-batchundelete';
-	portletTooltip = "Undelete 'em all";
-	windowTitle = 'Batch undelete';
+	portletTooltip = 'Phục hồi hàng loạt các trang';
+	windowTitle = 'Phục hồi hàng loạt';
 
 	constructor() {
 		super();

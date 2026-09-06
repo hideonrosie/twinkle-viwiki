@@ -55,12 +55,12 @@ export abstract class SpeedyCore extends TwinkleModule {
 	isRedirect: boolean;
 	abstract criteriaLists: Array<{ label: string; visible: (self: SpeedyCore) => boolean; list: Array<criterion> }>;
 
-	portletName = 'CSD';
+	portletName = 'Xóa nhanh';
 	portletId = 'twinkle-csd';
 	portletTooltip = Morebits.userIsSysop
-		? 'Delete page according to WP:CSD'
-		: 'Request speedy deletion according to WP:CSD';
-	windowTitle = 'Choose criteria for speedy deletion';
+		? 'Xóa nhanh trang này theo WP:XN'
+		: 'Đề xuất xóa nhanh trang này theo WP:XN';
+	windowTitle = 'Chọn tiêu chí xóa nhanh';
 
 	constructor() {
 		super();
@@ -86,10 +86,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 				type: 'checkbox',
 				list: [
 					{
-						label: "Tag page only, don't delete",
+						label: "Chỉ gán thẻ, không xóa",
 						value: 'tag_only',
 						name: 'tag_only',
-						tooltip: 'If you just want to tag the page, instead of deleting it now',
+						tooltip: 'Chỉ gán thẻ xóa nhanh, không xóa trang',
 						checked: !(this.hasCSD || getPref('deleteSysopDefaultToDelete')),
 						event: (event) => {
 							let cForm = event.target.form;
@@ -125,7 +125,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			});
 			deleteOptions.append({
 				type: 'header',
-				label: 'Delete-related options',
+				label: 'Lựa chọn liên quan đến xóa',
 			});
 			if (
 				mw.config.get('wgNamespaceNumber') % 2 === 0 &&
@@ -136,11 +136,11 @@ export abstract class SpeedyCore extends TwinkleModule {
 					type: 'checkbox',
 					list: [
 						{
-							label: 'Also delete talk page',
+							label: 'Xóa cả trang thảo luận',
 							value: 'deleteTalkPage',
 							name: 'deleteTalkPage',
 							tooltip:
-								"This option deletes the page's talk page in addition. If you choose the F8 (moved to Commons) criterion, this option is ignored and the talk page is *not* deleted.",
+								"Xóa thêm trang thảo luận. Lựa chọn này sẽ bị bỏ qua nếu bạn chọn tiêu chí TT8 (đã chuyển sang Wikimedia Commons).",
 							checked: getPref('deleteTalkPageOnDelete'),
 							event: (event) => event.stopPropagation(),
 						},
@@ -312,7 +312,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 		$('[name=delete_options]').toggle(this.mode.isSysop);
 		$('[name=tag_options]').toggle(!this.mode.isSysop);
-		$('button.tw-speedy-submit').text(this.mode.isSysop ? 'Delete page' : 'Tag page');
+		$('button.tw-speedy-submit').text(this.mode.isSysop ? 'Xóa trang' : 'Gán thẻ trang');
 
 		let work_area = new Morebits.quickForm.element({
 			type: 'div',
@@ -545,7 +545,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		this.preprocessParamInputs();
 	}
 
-	preprocessParamInputs() {}
+	preprocessParamInputs() { }
 
 	/**
 	 * Creates this.params.templateParams, an array of objects each object
@@ -692,8 +692,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 				tag &&
 				!confirm(
 					'The page already has the CSD-related template {{' +
-						tag[1] +
-						'}} on it.  Do you want to add another CSD template?'
+					tag[1] +
+					'}} on it.  Do you want to add another CSD template?'
 				)
 			) {
 				return $.Deferred().reject();
@@ -708,8 +708,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 				xfd &&
 				!confirm(
 					'The deletion-related template {{' +
-						xfd[1] +
-						'}} was found on the page. Do you still want to add a CSD template?'
+					xfd[1] +
+					'}} was found on the page. Do you still want to add a CSD template?'
 				)
 			) {
 				return $.Deferred().reject();
@@ -1161,7 +1161,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 	 * If validation fails, returns a string to be shown to user via alert(), if validation
 	 * succeeds, doesn't return anything.
 	 */
-	validateInputs(): string | void {}
+	validateInputs(): string | void { }
 
 	userPreferences() {
 		return {

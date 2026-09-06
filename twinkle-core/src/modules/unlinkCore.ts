@@ -16,8 +16,8 @@ export class UnlinkCore extends TwinkleModule {
 	static moduleName = 'unlink';
 
 	portletId = 'twinkle-unlink';
-	portletName = 'Unlink';
-	portletTooltip = 'Unlink backlinks';
+	portletName = 'Gỡ liên kết';
+	portletTooltip = 'Gỡ các liên kết đến trang này';
 
 	/**
 	 * Return true if the module can be used on the current page by the current user,
@@ -306,8 +306,8 @@ export class UnlinkCore extends TwinkleModule {
 					? msg('summary-links-files', Morebits.pageNameNorm)
 					: msg('summary-links', Morebits.pageNameNorm)
 				: msg('summary-files', Morebits.pageNameNorm)) +
-				msg('colon-separator') +
-				params.reason
+			msg('colon-separator') +
+			params.reason
 		);
 		pageobj.setCreateOption('nocreate');
 		pageobj.save().then(params.unlinker.workerSuccess, params.unlinker.workerFailure);

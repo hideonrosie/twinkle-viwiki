@@ -200,7 +200,7 @@ export type PreferenceGroup = {
 export class Config {
 	static sections: Record<string, PreferenceGroup> = {
 		general: {
-			title: 'General',
+			title: 'Chung',
 			module: 'general',
 			preferences: [
 				// TwinkleConfig.userTalkPageMode may take arguments:
@@ -209,12 +209,12 @@ export class Config {
 				// 'blank': force open in a new window, even if such a window exists
 				{
 					name: 'userTalkPageMode',
-					label: 'When opening a user talk page, open it',
+					label: 'Khi mở trang thảo luận người dùng, mở trong',
 					type: 'enum',
 					enumValues: {
-						window: 'In a window, replacing other user talks',
-						tab: 'In a new tab',
-						blank: 'In a totally new window',
+						window: 'Trong một cửa sổ, thay thế các trang thảo luận khác',
+						tab: 'Trong một tab mới',
+						blank: 'Trong một cửa sổ hoàn toàn mới',
 					},
 					default: 'tab',
 				},
@@ -222,7 +222,7 @@ export class Config {
 				// TwinkleConfig.dialogLargeFont (boolean)
 				{
 					name: 'dialogLargeFont',
-					label: 'Use larger text in Twinkle dialogs',
+					label: 'Sử dụng văn bản lớn hơn trong các hộp thoại Twinkle',
 					type: 'boolean',
 					default: false,
 				},
@@ -230,24 +230,24 @@ export class Config {
 				// Config.disabledModules (array)
 				{
 					name: 'disabledModules',
-					label: 'Turn off the selected Twinkle modules',
-					helptip: 'Anything you select here will NOT be available for use, so act with care. Uncheck to reactivate.',
+					label: 'Tắt các mô đun Twinkle đã chọn',
+					helptip: 'Bất cứ thứ gì bạn chọn ở đây sẽ KHÔNG khả dụng để sử dụng, vì vậy hãy cẩn thận. Bỏ chọn để kích hoạt lại.',
 					type: 'set',
 					setValues: {
-						arv: 'ARV',
-						warn: 'Warn',
-						welcome: 'Welcome',
-						shared: 'Shared IP',
-						talkback: 'Talkback',
-						speedy: 'CSD',
-						prod: 'PROD',
-						xfd: 'XfD',
-						image: 'Image (DI)',
-						protect: 'Protect (RPP)',
-						tag: 'Tag',
-						diff: 'Diff',
-						unlink: 'Unlink',
-						fluff: 'Revert and rollback',
+						arv: 'ARV (Báo cáo phá hoại)',
+						warn: 'Cảnh báo (Warn)',
+						welcome: 'Hoan nghênh (Welcome)',
+						shared: 'IP dùng chung (Shared IP)',
+						talkback: 'Báo tin (Talkback)',
+						speedy: 'Xóa nhanh (CSD)',
+						prod: 'Xóa đề xuất (PROD)',
+						xfd: 'Biểu quyết xóa (XfD)',
+						image: 'Hình ảnh (DI)',
+						protect: 'Khóa trang (RPP)',
+						tag: 'Gán thẻ (Tag)',
+						diff: 'Khác biệt (Diff)',
+						unlink: 'Gỡ liên kết (Unlink)',
+						fluff: 'Lùi sửa (Revert)',
 					},
 					default: [],
 				},
@@ -255,16 +255,16 @@ export class Config {
 				// Config.disabledSysopModules (array)
 				{
 					name: 'disabledSysopModules',
-					label: 'Turn off the selected admin-only modules',
-					helptip: 'Anything you select here will NOT be available for use, so act with care. Uncheck to reactivate.',
+					label: 'Tắt các mô đun chỉ dành cho Bảo quản viên đã chọn',
+					helptip: 'Bất cứ thứ gì bạn chọn ở đây sẽ KHÔNG khả dụng để sử dụng, vì vậy hãy cẩn thận. Bỏ chọn để kích hoạt lại.',
 					adminOnly: true,
 					type: 'set',
 					setValues: {
-						block: 'Block',
-						deprod: 'DePROD',
-						batchdelete: 'D-batch',
-						batchprotect: 'P-batch',
-						batchundelete: 'Und-batch',
+						block: 'Cấm (Block)',
+						deprod: 'Hủy Xóa đề xuất (DePROD)',
+						batchdelete: 'Xóa hàng loạt (D-batch)',
+						batchprotect: 'Khóa hàng loạt (P-batch)',
+						batchundelete: 'Phục hồi hàng loạt (Und-batch)',
 					},
 					default: [],
 				},
@@ -361,14 +361,14 @@ export class Config {
 				contentnotice.innerHTML =
 					'<table class="plainlinks ombox ombox-content"><tr><td class="mbox-image">' +
 					'<img alt="" src="https://upload.wikimedia.org/wikipedia/commons/3/38/Imbox_content.png" /></td>' +
-					'<td class="mbox-text"><p><big><b>Before modifying your settings here,</b> you must remove your old Twinkle and Friendly settings from your personal skin JavaScript.</big></p>' +
-					'<p>To do this, you can <a href="' +
+					'<td class="mbox-text"><p><big><b>Trước khi thay đổi các cài đặt tại đây,</b> bạn phải gỡ bỏ các cấu hình Twinkle cũ của bạn từ trang skin JavaScript cá nhân.</big></p>' +
+					'<p>Để làm điều này, bạn có thể <a href="' +
 					mw.util.getUrl('User:' + mw.config.get('wgUserName') + '/' + mw.config.get('skin') + '.js', {
 						action: 'edit',
 					}) +
-					'" target="_blank"><b>edit your personal skin javascript file</b></a> or <a href="' +
+					'" target="_blank"><b>sửa trang skin javascript cá nhân của bạn</b></a> hoặc <a href="' +
 					mw.util.getUrl('User:' + mw.config.get('wgUserName') + '/common.js', { action: 'edit' }) +
-					'" target="_blank"><b>your common.js file</b></a>, removing all lines of code that refer to <code>TwinkleConfig</code> and <code>FriendlyConfig</code>.</p>' +
+					'" target="_blank"><b>trang common.js của bạn</b></a>, gỡ bỏ tất cả các dòng mã có chứa <code>TwinkleConfig</code> và <code>FriendlyConfig</code>.</p>' +
 					'</td></tr></table>';
 				contentdiv.appendChild(contentnotice);
 			}
@@ -381,7 +381,7 @@ export class Config {
 			var toctitle = document.createElement('div');
 			toctitle.id = 'toctitle';
 			var toch2 = document.createElement('h2');
-			toch2.textContent = 'Contents ';
+			toch2.textContent = 'Mục lục ';
 			toctitle.appendChild(toch2);
 			// add TOC show/hide link
 			var toctoggle = document.createElement('span');
@@ -390,7 +390,7 @@ export class Config {
 			var toctogglelink = document.createElement('a');
 			toctogglelink.className = 'internal';
 			toctogglelink.setAttribute('href', '#tw-tocshowhide');
-			toctogglelink.textContent = 'hide';
+			toctogglelink.textContent = 'ẩn';
 			toctoggle.appendChild(toctogglelink);
 			toctoggle.appendChild(document.createTextNode(']'));
 			toctitle.appendChild(toctoggle);
@@ -403,9 +403,9 @@ export class Config {
 					var $tocul = $(tocul);
 					$tocul.toggle();
 					if ($tocul.find(':visible').length) {
-						toctogglelink.textContent = 'hide';
+						toctogglelink.textContent = 'ẩn';
 					} else {
-						toctogglelink.textContent = 'show';
+						toctogglelink.textContent = 'hiện';
 					}
 				},
 				false
@@ -894,10 +894,10 @@ export class Config {
 									Morebits.status.warn(
 										'Saving',
 										'The value you specified for ' +
-											pref.name +
-											' (' +
-											form[pref.name].value +
-											') was invalid.  The save will continue, but the invalid data value will be skipped.'
+										pref.name +
+										' (' +
+										form[pref.name].value +
+										') was invalid.  The save will continue, but the invalid data value will be skipped.'
 									);
 									userValue = null;
 								}

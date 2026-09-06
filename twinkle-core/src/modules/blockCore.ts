@@ -57,8 +57,8 @@ export abstract class BlockCore extends TwinkleModule {
 	blockedUserName: string;
 
 	portletId = 'twinkle-block';
-	portletName = 'Block';
-	portletTooltip = 'Block relevant user';
+	portletName = 'Cấm';
+	portletTooltip = 'Cấm thành viên này';
 
 	blockPresetsInfo: Record<string, BlockPresetInfo>;
 	blockGroups: quickFormElementData[];
