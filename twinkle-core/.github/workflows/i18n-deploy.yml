@@ -1,0 +1,54 @@
+name: i18n deploy
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'i18n/**'
+      - 'scripts/build-i18n.js'
+      - '.github/workflows/i18n-deploy.yml'
+  workflow_dispatch:
+
+jobs:
+  deployi18n:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # all branches
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Sanitise strings and resolve fallback messages
+        run: node scripts/build-i18n
+
+      - name: Commit changes in i18n branch
+        run: |
+          git checkout i18n --
+          rm -r build-i18n
+          mv build-i18n-temp build-i18n
+          git config --local user.email "twinkle_bot@github.com"
+          git config --local user.name "twinkle_bot"
+          git add build-i18n
+          git diff-index --quiet HEAD -- || git commit -m "Building i18n files"
+
+      - name: Push to GitHub
+        uses: ad-m/github-push-action@0fafdd62b84042d49ec0cb92d9cac7f7ce4ec79e
+        with:
+          github_token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+          branch: i18n
+
+      - name: Push to Gerrit
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "$GERRIT_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+          git remote add gerrit "ssh://$GERRIT_USER@gerrit.wikimedia.org:29418/mediawiki/gadgets/TwinkleCore"
+          git push gerrit i18n
+          rm -rf ~/.ssh
+        env:
+          GERRIT_USER: ${{secrets.GERRIT_USER}}
+          GERRIT_KEY: ${{secrets.GERRIT_KEY}}

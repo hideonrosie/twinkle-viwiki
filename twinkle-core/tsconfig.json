@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "ES2020",
+    "lib": [
+      "dom",
+      "es6",
+    ],
+    "outDir": "./js",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "newLine": "lf",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "src/**/*",
+    "node_modules/types-mediawiki/index.d.ts",
+    "morebits/index.d.ts"
+  ],
+  "compileOnSave": true
+}

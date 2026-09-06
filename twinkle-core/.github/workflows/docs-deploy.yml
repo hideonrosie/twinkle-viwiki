@@ -1,0 +1,50 @@
+name: Docs deploy
+
+on:
+  push:
+    branches: [ 'master' ]
+  release:
+    types: [ 'created' ]
+  workflow_dispatch:
+
+jobs:
+  deploydocs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run docs
+      - name: Upload docs to Toolforge
+        uses: appleboy/scp-action@9ba62064d28ce0897a970e72cdfe30b9fde2fe48
+        with:
+          source: ${{github.workspace}}/docs/*
+          target: /data/project/twinkle/www/static/core-docs
+          host: login.toolforge.org
+          username: ${{ secrets.TOOLFORGE_USERNAME }}
+          key: ${{ secrets.TOOLFORGE_PRIVATE_KEY }}
+          rm: true
+
+  versiondocs:
+    needs: deploydocs
+    runs-on: ubuntu-latest
+    if: ${{github.event_name == 'release'}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read package.json version
+        uses: martinbeentjes/npm-get-version-action@master
+        id: get-version
+      - name: Save the documentation with version number
+        uses: appleboy/ssh-action@551964ebda1034f0b5449d74db25c42e371ca1f7
+        with:
+          script: >-
+            become twinkle bash -c '
+              cd /data/project/twinkle/www/static;
+              cp -r core-docs "core-docs-${{ steps.get-version.outputs.current-version }}";
+            '
+          host: login.toolforge.org
+          username: ${{ secrets.TOOLFORGE_USERNAME }}
+          key: ${{ secrets.TOOLFORGE_PRIVATE_KEY }}
