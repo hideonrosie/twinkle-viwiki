@@ -96,7 +96,7 @@ class Deploy {
 			}
 		}
 		if (args.testwiki) {
-			config.apiUrl = `https://test.wikipedia.org/w/api.php`;
+			config.apiUrl = `https://vi.wikipedia.beta.wmcloud.org/w/api.php`;
 		} else {
 			if (!config.apiUrl) {
 				if (Object.keys(config).length) {
