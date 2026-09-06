@@ -12,7 +12,7 @@
  */
 
 // For use with TypeScript
-export * from 'twinkle-core/src/index';
+// export * from '../twinkle-core/src/index';
 
 // For use with JavaScript
 // export * from 'twinkle-core/js/src/index';
@@ -23,7 +23,7 @@ export * from 'twinkle-core/src/index';
  same as that of this project. If not, adjust the path accordingly.
 */
 /* when using TS in your project */
-// export * from '../../twinkle-core/src/index';
+export * from '../twinkle-core/src/index';
 
 /* when using JS in your project */
 // export * from '../../twinkle-core/js/src/index';
