@@ -2,23 +2,35 @@ import { Twinkle, init, SiteConfig } from './core';
 import messages from './messages.json';
 import mwMessageList from './mw-messages';
 
-// import modules
+// Tải các mô đun
 import { Fluff } from './fluff';
-
-// no customisation; import directly from core
 import { DiffCore as Diff } from './core';
+import { Unlink } from './unlink';
+import { BatchDelete } from './batchdelete';
+import { BatchUndelete } from './batchundelete';
+import { Tag } from './tag';
+import { Xfd } from './xfd';
+import { Speedy } from './speedy';
+import { Warn } from './warn';
+import { Protect } from './protect';
+import { Block } from './block';
+import { Prod } from './prod';
+// import { Deprod } from './deprod';
+import { Welcome } from './welcome';
+import { Talkback } from './talkback';
+import { Arv } from './arv';
 
 // register some globals for debugging, as per twinkle v2
 import './globals';
 
 // Check if account is experienced enough to use Twinkle
 if (!Morebits.userIsInGroup('autoconfirmed') && !Morebits.userIsInGroup('confirmed')) {
-	throw new Error('Twinkle: forbidden!');
+	throw new Error('Twinkle: bị cấm sử dụng!');
 }
 
 Twinkle.userAgent = `Twinkle (${mw.config.get('wgWikiID')})`;
 
-Twinkle.summaryAd = ' ([[Project:TW|TW]])';
+Twinkle.summaryAd = ' ([[Wikipedia:Twinkle|TW v3]])';
 
 Twinkle.changeTags = '';
 
@@ -27,7 +39,24 @@ Twinkle.messageOverrides = messages;
 Twinkle.extraMwMessages = mwMessageList;
 
 // List of module classes enabled
-Twinkle.registeredModules = [Fluff, Diff];
+Twinkle.registeredModules = [
+	Xfd,
+	Tag,
+	Speedy,
+	Diff,
+	Warn,
+	Fluff,
+	BatchDelete,
+	Protect,
+	Block,
+	Prod,
+	// Deprod,
+	Arv,
+	Welcome,
+	Talkback,
+	Unlink,
+	BatchUndelete,
+];
 
 /**
  * Adjust the following configurations if necessary
@@ -35,13 +64,13 @@ Twinkle.registeredModules = [Fluff, Diff];
  * https://twinkle.toolforge.org/core-docs/modules/siteconfig.html
  */
 
-SiteConfig.permalinkSpecialPageName = 'Special:PermanentLink';
+SiteConfig.permalinkSpecialPageName = 'Đặc biệt:Liên kết thường trực';
 
 SiteConfig.botUsernameRegex = /bot\b/i;
 
 SiteConfig.flaggedRevsNamespaces = [];
 
-SiteConfig.redirectTagAliases = ['#REDIRECT'];
+SiteConfig.redirectTagAliases = ['#ĐỔI', '#REDIRECT'];
 
 // Go!
 init();
