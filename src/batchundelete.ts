@@ -2,21 +2,16 @@ import { BatchUndeleteCore } from './core';
 
 export class BatchUndelete extends BatchUndeleteCore {
 
-    // Liên kết cuối cửa sổ công cụ
     footerLinks = {
         'Trợ giúp Twinkle': 'WP:TW/DOC#batchundelete',
-        'Để lại phản hồi': 'WT:TW',
+        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
     };
 
-    // Kiểm tra quyền BQV hay ĐPV
+    // Nếu là ĐPV, bật mô đun này. BQV không cần hàm này
 	constructor() {
 		super();
 
-		// Core constructor đã gọi addMenu() cho sysop rồi.
-		// Ở đây chỉ xử lý trường hợp bổ sung: eliminator không phải sysop.
-		if (
-			!Morebits.userIsSysop &&
-			Morebits.userIsInGroup('eliminator') &&
+		if (Morebits.userIsInGroup('eliminator') &&
 			mw.config.get('wgArticleId') &&
 			(
 				mw.config.get('wgNamespaceNumber') ===

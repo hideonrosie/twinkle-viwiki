@@ -812,8 +812,8 @@ export class Xfd extends XfdCore {
     footerlinks = {
         // 'Về thảo luận xóa': 'WP:XFD',
         'Tùy chọn BQX': 'WP:TW/PREF#xfd',
-        'Trợ giúp Twinkle': 'WP:TW/DOC#xfd',
-        'Phản hồi': 'WT:TW',
+        'Trợ giúp TwinkleV3': 'WP:TW/DOC#xfd',
+        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
     };
 
     static userPreferences() {

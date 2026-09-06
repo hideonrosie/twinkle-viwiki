@@ -26,7 +26,7 @@ export class Talkback extends TwinkleModule {
 		Window.setScriptName('Twinkle');
 		Window.addFooterLink('Tùy chọn hồi âm', 'WP:TW/PREF#talkback');
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#talkback');
-		Window.addFooterLink('Phản hồi', 'WT:TW');
+		Window.addFooterLink('Báo cáo lỗi TWV3', 'Thảo luận Wikipedia:Twinkle/TwinkleV3');
 
 		var form = new Morebits.quickForm(Talkback.evaluate);
 

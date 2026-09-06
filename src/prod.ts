@@ -68,9 +68,6 @@ export class Prod extends TwinkleModule {
 			Window.addFooterLink('Quy định đề nghị xóa tiểu sử người còn sống', 'WP:BLPPROD');
 		} else if (this.namespace === 'file') {
 			Window.addFooterLink('Quy định đề nghị xóa tập tin', 'WP:PROD');
-		} else {
-			// if book
-			Window.addFooterLink('Quy định đề nghị xóa sách', 'WP:BOOKPROD');
 		}
 
 		var field = form.append({
@@ -113,7 +110,7 @@ export class Prod extends TwinkleModule {
 
 		Window.addFooterLink('Tùy chọn PROD', 'WP:TW/PREF#prod');
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#prod');
-		Window.addFooterLink('Phản hồi', 'WT:TW');
+		Window.addFooterLink('Báo cáo lỗi TWV3', 'Thảo luận Wikipedia:Twinkle/TwinkleV3');
 
 		form.append({ type: 'submit', label: 'Đề nghị xóa' });
 

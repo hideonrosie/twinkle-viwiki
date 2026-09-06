@@ -6,6 +6,7 @@ export class Speedy extends SpeedyCore {
 		'Quy định xóa nhanh': 'WP:XN',
 		'Cấu hình Xóa nhanh': 'WP:TW/PREF#speedy',
 		'Trợ giúp Twinkle': 'WP:TW/DOC#xóa_nhanh',
+        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
 	};
 
     addMenu() {
@@ -23,12 +24,12 @@ export class Speedy extends SpeedyCore {
                 /^\s*(?:User|Thành viên):/i,
                 ''
             );
-        };
+        }
 
         if (params.redundantimage_filename) {
             params.redundantimage_filename =
             new mw.Title(params.redundantimage_filename, 6).toText();
-        };
+        }
 
         if (
             params.commons_filename &&
@@ -36,7 +37,7 @@ export class Speedy extends SpeedyCore {
         ) {
             params.commons_filename =
                 new mw.Title(params.commons_filename, 6).toText();
-        };
+        }
     }
     validateInputs(): string | void {
         const input = this.params;

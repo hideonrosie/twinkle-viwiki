@@ -1519,6 +1519,7 @@ TagCore.modeList = [
 export class Tag extends TagCore {
 	footerlinks = {
 		'Trợ giúp Twinkle': 'WP:TW/DOC#tag',
+        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
 	};
 
 	static userPreferences() {

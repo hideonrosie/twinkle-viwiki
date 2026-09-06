@@ -7,6 +7,7 @@ stash*.diff
 *.jsX
 *.js.map
 credentials.json
+credential.json
 
 # Windows
 Thumbs.db

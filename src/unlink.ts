@@ -4,7 +4,7 @@ export class Unlink extends UnlinkCore {
 
 	footerLinks = {
 		'Trợ giúp Twinkle': 'WP:TW/DOC#unlink',
-		'Để lại phản hồi': 'WT:TW',
+		'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
 	};
 
 	isUsable(): boolean {

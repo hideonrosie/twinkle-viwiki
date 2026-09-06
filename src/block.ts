@@ -6,7 +6,7 @@ export class Block extends BlockCore {
 		'Quy định cấm': 'WP:BLOCK',
 		'Tùy chọn cấm': 'WP:TW/PREF#block',
 		'Trợ giúp Twinkle': 'WP:TW/DOC#block',
-		'Phản hồi': 'WT:TW',
+		'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
 	};
 
 	blockPresetsInfo: Record<string, BlockPresetInfo> = {

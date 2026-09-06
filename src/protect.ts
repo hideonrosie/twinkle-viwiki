@@ -7,7 +7,7 @@ export class Protect extends ProtectCore {
 		'Quy định khóa trang': 'WP:KHOA',
 		'Tùy chọn khóa': 'WP:TW/PREF#protect',
 		'Trợ giúp Twinkle': 'WP:TW/DOC#protect',
-		'Phản hồi': 'WT:TW',
+		'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
 	};
 
     getProtectionLevels() {

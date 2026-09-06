@@ -5,7 +5,7 @@ export class Warn extends WarnCore {
         'Chọn cấp độ cảnh báo': 'WP:UWUL#Levels',
         'Tùy chọn cảnh báo': 'WP:TW/PREF#warn',
         'Trợ giúp Twinkle': 'WP:TW/DOC#warn',
-        'Phản hồi': 'WT:TW',
+        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
     };
 
     warningLevels: Record<
