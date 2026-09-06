@@ -30,9 +30,9 @@ if (!Morebits.userIsInGroup('autoconfirmed') && !Morebits.userIsInGroup('confirm
 
 Twinkle.userAgent = `Twinkle (${mw.config.get('wgWikiID')})`;
 
-Twinkle.summaryAd = ' ([[Wikipedia:Twinkle|TW v3]])';
+Twinkle.summaryAd = ' ([[Wikipedia:Twinkle/TwinkleV3|TwinkleV3]])';
 
-Twinkle.changeTags = '';
+Twinkle.changeTags = 'twinkle';
 
 Twinkle.messageOverrides = messages;
 
