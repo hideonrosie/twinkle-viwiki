@@ -3,7 +3,7 @@ import { makeArray, obj_entries } from '../utils';
 import { Page } from '../Page';
 import { Api } from '../Api';
 import { Dialog } from '../Dialog';
-import { Preference, getPref } from '../Config';
+import { Preference, getPref, Config } from '../Config';
 import { TwinkleModule } from '../twinkleModule';
 
 // TODO: still quite a bit of enwiki specific logic here
@@ -1163,10 +1163,69 @@ export abstract class SpeedyCore extends TwinkleModule {
 	 */
 	validateInputs(): string | void { }
 
-	userPreferences() {
+	static userPreferences() {
 		return {
-			title: 'CSD',
-			preferences: [] as Preference[],
+			title: 'Xóa nhanh (CSD)',
+			preferences: [
+				{
+					name: 'speedySelectionStyle',
+					label: 'Khi nào nên chọn tiêu chí Xóa nhanh?',
+					type: 'enum',
+					enumValues: {
+						buttonClick: 'Khi nhấn vào nút tiêu chí',
+						radioClick: 'Khi nhấn vào nút tick (radio button)'
+					},
+					default: 'buttonClick'
+				},
+				{
+					name: 'watchSpeedyPages',
+					label: 'Thêm trang vào danh sách theo dõi khi sử dụng tiêu chí này',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: ['g3', 'g5', 'g10', 'g11', 'g12']
+				},
+				{
+					name: 'watchSpeedyExpiry',
+					label: 'Thời gian theo dõi trang',
+					type: 'enum',
+					enumValues: Config.watchlistEnums,
+					default: '1 month'
+				},
+				{
+					name: 'markSpeedyPagesAsPatrolled',
+					label: 'Đánh dấu tuần tra các trang được gắn thẻ Xóa nhanh',
+					type: 'boolean',
+					default: false
+				},
+				{
+					name: 'promptForSpeedyDeletionSummary',
+					label: 'Cho phép nhập lý do xóa tùy chỉnh khi sử dụng các tiêu chí này',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: []
+				},
+				{
+					name: 'warnUserOnSpeedyDelete',
+					label: 'Thông báo cho người tạo trang khi tiến hành xóa trang bằng các tiêu chí này',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv1', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3']
+				},
+				{
+					name: 'notifyUserOnSpeedyDeletionNomination',
+					label: 'Thông báo cho người tạo trang khi gắn thẻ Xóa nhanh bằng các tiêu chí này',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv1', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3']
+				},
+				{
+					name: 'welcomeUserOnSpeedyDeletionNotification',
+					label: 'Hoan nghênh người tạo trang cùng lúc với việc thông báo Xóa nhanh cho các tiêu chí',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: []
+				}
+			] as Preference[],
 		};
 	}
 }
