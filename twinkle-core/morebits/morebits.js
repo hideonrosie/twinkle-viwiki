@@ -2808,10 +2808,10 @@ Morebits.wiki.page = function(pageName, status) {
 			!confirm(
 				ctx.fullyProtected === 'infinity'
 					? msg('protected-indef-edit-warning', ctx.pageName,
-					'You are about to make an edit to the fully protected page "' + ctx.pageName + '" (protected indefinitely).  \n\nClick OK to proceed with the edit, or Cancel to skip this edit.'
+						'You are about to make an edit to the fully protected page "' + ctx.pageName + '" (protected indefinitely).  \n\nClick OK to proceed with the edit, or Cancel to skip this edit.'
 					)
 					: msg('protected-edit-warning', ctx.pageName, ctx.fullyProtected,
-					'You are about to make an edit to the fully protected page "' + ctx.pageName +
+						'You are about to make an edit to the fully protected page "' + ctx.pageName +
 					'" (protection expiring ' + new Morebits.date(ctx.fullyProtected).calendar('utc') + ' (UTC)).  \n\nClick OK to proceed with the edit, or Cancel to skip this edit.'
 					)
 			)
@@ -5672,7 +5672,7 @@ Morebits.wiki.user = function(userName, currentAction) {
 	};
 
 
-/*
+	/*
   Wrappers for fnSuccess, the joint success function.  At the moment,
   we're not doing anything unique for any of these, so this is just
   for the structure.  If we do want to customize for specific
