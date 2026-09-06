@@ -68,7 +68,7 @@ export abstract class WarnCore extends TwinkleModule {
 				$vandalTalkLink.wrapInner(
 					$('<span/>').attr(
 						'title',
-						'If appropriate, you can use Twinkle to warn the user about their edits to this page.'
+						'Bạn có thể dùng Twinkle để cảnh báo thành viên về trang này.'
 					)
 				);
 
@@ -88,7 +88,7 @@ export abstract class WarnCore extends TwinkleModule {
 		super.makeWindow();
 		if (
 			mw.config.get('wgRelevantUserName') === mw.config.get('wgUserName') &&
-			!confirm('You are about to warn yourself! Are you sure you want to proceed?')
+			!confirm('Bạn sắp tự cảnh báo mình! Bạn có muốn tiếp tục?')
 		) {
 			return;
 		}
@@ -100,14 +100,14 @@ export abstract class WarnCore extends TwinkleModule {
 		let form = new Morebits.quickForm((e) => this.evaluate(e));
 		let main_select = form.append({
 			type: 'field',
-			label: 'Choose type of warning/notice to issue',
-			tooltip: 'First choose a main warning group, then the specific warning to issue.',
+			label: 'Chọn loại hoặc cấp độ cảnh báo cảnh báo',
+			tooltip: 'Đầu tiên, chọn loại cảnh báo, sau đó chọn cảnh báo cụ thể để gửi.',
 		});
 
 		let main_group = main_select.append({
 			type: 'select',
 			name: 'main_group',
-			tooltip: 'You can customize the default selection in your Twinkle preferences',
+			tooltip: 'Bạn có thể thay đổi loại cảnh báo mặc định trong tùy chọn Twinkle',
 			event: this.onCategoryChange.bind(this),
 			list: this.getWarningGroups(),
 		});
@@ -132,12 +132,12 @@ export abstract class WarnCore extends TwinkleModule {
 			id: 'twinkle-warn-warning-messages',
 		});
 
-		var more = form.append({ type: 'field', name: 'reasonGroup', label: 'Warning information' });
+		var more = form.append({ type: 'field', name: 'reasonGroup', label: 'Thông tin cảnh báo' });
 		more.append({
 			type: 'textarea',
-			label: 'Optional message:',
+			label: 'Tin nhắn bổ sung:',
 			name: 'reason',
-			tooltip: 'Perhaps a reason, or that a more detailed notice must be appended',
+			tooltip: 'Có thể là lý do hoặc thông tin bổ sung nào đó',
 		});
 
 		var previewlink = document.createElement('a');
@@ -145,11 +145,11 @@ export abstract class WarnCore extends TwinkleModule {
 			this.preview(result); // |result| is defined below
 		});
 		previewlink.style.cursor = 'pointer';
-		previewlink.textContent = 'Preview';
+		previewlink.textContent = 'Xem trước';
 		more.append({ type: 'div', id: 'warningpreview', label: [previewlink] });
 		more.append({ type: 'div', id: 'twinklewarn-previewbox', style: 'display: none' });
 
-		more.append({ type: 'submit', label: 'Submit' });
+		more.append({ type: 'submit', label: 'Gửi' });
 
 		var result = form.render();
 		dialog.setContent(result);
@@ -191,11 +191,11 @@ export abstract class WarnCore extends TwinkleModule {
 					format: 'json',
 				};
 
-				new Morebits.wiki.api('Checking if you successfully reverted the page', query, function (apiobj) {
+				new Morebits.wiki.api('Kiểm tra xem bạn đã lùi sửa đổi này chưa', query, function (apiobj) {
 					var rev = apiobj.getResponse().query.pages[0].revisions;
 					var revertUser = rev && rev[1].user;
 					if (revertUser && revertUser !== mw.config.get('wgUserName')) {
-						message += ' Someone else reverted the page and may have already warned the user.';
+						message += ' Ai đó đã lùi sửa đổi và đã cảnh báo rồi.';
 						$('#twinkle-warn-warning-messages').text('Note:' + message);
 					}
 				}).post();
@@ -206,7 +206,7 @@ export abstract class WarnCore extends TwinkleModule {
 				var revDate = new Morebits.date(vantimestamp);
 				if (vantimestamp && revDate.isValid()) {
 					if (revDate.add(24, 'hours').isBefore(new Date())) {
-						message += ' This edit was made more than 24 hours ago so a warning may be stale.';
+						message += ' Sửa đổi này đã thực hiện từ quá 24 giờ trước, cảnh báo này có thể không hiệu lực.';
 						$('#twinkle-warn-warning-messages').text('Note:' + message);
 					}
 				}
@@ -397,10 +397,10 @@ export abstract class WarnCore extends TwinkleModule {
 
 	getInputConfig(template: string): quickFormElementData {
 		return {
-			label: 'Linked page',
+			label: 'Trang được liên kết',
 			value: mw.util.getParamValue('vanarticle') || '',
 			tooltip:
-				'A page can be linked within the notice, perhaps because it was a revert to said page that dispatched this notice. Leave empty for no page to be linked.',
+				'Một trang có thể được liên kết bên trong thông báo này, có lẽ là do một thao tác lùi sửa trên trang đó đã kích hoạt thông báo. Để trống nếu không muốn liên kết đến trang nào.',
 			className: 'titleInput',
 		};
 	}
@@ -454,7 +454,7 @@ export abstract class WarnCore extends TwinkleModule {
 			input.main_group === 'custom'
 		);
 
-		form.previewer.beginRender(templatetext, 'User_talk:' + mw.config.get('wgRelevantUserName')); // Force wikitext/correct username
+		form.previewer.beginRender(templatetext, 'Thảo_luận_Thành_viên:' + mw.config.get('wgRelevantUserName')); // Force wikitext/correct username
 	}
 
 	preview(form: HTMLFormElement) {
@@ -479,7 +479,7 @@ export abstract class WarnCore extends TwinkleModule {
 		Morebits.simpleWindow.setButtonsEnabled(false);
 		Morebits.status.init(e.target);
 
-		var wikipedia_page = new Page(userTalkPage.toText(), 'User talk page modification');
+		var wikipedia_page = new Page(userTalkPage.toText(), 'Sửa trang thảo luận');
 		wikipedia_page.setFollowRedirect(true, false);
 		wikipedia_page
 			.load()
@@ -487,7 +487,7 @@ export abstract class WarnCore extends TwinkleModule {
 				return this.main(wikipedia_page, params);
 			})
 			.then(() => {
-				Morebits.status.actionCompleted('Warning complete, reloading talk page in a few seconds');
+				Morebits.status.actionCompleted('Cảnh báo thành công, tải lại trang sau vài giây');
 				setTimeout(() => {
 					location.href = mw.util.getUrl(userTalkPage.toText());
 				}, 8000);
@@ -583,12 +583,12 @@ export abstract class WarnCore extends TwinkleModule {
 			params.sub_group in history &&
 			new Morebits.date(history[params.sub_group]).add(1, 'day').isAfter(now) &&
 			!confirm(
-				'An identical ' +
+				'Một bản mẫu ' +
 				params.sub_group +
-				' has been issued in the last 24 hours.  \nWould you still like to add this warning/notice?'
+				' đã được gửi đến thành viên này trong 24 giờ qua.  \nBạn vẫn muốn cảnh báo chứ?'
 			)
 		) {
-			statelem.error('aborted per user request');
+			statelem.error('người dùng đã hủy');
 			return;
 		}
 
@@ -597,10 +597,10 @@ export abstract class WarnCore extends TwinkleModule {
 		if (
 			latest.date.isAfter(now) &&
 			!confirm(
-				'A ' + latest.type + ' has been issued in the last minute.  \nWould you still like to add this warning/notice?'
+				'Một ' + latest.type + ' đã được gửi 1 phút trước.  \nBạn vẫn muốn cảnh báo chứ?'
 			)
 		) {
-			statelem.error('aborted per user request');
+			statelem.error('người dùng đã hủy');
 			return;
 		}
 
@@ -676,7 +676,7 @@ export abstract class WarnCore extends TwinkleModule {
 				// create new section
 				pageobj.setNewSectionTitle(messageData.heading);
 			} else {
-				Morebits.status.info('Info', 'Will create a new talk page section for this month, as none was found');
+				Morebits.status.info('Thông tin', 'Sẽ tạo đề mục cho tháng này');
 				pageobj.setNewSectionTitle(now.monthHeader());
 			}
 			pageobj.setNewSectionText(warningText);
