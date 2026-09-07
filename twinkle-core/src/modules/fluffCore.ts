@@ -112,7 +112,7 @@ class Fluff extends TwinkleModule {
 						recent: 'Thay đổi gần đây và các thay đổi liên quan đến các trang đặc biệt',
 						history: 'Lịch sử trang',
 					},
-					default: ['diff', 'others'],
+					default: ['diff', 'others', 'contribs', 'history'],
 				},
 			],
 		};

@@ -59,7 +59,7 @@ const defaultConfig = {
 	offerReasonOnNormalRevert: true,
 	confirmOnFluff: false,
 	confirmOnMobileFluff: true,
-	showRollbackLinks: ['diff', 'others'],
+	showRollbackLinks: ['diff', 'others', 'contribs', 'history'],
 
 	// CSD
 	speedySelectionStyle: 'buttonClick',
