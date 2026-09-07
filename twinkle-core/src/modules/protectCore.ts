@@ -642,8 +642,8 @@ export abstract class ProtectCore extends TwinkleModule {
 					label: msg('duration-label'),
 					list: [
 						{ label: '', selected: true, value: '' },
-						{ label: msg('temporary'), value: 'Temporary' },
-						{ label: msg('protect-expiry-indefinite'), value: 'Indefinite' },
+						{ label: msg('temporary'), value: 'temporary' },
+						{ label: msg('protect-expiry-indefinite'), value: 'indefinite' },
 					],
 				});
 				field1.append({
@@ -1329,20 +1329,23 @@ export abstract class ProtectCore extends TwinkleModule {
 		var text = '=== [[:' + Morebits.pageNameNorm + ']] ===\n';
 		text += '* {{pagelinks|1=' + Morebits.pageNameNorm + '}}\n* {{Tình trạng khóa|1=' + Morebits.pageNameNorm + '}}\n\n';
 
+		var lowerTypename = typename ? (typename.charAt(0).toLowerCase() + typename.slice(1)) : typename;
+
 		var words = '';
-		switch (input.expiry) {
+		var expiryLower = (input.expiry || '').toLowerCase();
+		switch (expiryLower) {
 			case 'temporary':
-				words = 'Tạm thời ';
+				words = 'tạm thời ';
 				break;
 			case 'infinity':
 			case 'indefinite':
-				words = 'Vô hạn ';
+				words = 'vô hạn ';
 				break;
 			default:
 				words = input.expiry ? input.expiry + ' ' : '';
 				break;
 		}
-		words += typename;
+		words += lowerTypename;
 
 		text +=
 			"'''" +
@@ -1350,7 +1353,7 @@ export abstract class ProtectCore extends TwinkleModule {
 			(reason ? ":''' " + Morebits.string.formatReasonText(reason) : ".'''") +
 			' ~~~~';
 
-		let summary = `/* ${Morebits.pageNameNorm} */ Đang yêu cầu ${typename} [[:${Morebits.pageNameNorm}]].`;
+		let summary = `/* ${Morebits.pageNameNorm} */ Đang yêu cầu ${lowerTypename} [[:${Morebits.pageNameNorm}]].`;
 
 		return [text, summary];
 	}
