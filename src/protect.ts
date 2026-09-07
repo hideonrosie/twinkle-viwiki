@@ -2,6 +2,8 @@ import { NS_MAIN, ProtectCore } from './core';
 import { hatnoteRegex } from './common';
 
 export class Protect extends ProtectCore {
+	requestPageName = 'Wikipedia:Yêu cầu khóa hay mở khóa trang';
+
 	footerlinks = {
 		'Bản mẫu khóa': 'Bản mẫu:Khóa trang',
 		'Quy định khóa trang': 'WP:KHOA',
