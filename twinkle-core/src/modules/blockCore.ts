@@ -3,7 +3,7 @@ import { Dialog } from '../Dialog';
 import { link, LogEvent, obj_entries } from '../utils';
 import { msg } from '../messenger';
 import { TwinkleModule } from '../twinkleModule';
-import { getPref } from '../Config';
+import { getPref, PreferenceGroup } from '../Config';
 import { User } from '../User';
 import type { ApiBlockParams } from 'types-mediawiki/api_params';
 import isInfinity = Morebits.string.isInfinity;
@@ -52,6 +52,30 @@ export type BlockPresetInfo = {
 export abstract class BlockCore extends TwinkleModule {
 	moduleName = 'block';
 	static moduleName = 'block';
+
+	static userPreferences(): PreferenceGroup {
+		return {
+			title: 'Cấm thành viên',
+			adminOnly: true,
+			preferences: [
+				// TwinkleConfig.defaultToPartialBlocks (boolean)
+				{
+					name: 'defaultToPartialBlocks',
+					label: 'Chọn “cấm bán phần” theo mặc định',
+					type: 'boolean',
+					default: false,
+				},
+				// TwinkleConfig.blankTalkpageOnIndefBlock (boolean)
+				{
+					name: 'blankTalkpageOnIndefBlock',
+					label: 'Tẩy trống trang thảo luận khi cấm vô hạn thành viên',
+					helptip: 'Xem [[WP:UWUL]] để có thêm thông tin.',
+					type: 'boolean',
+					default: false,
+				},
+			],
+		};
+	}
 
 	relevantUserName: string;
 	blockedUserName: string;
