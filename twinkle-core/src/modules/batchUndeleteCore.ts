@@ -25,7 +25,7 @@ export class BatchUndeleteCore extends TwinkleModule {
 	constructor() {
 		super();
 		if (
-			!Morebits.userIsSysop ||
+			!(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ||
 			!mw.config.get('wgArticleId') ||
 			(mw.config.get('wgNamespaceNumber') !== mw.config.get('wgNamespaceIds').user &&
 				mw.config.get('wgNamespaceNumber') !== mw.config.get('wgNamespaceIds').project)
@@ -98,9 +98,9 @@ export class BatchUndeleteCore extends TwinkleModule {
 						title +
 						(editProt
 							? msg('word-separator') +
-							(editProt.expiry === 'infinity'
-								? msg('create-protected-indef')
-								: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
+							  (editProt.expiry === 'infinity'
+									? msg('create-protected-indef')
+									: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
 							: ''),
 					value: title,
 					checked: true,

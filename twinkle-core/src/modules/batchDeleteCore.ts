@@ -29,7 +29,7 @@ export class BatchDeleteCore extends TwinkleModule {
 		super();
 
 		if (
-			Morebits.userIsSysop &&
+			(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) &&
 			((mw.config.get('wgCurRevisionId') && mw.config.get('wgNamespaceNumber') > 0) ||
 				mw.config.get('wgCanonicalSpecialPageName') === 'Prefixindex')
 		) {
@@ -626,7 +626,7 @@ export class BatchDeleteCore extends TwinkleModule {
 			redirectDeleter.setOption('chunkSize', getPref('batchChunks'));
 			redirectDeleter.setPageList(pages);
 			redirectDeleter.run((pageName: string) => {
-				var wikipedia_page = new Morebits.wiki.page(pageName, 'Deleting ' + pageName);
+				var wikipedia_page = new Morebits.wiki.page(pageName, 'Đang xóa ' + pageName);
 				wikipedia_page.setEditSummary(msg('delete-redirect-summary', apiobj.params.page));
 				wikipedia_page.setChangeTags(Twinkle.changeTags);
 				wikipedia_page.deletePage(redirectDeleter.workerSuccess, redirectDeleter.workerFailure);
