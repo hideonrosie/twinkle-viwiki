@@ -1185,11 +1185,14 @@ export abstract class ProtectCore extends TwinkleModule {
 
 				// Updating data for the action completed event
 				Morebits.wiki.actionCompleted.redirect = this.requestPageName;
-				Morebits.wiki.actionCompleted.notice = 'Nomination completed, redirecting now to the discussion page';
+				Morebits.wiki.actionCompleted.notice = 'Tác vụ đã hoàn thành, hiện đang chuyển hướng đến trang thảo luận';
 
-				var rppPage = new Page(this.requestPageName, 'Requesting protection of page');
+				Morebits.wiki.addCheckpoint();
+				var rppPage = new Page(this.requestPageName, 'Đang gửi yêu cầu khóa trang');
 				rppPage.setFollowRedirect(true);
-				rppPage.load().then(() => this.fileRequest(rppPage, input));
+				rppPage.load()
+					.then(() => this.fileRequest(rppPage, input))
+					.finally(() => Morebits.wiki.removeCheckpoint());
 				break;
 
 			default:
@@ -1318,9 +1321,22 @@ export abstract class ProtectCore extends TwinkleModule {
 		}
 
 		var text = '=== [[:' + Morebits.pageNameNorm + ']] ===\n';
-		text += '* {{pagelinks|1=' + Morebits.pageNameNorm + '}}\n\n';
+		text += '* {{pagelinks|1=' + Morebits.pageNameNorm + '}}\n* {{Tình trạng khóa|1=' + Morebits.pageNameNorm + '}}\n\n';
 
-		var words = input.expiry ? input.expiry + ' ' : '' + typename;
+		var words = '';
+		switch (input.expiry) {
+			case 'temporary':
+				words = 'Tạm thời ';
+				break;
+			case 'infinity':
+			case 'indefinite':
+				words = 'Vô hạn ';
+				break;
+			default:
+				words = input.expiry ? input.expiry + ' ' : '';
+				break;
+		}
+		words += typename;
 
 		text +=
 			"'''" +
@@ -1328,8 +1344,7 @@ export abstract class ProtectCore extends TwinkleModule {
 			(reason ? ":''' " + Morebits.string.formatReasonText(reason) : ".'''") +
 			' ~~~~';
 
-		let summary = `/* ${Morebits.pageNameNorm} */ Requesting ${typename}${typename === 'pending changes' ? ' on [[:' : ' of [[:'
-			}${Morebits.pageNameNorm}]].`;
+		let summary = `/* ${Morebits.pageNameNorm} */ Đang yêu cầu ${typename} [[:${Morebits.pageNameNorm}]].`;
 
 		return [text, summary];
 	}
@@ -1339,71 +1354,24 @@ export abstract class ProtectCore extends TwinkleModule {
 		var statusElement = rppPage.getStatusElement();
 
 		if (this.existingRequestRegex && this.existingRequestRegex.exec(text)) {
-			statusElement.error(msg('protect-request-exists', rppPage.getPageName()));
+			var rppLink = document.createElement('a');
+			rppLink.setAttribute('href', mw.util.getUrl(rppPage.getPageName()));
+			rppLink.appendChild(document.createTextNode(rppPage.getPageName()));
+			statusElement.error(['Đã có yêu cầu khóa cho trang này tại ', rppLink, ', bị hủy bỏ.']);
 			return;
 		}
 
 		let [requestText, summary] = this.getRequestTextAndSummary(input);
 
-		// If either protection type results in a increased status, then post it under increase
-		// else we post it under decrease
-		var increase = false;
-		var protInfo = this.protectionPresetsInfo[input.category];
+		text += '\n\n' + requestText;
 
-		// function to compute protection weights (see comment at this.protectionWeight)
-		let protectionLevels = this.getProtectionLevels();
-		var computeWeight = (mainLevel, stabilizeLevel?) => {
-			var result = protectionLevels[mainLevel || 'all'].weight;
-			if (stabilizeLevel) {
-				if (result) {
-					if (stabilizeLevel.level === 'autoconfirmed') {
-						result += 2;
-					}
-				} else {
-					result = protectionLevels[stabilizeLevel].weight / 2;
-				}
-			}
-			return result;
-		};
-
-		// compare the page's current protection weights with the protection we are requesting
-		var editWeight = computeWeight(
-			this.currentProtectionLevels.edit?.level,
-			this.currentProtectionLevels.stabilize?.level
-		);
-		if (
-			computeWeight(protInfo.edit, protInfo.stabilize) > editWeight ||
-			computeWeight(protInfo.move) > computeWeight(this.currentProtectionLevels.move?.level) ||
-			computeWeight(protInfo.create) > computeWeight(this.currentProtectionLevels.create?.level)
-		) {
-			increase = true;
-		}
-
-		var reg;
-		if (increase) {
-			reg = /(\n==\s*Current requests for reduction in protection level\s*==)/;
-		} else {
-			reg = /(\n==\s*Current requests for edits to a protected page\s*==)/;
-		}
-
-		var originalTextLength = text.length;
-		text = text.replace(reg, '\n' + requestText + '\n$1');
-		if (text.length === originalTextLength) {
-			statusElement.error(
-				'Could not find relevant heading on WP:RPP. To fix this problem, please see [[Wikipedia:Twinkle/Fixing RPP|How to fix RPP]].'
-			);
-			return;
-		}
-		statusElement.status('Adding new request...');
+		statusElement.status('Đang thêm yêu cầu mới...');
 		rppPage.setEditSummary(summary);
 		rppPage.setPageText(text);
 		rppPage.setCreateOption('recreate');
 		return rppPage.save().then(() => {
 			// Watch the page being requested
 			var watchPref = getPref('watchRequestedPages');
-			// action=watch has no way to rely on user preferences (T262912), so we do it manually.
-			// The watchdefault pref appears to reliably return '1' (string),
-			// but that's not consistent among prefs so might as well be "correct"
 			var watch =
 				watchPref !== 'no' && (watchPref !== 'default' || !!parseInt(mw.user.options.get('watchdefault'), 10));
 			if (watch) {
@@ -1411,10 +1379,9 @@ export abstract class ProtectCore extends TwinkleModule {
 					action: 'watch',
 					titles: mw.config.get('wgPageName'),
 					token: mw.user.tokens.get('watchToken'),
-					// Only add the expiry if page is unwatched or already temporarily watched
 					expiry: this.watched !== true && watchPref !== 'default' && watchPref !== 'yes' ? watchPref : undefined,
 				};
-				return new Api('Adding requested page to watchlist', watch_query).post();
+				return new Api('Đang thêm trang yêu cầu vào danh sách theo dõi', watch_query).post();
 			}
 		});
 	}
