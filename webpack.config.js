@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 
-const corePath = args.core || './node_modules/twinkle-core';
+const corePath = args.core || (fs.existsSync(path.resolve(__dirname, 'twinkle-core')) ? './twinkle-core' : './node_modules/twinkle-core');
 
 module.exports = {
 	mode: 'development',
@@ -30,6 +30,9 @@ module.exports = {
 	},
 	resolve: {
 		extensions: ['.js', '.ts'],
+		alias: fs.existsSync(path.resolve(__dirname, 'twinkle-core')) ? {
+			'twinkle-core': path.resolve(__dirname, 'twinkle-core'),
+		} : {},
 	},
 	output: {
 		filename: 'twinkle.js',
