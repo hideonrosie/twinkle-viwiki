@@ -875,7 +875,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			'Đang thông báo cho người khởi tạo đầu tiên (' + initialContrib + ')'
 		);
 
-		let editsummary = 'Thông báo: ' + (params.warnUser ? 'Đã xóa nhanh' : 'Đề nghị xóa nhanh');
+		let editsummary = 'Thông báo: ' + (params.warnUser ? 'Đã xóa nhanh ' : 'Đề nghị xóa nhanh ');
 		if (!params.redactContents) {
 			// no article name in summary for attack page taggings
 			editsummary += '[[:' + Morebits.pageNameNorm + ']].';
