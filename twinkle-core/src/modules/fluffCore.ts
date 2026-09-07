@@ -193,7 +193,7 @@ class Fluff extends TwinkleModule {
 
 				// On first page of results, so add revert/rollback
 				// links to the top revision
-				if (!$('.mw-firstlink').length) {
+				if (!$('a.mw-firstlink').length && !$('a.mw-prevlink').length) {
 					var first = histList.shift();
 					var vandal = $(first).find('.mw-userlink:not(.history-deleted)').text();
 
