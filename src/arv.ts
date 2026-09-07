@@ -1,8 +1,28 @@
-import { Twinkle, TwinkleModule, getPref, addPortletLink } from './core';
+import { Twinkle, TwinkleModule, getPref, addPortletLink, Preference } from './core';
 
 export class Arv extends TwinkleModule {
 	moduleName = 'arv';
 	static moduleName = 'arv';
+
+	static userPreferences() {
+		return {
+			title: 'ARV',
+			preferences: [
+				// TwinkleConfig.spiWatchReport
+				{
+					name: 'spiWatchReport',
+					label: 'Thêm các trang báo cáo sockpuppet (rối) vào danh sách theo dõi',
+					type: 'enum',
+					enumValues: {
+						yes: 'Thêm vào danh sách theo dõi',
+						no: 'Không thêm vào danh sách theo dõi',
+						default: 'Theo tùy chỉnh trang của bạn',
+					},
+					default: 'yes',
+				} as Preference,
+			],
+		};
+	}
 
 	constructor() {
 		super();
