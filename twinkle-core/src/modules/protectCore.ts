@@ -37,7 +37,7 @@ export abstract class ProtectCore extends TwinkleModule {
 	portletName = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Khóa trang' : 'Yêu cầu khóa trang';
 	portletId = 'twinkle-protect';
 	portletTooltip = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Khóa trang' : 'Yêu cầu khóa trang';
-	windowTitle = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Áp dụng, yêu cầu hoặc đánh dấu khóa trang' : 'Yêu cầu hoặc đánh dấu khóa trang';
+	windowTitle = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ? 'Khóa, yêu cầu hoặc đánh dấu khóa trang' : 'Yêu cầu hoặc đánh dấu khóa trang';
 
 	/**
 	 * Full name of the page where protection requests are placed.
@@ -1047,7 +1047,7 @@ export abstract class ProtectCore extends TwinkleModule {
 			case 'protect':
 				// protect the page
 				Morebits.wiki.actionCompleted.redirect = mw.config.get('wgPageName');
-				Morebits.wiki.actionCompleted.notice = 'Protection complete';
+				Morebits.wiki.actionCompleted.notice = 'Khóa trang thành công';
 
 				var statusInited = false;
 				var thispage;
@@ -1062,7 +1062,7 @@ export abstract class ProtectCore extends TwinkleModule {
 				};
 
 				var protectIt = (next) => {
-					thispage = new Morebits.wiki.page(mw.config.get('wgPageName'), 'Protecting page');
+					thispage = new Morebits.wiki.page(mw.config.get('wgPageName'), 'Đang khóa trang');
 					if (mw.config.get('wgArticleId')) {
 						if (input.editmodify) {
 							thispage.setEditProtection(input.editlevel, input.editexpiry);
@@ -1072,7 +1072,7 @@ export abstract class ProtectCore extends TwinkleModule {
 							if (input.movelevel) {
 								thispage.setMoveProtection(input.movelevel, input.moveexpiry);
 							} else {
-								alert('You must chose a move protection level!');
+								alert('Bạn phải chọn mức khóa!');
 								return;
 							}
 						}
@@ -1085,7 +1085,7 @@ export abstract class ProtectCore extends TwinkleModule {
 					if (input.protectReason) {
 						thispage.setEditSummary(input.protectReason);
 					} else {
-						alert('You must enter a protect reason, which will be inscribed into the protection log.');
+						alert('Bạn phải ghi lý do khóa trang để ghi vào nhật trình.');
 						return;
 					}
 
@@ -1198,7 +1198,7 @@ export abstract class ProtectCore extends TwinkleModule {
 				rppPage.setFollowRedirect(true);
 				rppPage.load()
 					.then(() => this.fileRequest(rppPage, input))
-					.finally(() => Morebits.wiki.removeCheckpoint());
+					.then(() => Morebits.wiki.removeCheckpoint(), () => Morebits.wiki.removeCheckpoint());
 				break;
 
 			default:
