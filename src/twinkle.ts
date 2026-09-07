@@ -20,6 +20,7 @@ import { Welcome } from './welcome';
 import { Talkback } from './talkback';
 import { Arv } from './arv';
 import { ImageModule } from './image';
+import { BugReport } from './bugreport';
 
 // register some globals for debugging, as per twinkle v2
 import './globals';
@@ -58,6 +59,7 @@ Twinkle.registeredModules = [
 	Unlink,
 	BatchUndelete,
 	ImageModule,
+	BugReport,
 ];
 
 /**
