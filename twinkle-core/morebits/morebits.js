@@ -2231,15 +2231,16 @@
 			Morebits.status.actionCompleted(Morebits.wiki.actionCompleted.notice);
 		}
 		if (Morebits.wiki.actionCompleted.redirect) {
-			// if it isn't a URL, make it one. TODO: This breaks on the articles 'http://', 'ftp://', and similar ones.
-			if (!(/^\w+:\/\//).test(Morebits.wiki.actionCompleted.redirect)) {
-				Morebits.wiki.actionCompleted.redirect = mw.util.getUrl(Morebits.wiki.actionCompleted.redirect);
-				if (Morebits.wiki.actionCompleted.followRedirect === false) {
-					Morebits.wiki.actionCompleted.redirect += '?redirect=no';
-				}
+			var redirectUrl = Morebits.wiki.actionCompleted.redirect;
+			// if it isn't a URL or relative path, make it one. TODO: This breaks on the articles 'http://', 'ftp://', and similar ones.
+			if (!(/^\w+:\/\//).test(redirectUrl) && !(/^\//).test(redirectUrl)) {
+				redirectUrl = mw.util.getUrl(redirectUrl);
+			}
+			if (Morebits.wiki.actionCompleted.followRedirect === false && !(/[?&]redirect=no\b/).test(redirectUrl)) {
+				redirectUrl += (redirectUrl.indexOf('?') !== -1 ? '&' : '?') + 'redirect=no';
 			}
 			window.setTimeout(function () {
-				window.location = Morebits.wiki.actionCompleted.redirect;
+				window.location = redirectUrl;
 			}, Morebits.wiki.actionCompleted.timeOut);
 		}
 	};
