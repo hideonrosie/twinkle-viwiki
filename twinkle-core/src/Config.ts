@@ -198,7 +198,7 @@ export type Preference = {
 	enumValues?: Record<string, string>;
 	setValues?: Record<string, string>;
 	adminOnly?: boolean;
-	default: boolean | string | number | { value: string; label: string }[];
+	default: boolean | string | number | string[] | { value: string; label: string }[];
 };
 
 export type PreferenceGroup = {
