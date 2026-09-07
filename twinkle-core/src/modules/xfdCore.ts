@@ -52,7 +52,7 @@ export class XfdCore extends TwinkleModule {
 			return this.mode.getMenuTooltip();
 		} else {
 			// can be overridden per mode so doesn't need i18n here
-			return 'Start a deletion discussion';
+			return 'Bắt đầu một cuộc biểu quyết xóa trang này';
 		}
 	}
 
@@ -159,7 +159,7 @@ export class XfdCore extends TwinkleModule {
 
 	static userPreferences(): { title: string; preferences: Preference[] } | void {
 		return {
-			title: 'XfD (deletion discussions)',
+			title: 'XfD (biểu quyết xóa)',
 			preferences: [
 				{
 					name: 'logXfdNominations',
@@ -173,7 +173,7 @@ export class XfdCore extends TwinkleModule {
 					label: msg('pref-xfdlogpagename-label'),
 					helptip: msg('pref-xfdlogpagename-tooltip'),
 					type: 'string',
-					default: 'XfD log',
+					default: 'Nhật trình biểu quyết xóa',
 				},
 
 				// TwinkleConfig.xfdWatchPage (string)
@@ -247,7 +247,7 @@ export abstract class XfdMode {
 	discussionPagePrefix: string;
 
 	getMenuTooltip(): string {
-		return 'Nominate page for deletion';
+		return 'Đề cử xóa trang này';
 	}
 
 	generateFieldset(): Morebits.quickForm.element {

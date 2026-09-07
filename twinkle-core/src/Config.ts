@@ -70,7 +70,14 @@ const defaultConfig = {
 	warnUserOnSpeedyDelete: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3'],
 	notifyUserOnSpeedyDeletionNomination: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3'],
 	welcomeUserOnSpeedyDeletionNotification: [],
+	logSpeedyNominations: true,
+	speedyLogPageName: 'Nhật trình xóa nhanh',
+	noLogOnSpeedyNomination: [],
 
+
+	// Block
+	defaultToPartialBlocks: false,
+	blankTalkpageOnIndefBlock: false,
 
 	// Warn
 	defaultWarningGroup: '1',
@@ -897,12 +904,12 @@ export class Config {
 								userValue = parseInt(form[pref.name].value, 10);
 								if (isNaN(userValue)) {
 									Morebits.status.warn(
-										'Saving',
-										'The value you specified for ' +
+										'Đang lưu',
+										'Giá trị bạn nhập cho ' +
 										pref.name +
 										' (' +
 										form[pref.name].value +
-										') was invalid.  The save will continue, but the invalid data value will be skipped.'
+										') không hợp lệ.  Việc lưu sẽ tiếp tục, nhưng giá trị dữ liệu không hợp lệ sẽ bị bỏ qua.'
 									);
 									userValue = null;
 								}
@@ -969,7 +976,7 @@ export class Config {
 		text += ';\n' + '\n' + '// </no' + 'wiki>\n' + '// End of twinkleoptions.js\n';
 
 		pageobj.setPageText(text);
-		pageobj.setEditSummary('Saving Twinkle preferences: automatic edit from [[:' + Morebits.pageNameNorm + ']]');
+		pageobj.setEditSummary('Lưu cấu hình Twinkle: Tự động sửa đổi tại [[:' + Morebits.pageNameNorm + ']]');
 		pageobj.setChangeTags(Twinkle.changeTags);
 		pageobj.setCreateOption('recreate');
 		pageobj.save(Config.saveSuccess);

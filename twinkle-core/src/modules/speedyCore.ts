@@ -272,7 +272,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			let response = apiobj.getResponse();
 			let delCount = response.query.logevents.length;
 			if (delCount) {
-				let message = delCount + ' lần xóa trước';
+				let message = 'Trang này đã từng bị xóa ' + delCount + ' lần trước đó';
 				if (delCount > 1) {
 					message += 's';
 					if (response.continue) {
@@ -286,7 +286,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 				}
 
 				// Provide a link to page logs (CSD templates have one for sysops)
-				let link = Morebits.htmlNode('a', '(logs)');
+				let link = Morebits.htmlNode('a', '(xem nhật trình)');
 				link.setAttribute('href', mw.util.getUrl('Special:Log', { page: mw.config.get('wgPageName') }));
 				link.setAttribute('target', '_blank');
 
@@ -655,10 +655,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 		if (!this.params.notifyUser && !this.params.warnUser) {
 			return $.Deferred().resolve();
 		}
-		let thispage = new Page(Morebits.pageNameNorm, 'Finding page creator');
+		let thispage = new Page(Morebits.pageNameNorm, 'Truy xuất thông tin người khởi tạo');
 		return thispage.lookupCreation().then(() => {
 			this.params.initialContrib = thispage.getCreator();
-			thispage.getStatusElement().info('Found ' + thispage.getCreator());
+			thispage.getStatusElement().info('Đã tìm thấy ' + thispage.getCreator());
 		});
 	}
 
@@ -670,19 +670,19 @@ export abstract class SpeedyCore extends TwinkleModule {
 	}
 
 	checkPage() {
-		let pageobj = new Page(mw.config.get('wgPageName'), 'Tagging page');
+		let pageobj = new Page(mw.config.get('wgPageName'), 'Đang gắn thẻ trang');
 		pageobj.setChangeTags(Twinkle.changeTags);
 		return pageobj.load().then(() => {
 			let statelem = pageobj.getStatusElement();
 
 			if (!pageobj.exists()) {
-				statelem.error("It seems that the page doesn't exist; perhaps it has already been deleted");
+				statelem.error("Trang không tồn tại, có vẻ nó đã bị xóa");
 				return $.Deferred().reject();
 			}
 
 			let text = pageobj.getPageText();
 
-			statelem.status('Checking for tags on the page...');
+			statelem.status('Kiểm tra các thẻ trên trang...');
 
 			// check for existing speedy deletion tags
 			let tag = /(?:\{\{\s*(db|delete|db-.*?|speedy deletion-.*?)(?:\s*\||\s*\}\}))/.exec(text);
@@ -690,9 +690,9 @@ export abstract class SpeedyCore extends TwinkleModule {
 			if (
 				tag &&
 				!confirm(
-					'The page already has the CSD-related template {{' +
+					'Trang này đã có thẻ xóa nhanh {{' +
 					tag[1] +
-					'}} on it.  Do you want to add another CSD template?'
+					'}}. Bạn có muốn thêm một thẻ xóa nhanh khác?'
 				)
 			) {
 				return $.Deferred().reject();
@@ -706,9 +706,9 @@ export abstract class SpeedyCore extends TwinkleModule {
 			if (
 				xfd &&
 				!confirm(
-					'The deletion-related template {{' +
+					'Trang này đã có một thẻ xóa {{' +
 					xfd[1] +
-					'}} was found on the page. Do you still want to add a CSD template?'
+					'}}. Bạn có muốn thêm thẻ xóa nhanh?'
 				)
 			) {
 				return $.Deferred().reject();
@@ -740,16 +740,16 @@ export abstract class SpeedyCore extends TwinkleModule {
 			let talkName = new mw.Title(pageobj.getPageName()).getTalkPage().toText();
 
 			if (talkName === pageobj.getPageName()) {
-				pageobj.getStatusElement().error('Page protected and nowhere to add an edit request, aborting');
+				pageobj.getStatusElement().error('Trang đã bị khóa và không có nơi nào để thêm yêu cầu sửa đổi, đang hủy');
 				return $.Deferred().reject();
 			}
 
-			pageobj.getStatusElement().warn('Unable to edit page, placing tag on talk page');
+			pageobj.getStatusElement().warn('Không thể sửa trang, đang chuyển sang trang thảo luận');
 
-			let talk_page = new Page(talkName, 'Automatically placing tag on talk page');
+			let talk_page = new Page(talkName, 'Đang gắn thẻ trang thảo luận');
 			talk_page.setNewSectionTitle(pageobj.getPageName() + ' nominated for CSD, request deletion');
 			talk_page.setNewSectionText(
-				code + '\n\nI was unable to tag ' + pageobj.getPageName() + ' so please delete it. ~~~~'
+				code + '\n\nKhông thể gắn thẻ trang ' + pageobj.getPageName() + ', xin hãy xóa nó. ~~~~'
 			);
 			talk_page.setCreateOption('recreate');
 			talk_page.setFollowRedirect(true);
@@ -790,14 +790,14 @@ export abstract class SpeedyCore extends TwinkleModule {
 		// Generate edit summary for edit
 		let editsummary;
 		if (params.normalizeds[0] === 'db') {
-			editsummary = 'Requesting [[WP:CSD|speedy deletion]] with rationale "' + params.templateParams[0]['1'] + '".';
+			editsummary = 'Yêu cầu [[WP:XN|xóa nhanh]] với lý do "' + params.templateParams[0]['1'] + '".';
 		} else {
 			let criteriaText = params.normalizeds
 				.map((norm) => {
-					return '[[WP:CSD#' + norm.toUpperCase() + '|CSD ' + norm.toUpperCase() + ']]';
+					return '[[WP:XN#' + norm.toUpperCase() + '|XN ' + norm.toUpperCase() + ']]';
 				})
 				.join(', ');
-			editsummary = 'Requesting speedy deletion (' + criteriaText + ').';
+			editsummary = 'Yêu cầu [[WP:XN|xóa nhanh]] (' + criteriaText + ').';
 		}
 
 		// Blank attack pages
@@ -834,22 +834,22 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 			// disallow notifying yourself
 		} else if (initialContrib === mw.config.get('wgUserName')) {
-			Morebits.status.warn('Note', 'You (' + initialContrib + ') created this page; skipping user notification');
+			Morebits.status.warn('Ghi chú', 'Bạn (' + initialContrib + ') là người tạo trang, bỏ qua thông báo');
 			initialContrib = null;
 
 			// don't notify users when their user talk page is nominated/deleted
 		} else if (initialContrib === mw.config.get('wgTitle') && mw.config.get('wgNamespaceNumber') === 3) {
 			Morebits.status.warn(
-				'Note',
-				'Notifying initial contributor: this user created their own user talk page; skipping notification'
+				'Ghi chú',
+				'Người tạo là người tạo trang của chính họ, bỏ qua thông báo'
 			);
 			initialContrib = null;
 
 			// quick hack to prevent excessive unwanted notifications, per request. Should actually be configurable on recipient page...
-		} else if ((initialContrib === 'Cyberbot I' || initialContrib === 'SoxBot') && params.normalizeds[0] === 'f2') {
+		} else if (initialContrib === 'SongVĩ.Bot' && params.normalizeds[0] === 'f2') {
 			Morebits.status.warn(
-				'Note',
-				'Notifying initial contributor: page created procedurally by bot; skipping notification'
+				'Ghi chú',
+				'Người tạo là bot, bỏ qua thông báo'
 			);
 			initialContrib = null;
 
@@ -858,10 +858,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 			this.hasCSD &&
 			params.warnUser &&
 			!confirm(
-				'The page is has a deletion-related tag, and thus the creator has likely been notified.  Do you want to notify them for this deletion as well?'
+				'Trang này đã có bản mẫu xóa được đặt trước đó, và nhiều khả năng thành viên tạo ra trang này đã được thông báo. Bạn có chắc muốn tiếp tục thông báo cho thành viên này?'
 			)
 		) {
-			Morebits.status.info('Notifying initial contributor', 'canceled by user; skipping notification.');
+			Morebits.status.info('Thông báo cho người tạo đầu tiên', 'người dùng đã hủy, đang bỏ qua.');
 			initialContrib = null;
 		}
 
@@ -871,16 +871,16 @@ export abstract class SpeedyCore extends TwinkleModule {
 		}
 
 		let usertalkpage = new Page(
-			'User talk:' + initialContrib,
-			'Notifying initial contributor (' + initialContrib + ')'
+			'Thảo luận Thành viên:' + initialContrib,
+			'Đang thông báo cho người khởi tạo đầu tiên (' + initialContrib + ')'
 		);
 
-		let editsummary = 'Notification: speedy deletion' + (params.warnUser ? '' : ' nomination');
+		let editsummary = 'Thông báo: ' + (params.warnUser ? 'Đã xóa nhanh' : 'Đề nghị xóa nhanh');
 		if (!params.redactContents) {
 			// no article name in summary for attack page taggings
-			editsummary += ' of [[:' + Morebits.pageNameNorm + ']].';
+			editsummary += '[[:' + Morebits.pageNameNorm + ']].';
 		} else {
-			editsummary += ' of an attack page.';
+			editsummary += 'trang tấn công.';
 		}
 
 		usertalkpage.setAppendText(this.getUserNotificationText());
@@ -892,8 +892,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 	}
 
 	parseWikitext(wikitext): JQuery.Promise<string> {
-		let statusIndicator = new Morebits.status('Building deletion summary');
-		let api = new Api('Parsing deletion template', {
+		let statusIndicator = new Morebits.status('Đang xây dựng tóm lược xóa');
+		let api = new Api('Phân tích cú pháp bản mẫu xóa', {
 			action: 'parse',
 			prop: 'text',
 			pst: 'true',
@@ -910,9 +910,9 @@ export abstract class SpeedyCore extends TwinkleModule {
 				' '
 			);
 			if (!reason) {
-				statusIndicator.warn('Unable to generate summary from deletion template');
+				statusIndicator.warn('Không thể tạo tóm lược xóa từ bản mẫu xóa');
 			} else {
-				statusIndicator.info('complete');
+				statusIndicator.info('Đã hoàn tất');
 			}
 			return reason;
 		});
@@ -922,7 +922,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		let params = this.params;
 		if (!params.normalizeds.length && params.normalizeds[0] === 'db') {
 			params.deleteReason = prompt(
-				'Enter the deletion summary to use, which will be entered into the deletion log:',
+				'Nhập lý do xóa để ghi vào nhật trình xóa:',
 				''
 			);
 			return $.Deferred().resolve();
@@ -931,7 +931,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			return this.parseWikitext(code).then((reason) => {
 				if (params.promptForSummary) {
 					reason = prompt(
-						'Enter the deletion summary to use, or press OK to accept the automatically generated one.',
+						'Nhập lý do xóa để ghi vào nhật trình xóa, hoặc nhấn OK để sử dụng lý do được tạo tự động.',
 						reason
 					);
 				}
@@ -943,15 +943,15 @@ export abstract class SpeedyCore extends TwinkleModule {
 	deletePage() {
 		let params = this.params;
 
-		let thispage = new Page(mw.config.get('wgPageName'), 'Deleting page');
+		let thispage = new Page(mw.config.get('wgPageName'), 'Xóa trang');
 
 		if (params.deleteReason === null) {
-			Morebits.status.error('Asking for reason', 'User cancelled');
+			Morebits.status.error('Đang hỏi lý do', 'Người dùng đã hủy');
 			return $.Deferred().reject();
 		} else if (!params.deleteReason || !params.deleteReason.trim()) {
 			Morebits.status.error(
-				'Asking for reason',
-				"you didn't give one.  I don't know... what with admins and their apathetic antics... I give up..."
+				'Đang hỏi lý do',
+				"Bạn chưa cung cấp lý do. Tôi không biết... với những hành động thờ ơ của quản trị viên... Tôi bỏ cuộc..."
 			);
 			return $.Deferred().reject();
 		}
@@ -967,11 +967,11 @@ export abstract class SpeedyCore extends TwinkleModule {
 	deleteTalk() {
 		let params = this.params;
 		if (params.deleteTalkPage && document.getElementById('ca-talk').className !== 'new') {
-			let talkpage = new Page(new mw.Title(Morebits.pageNameNorm).getTalkPage().toText(), 'Deleting talk page');
-			talkpage.setEditSummary('[[WP:CSD#G8|G8]]: Talk page of deleted page "' + Morebits.pageNameNorm + '"');
+			let talkpage = new Page(new mw.Title(Morebits.pageNameNorm).getTalkPage().toText(), 'Xóa trang thảo luận');
+			talkpage.setEditSummary('[[WP:XN#C8|C8]]: Trang thảo luận của trang đã xóa "' + Morebits.pageNameNorm + '"');
 			talkpage.setChangeTags(Twinkle.changeTags);
 			return talkpage.deletePage().then(() => {
-				talkpage.getStatusElement().info('done');
+				talkpage.getStatusElement().info('Đã hoàn tất');
 			});
 		} else {
 			return $.Deferred().resolve();
@@ -989,7 +989,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 				rdlimit: 'max', // 500 is max for normal users, 5000 for bots and sysops
 				format: 'json',
 			});
-			wikipedia_api.setStatusElement(new Morebits.status('Deleting redirects'));
+			wikipedia_api.setStatusElement(new Morebits.status('Đang xóa trang đổi hướng'));
 			wikipedia_api.post().then((apiobj) => {
 				let response = apiobj.getResponse();
 
@@ -998,7 +998,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 				let statusIndicator = apiobj.getStatusElement();
 
 				if (!total) {
-					statusIndicator.status('no redirects found');
+					statusIndicator.status('Không tìm thấy trang đổi hướng');
 					return;
 				}
 
@@ -1010,7 +1010,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 					statusIndicator.update(now);
 					apiobjInner.getStatusElement().unlink();
 					if (current >= total) {
-						statusIndicator.info(now + ' (completed)');
+						statusIndicator.info(now + ' (hoàn tất)');
 						def.resolve();
 						Morebits.wiki.removeCheckpoint();
 					}
@@ -1020,8 +1020,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 				snapshot.forEach(function (value) {
 					let title = value.title;
-					let page = new Page(title, 'Deleting redirect "' + title + '"');
-					page.setEditSummary('[[WP:CSD#G8|G8]]: Redirect to deleted page "' + Morebits.pageNameNorm + '"');
+					let page = new Page(title, 'Đang xóa trang đổi hướng "' + title + '"');
+					page.setEditSummary('[[WP:XN#C8|C8]]: [[Wikipedia:Trang đổi hướng|Trang đổi hướng]] đến trang đã bị xóa "' + Morebits.pageNameNorm + '"');
 					page.setChangeTags(Twinkle.changeTags);
 					page.deletePage().then(onsuccess);
 				});
@@ -1035,7 +1035,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		let isFile = mw.config.get('wgNamespaceNumber') === 6;
 		$link = $('<a>', {
 			href: '#',
-			text: 'click here to go to the Unlink tool',
+			text: 'Nhấn vào đây để sử dụng công cụ gỡ liên kết',
 			css: { fontSize: '130%', fontWeight: 'bold' },
 			click: () => {
 				Morebits.wiki.actionCompleted.redirect = null;
@@ -1043,8 +1043,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 				// XXX
 				Twinkle.unlink.makeWindow(
 					isFile
-						? 'Removing usages of and/or links to deleted file ' + Morebits.pageNameNorm
-						: 'Removing links to deleted page ' + Morebits.pageNameNorm
+						? 'Xóa/ẩn sử dụng tập tin đã bị xóa khỏi các trang ' + Morebits.pageNameNorm
+						: 'Xóa liên kết đến trang bị xóa khỏi các trang ' + Morebits.pageNameNorm
 				);
 			},
 		});
@@ -1070,55 +1070,55 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 		let usl = new Morebits.userspaceLogger(getPref('speedyLogPageName'));
 		usl.initialText =
-			"This is a log of all [[WP:CSD|speedy deletion]] nominations made by this user using [[WP:TW|Twinkle]]'s CSD module.\n\n" +
-			'If you no longer wish to keep this log, you can turn it off using the [[Wikipedia:Twinkle/Preferences|preferences panel]], and ' +
-			'nominate this page for speedy deletion under [[WP:CSD#U1|CSD U1]].' +
-			(Morebits.userIsSysop ? '\n\nThis log does not track outright speedy deletions made using Twinkle.' : '');
+			'Đây là nhật trình của tất cả đề nghị [[Wikipedia:Tiêu chí xóa nhanh|xóa nhanh]] được thực hiện bởi thành viên này bằng cách sử dụng mô đun CSD của [[WP:TW|Twinkle]].\n\n' +
+			'Nếu bạn không muốn giữ nhật trình này nữa, bạn có thể tắt nó bằng cách sử dụng [[Wikipedia:Twinkle/Preferences|bảng cài đặt Twinkle]], và ' +
+			'đề cử trang này để xóa nhanh chóng dưới dạng [[WP:TV1|XN TV1]].' +
+			(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator') ? '\n\nChú ý: Nhật trình này không theo dõi các thao tác xóa nhanh ngay lập tức được thực hiện bằng Twinkle.' : '');
 
 		let extraInfo = '';
 
-		// If a logged file is deleted but exists on commons, the wikilink will be blue, so provide a link to the log
+		// Nếu tập tin đã bị xóa nhưng vẫn còn trên Commons, wikilink sẽ có màu xanh, nên cung cấp liên kết đến nhật trình
 		let fileLogLink =
 			mw.config.get('wgNamespaceNumber') === 6
-				? ' ([{{fullurl:Special:Log|page=' + mw.util.wikiUrlencode(mw.config.get('wgPageName')) + '}} log])'
+				? ' ([{{fullurl:Special:Log|page=' + mw.util.wikiUrlencode(mw.config.get('wgPageName')) + '}} nhật trình])'
 				: '';
 
-		let editsummary = 'Logging speedy deletion nomination';
+		let editsummary = 'Đang ghi nhật trình đề nghị xóa nhanh';
 
 		let appendText = '# [[:' + Morebits.pageNameNorm;
 
 		if (!params.redactContents) {
-			// no article name in log for attack page taggings
+			// không hiển thị tên bài trong nhật trình khi gán thẻ trang tấn công
 			appendText += ']]' + fileLogLink + ': ';
-			editsummary += ' of [[:' + Morebits.pageNameNorm + ']].';
+			editsummary += ' [[:' + Morebits.pageNameNorm + ']].';
 		} else {
-			appendText += '|This]] attack page' + fileLogLink + ': ';
-			editsummary += ' of an attack page.';
+			appendText += '|Trang]] tấn công này' + fileLogLink + ': ';
+			editsummary += ' một trang tấn công.';
 		}
 
 		if (params.normalizeds.length > 1) {
 			let criteriaText = params.normalizeds
 				.map((norm) => {
-					return '[[WP:CSD#' + norm.toUpperCase() + '|' + norm.toUpperCase() + ']]';
+					return '[[WP:XN#' + norm.toUpperCase() + '|' + norm.toUpperCase() + ']]';
 				})
 				.join(', ');
-			appendText += 'multiple criteria (' + criteriaText + ')';
+			appendText += 'nhiều tiêu chí (' + criteriaText + ')';
 		} else if (params.normalizeds[0] === 'db') {
 			appendText += '{{tl|db-reason}}';
 		} else {
 			appendText +=
-				'[[WP:CSD#' +
+				'[[WP:XN#' +
 				params.normalizeds[0].toUpperCase() +
-				'|CSD ' +
+				'|XN ' +
 				params.normalizeds[0].toUpperCase() +
 				']] ({{tl|db-' +
 				params.csd[0] +
 				'}})';
 		}
 
-		// Treat custom rationale individually
+		// Xử lý riêng lý do tùy chỉnh
 		if (params.normalizeds[0] === 'db') {
-			extraInfo += ` {Custom rationale: ${params.templateParams[0]['1']}}`;
+			extraInfo += ` {Lý do tùy chỉnh: ${params.templateParams[0]['1']}}`;
 		} else {
 			params.csd.forEach((crit: string) => {
 				let critObject = this.flatObject[crit];
@@ -1127,13 +1127,13 @@ export abstract class SpeedyCore extends TwinkleModule {
 				subgroups.forEach((subgroup) => {
 					let value = params[subgroup.name];
 					if (!value || !subgroup.parameter) {
-						// no value was entered, or it's a hidden field or something
+						// không có giá trị được nhập, hoặc là trường ẩn
 						return;
 					}
 					if (subgroup.log) {
 						value = Morebits.string.safeReplace(subgroup.log, /\$1/g, value);
 					} else if (subgroup.log === null) {
-						// logging is disabled
+						// bỏ qua ghi nhật trình cho trường này
 						return;
 					}
 					extraInfo += ` {${critCode} ${subgroup.parameter}: ${value}}`;
@@ -1142,13 +1142,13 @@ export abstract class SpeedyCore extends TwinkleModule {
 		}
 
 		if (params.requestsalt) {
-			appendText += '; requested creation protection ([[WP:SALT|salting]])';
+			appendText += '; đã yêu cầu ([[WP:SALT|khóa khả năng tạo trang]])';
 		}
 		if (extraInfo) {
-			appendText += '; additional information:' + extraInfo;
+			appendText += '; thông tin bổ sung:' + extraInfo;
 		}
 		if (params.initialContrib) {
-			appendText += '; notified {{user|1=' + params.initialContrib + '}}';
+			appendText += '; đã thông báo {{user|1=' + params.initialContrib + '}}';
 		}
 		appendText += ' ~~~~~\n';
 
@@ -1220,6 +1220,26 @@ export abstract class SpeedyCore extends TwinkleModule {
 				{
 					name: 'welcomeUserOnSpeedyDeletionNotification',
 					label: 'Hoan nghênh người tạo trang cùng lúc với việc thông báo Xóa nhanh cho các tiêu chí',
+					type: 'set',
+					setValues: Config.commonSets.csdCriteria,
+					default: []
+				},
+				{
+					name: 'logSpeedyNominations',
+					label: 'Ghi lại đề nghị xóa nhanh vào nhật trình thành viên',
+					type: 'boolean',
+					default: true
+				},
+				{
+					name: 'speedyLogPageName',
+					label: 'Tên trang nhật trình đề nghị xóa nhanh (tính từ thư mục thành viên)',
+					helptip: 'Ví dụ: "Nhật trình xóa nhanh". Đặt tên theo định dạng "Thành viên:<tên>/[tên bạn nhập ở đây]".',
+					type: 'string',
+					default: 'Nhật trình xóa nhanh'
+				},
+				{
+					name: 'noLogOnSpeedyNomination',
+					label: 'Không ghi nhật trình khi đề nghị xóa nhanh bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
 					default: []
