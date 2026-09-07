@@ -633,4 +633,4 @@ export class Speedy extends SpeedyCore {
             ],
         },
     ];
-}
+}
