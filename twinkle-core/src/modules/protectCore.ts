@@ -678,12 +678,14 @@ export abstract class ProtectCore extends TwinkleModule {
 			$(e.target.form).find('fieldset[name="field2"]').css('display', 'none');
 		}
 
-		if (e.target.values === 'protect') {
+		if (e.target.values === 'protect' || e.target.values === 'request') {
 			// fake a change event on the preset dropdown
 			var evt = document.createEvent('Event');
 			evt.initEvent('change', true, true);
 			e.target.form.category.dispatchEvent(evt);
+		}
 
+		if (e.target.values === 'protect') {
 			// reduce vertical height of dialog
 			$(e.target.form).find('fieldset[name="field2"] select').parent().css({
 				display: 'inline-block',
@@ -945,6 +947,10 @@ export abstract class ProtectCore extends TwinkleModule {
 			} else {
 				form.expiry.value = '';
 				form.expiry.disabled = false;
+			}
+
+			if (form.reason) {
+				form.reason.value = item && item.reason ? item.reason : '';
 			}
 		}
 	}
