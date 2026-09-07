@@ -74,6 +74,11 @@ const defaultConfig = {
 	speedyLogPageName: 'Nhật trình xóa nhanh',
 	noLogOnSpeedyNomination: [],
 
+	// Image (DI)
+	notifyUserOnDeli: true,
+	deliWatchPage: 'default',
+	deliWatchUser: 'default',
+
 
 	// Block
 	defaultToPartialBlocks: false,
