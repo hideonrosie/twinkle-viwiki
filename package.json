@@ -1,6 +1,6 @@
 {
 	"name": "twinkle-viwiki",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Rewritten version of Twinkle for vi.wikipedia",
 	"scripts": {
 		"format": "prettier --write .",
