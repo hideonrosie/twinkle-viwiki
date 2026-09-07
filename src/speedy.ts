@@ -2,12 +2,12 @@ import { SpeedyCore, criterion } from './core';
 import { hatnoteRegex } from './common';
 
 export class Speedy extends SpeedyCore {
-	footerlinks = {
-		'Quy định xóa nhanh': 'WP:XN',
-		'Cấu hình Xóa nhanh': 'WP:TW/PREF#speedy',
-		'Trợ giúp Twinkle': 'WP:TW/DOC#xóa_nhanh',
-        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
-	};
+    footerlinks = {
+        'Quy định xóa nhanh': 'WP:XN',
+        'Cấu hình Xóa nhanh': 'WP:TW/PREF#speedy',
+        'Trợ giúp Twinkle': 'WP:TW/DOC#xóa_nhanh',
+        'Báo cáo lỗi TW2026': 'Thảo luận Wikipedia:Twinkle/Twinkle2026',
+    };
 
     addMenu() {
         if (mw.config.get('wgNamespaceNumber') === -1) {
@@ -15,7 +15,7 @@ export class Speedy extends SpeedyCore {
         }
         super.addMenu();
     }
-    
+
     preprocessParamInputs() {
         let params = this.params;
 
@@ -28,7 +28,7 @@ export class Speedy extends SpeedyCore {
 
         if (params.redundantimage_filename) {
             params.redundantimage_filename =
-            new mw.Title(params.redundantimage_filename, 6).toText();
+                new mw.Title(params.redundantimage_filename, 6).toText();
         }
 
         if (
@@ -71,13 +71,13 @@ export class Speedy extends SpeedyCore {
         }
     }
 
-	insertTagText(code: string, pageText: string) {
-		const wikipage = new Morebits.wikitext.page(pageText);
+    insertTagText(code: string, pageText: string) {
+        const wikipage = new Morebits.wikitext.page(pageText);
 
-		return wikipage
-			.insertAfterTemplates(code + '\n', hatnoteRegex)
-			.getText();
-	}
+        return wikipage
+            .insertAfterTemplates(code + '\n', hatnoteRegex)
+            .getText();
+    }
 
     criteriaLists: Array<{ label: string; visible: (self: SpeedyCore) => boolean; list: Array<criterion> }> = [
         {
@@ -633,4 +633,4 @@ export class Speedy extends SpeedyCore {
             ],
         },
     ];
-}
+}

@@ -249,16 +249,16 @@ function getMergeSubgroups(tag: string): tagSubgroup[] {
 	] as tagSubgroup[]).concat(
 		mw.config.get('wgNamespaceNumber') === 0
 			? {
-					name: 'mergeReason',
-					type: 'textarea',
-					label:
-						'Lý do hợp nhất (sẽ được đăng trên trang thảo luận ' +
-						(tag === 'Hợp nhất đến' ? 'của bài viết khác' : 'của bài viết này') +
-						'):',
-					tooltip:
-						'Tùy chọn, nhưng đặc biệt khuyến khích. Để trống nếu không muốn. ' +
-						'Chỉ khả dụng nếu một tên bài viết được nhập vào.',
-			  }
+				name: 'mergeReason',
+				type: 'textarea',
+				label:
+					'Lý do hợp nhất (sẽ được đăng trên trang thảo luận ' +
+					(tag === 'Hợp nhất đến' ? 'của bài viết khác' : 'của bài viết này') +
+					'):',
+				tooltip:
+					'Tùy chọn, nhưng đặc biệt khuyến khích. Để trống nếu không muốn. ' +
+					'Chỉ khả dụng nếu một tên bài viết được nhập vào.',
+			}
 			: []
 	);
 }
@@ -1279,149 +1279,149 @@ class ArticleMode extends TagMode {
 	// Could also have done this by adding the date param for all tags in
 	// this.templateParams thorough this.preprocessParams()
 	getTagText(tag: string) {
-        const params = this.params;
-        let currentTag = '{{' + tag;
+		const params = this.params;
+		let currentTag = '{{' + tag;
 
-        switch (tag) {
-            case 'Chất lượng kém': {
-                const reason = params.cleanup || 'Chưa có lý do';
+		switch (tag) {
+			case 'Chất lượng kém': {
+				const reason = params.cleanup || 'Chưa có lý do';
 
-                return '{{thế:' + tag + '|lý do=' + reason + '}}';
-            }
+				return '{{thế:' + tag + '|lý do=' + reason + '}}';
+			}
 
-            case 'Cần dọn dẹp': {
-                const reason = params.cleanup || 'Chưa có lý do';
+			case 'Cần dọn dẹp': {
+				const reason = params.cleanup || 'Chưa có lý do';
 
-                currentTag += '|reason=' + reason;
-                break;
-            }
+				currentTag += '|reason=' + reason;
+				break;
+			}
 
-            case 'Close paraphrasing':
-                currentTag += '|source=' + params.closeParaphrasing;
-                break;
+			case 'Close paraphrasing':
+				currentTag += '|source=' + params.closeParaphrasing;
+				break;
 
-            case 'Biên tập':
-                if (params.copyEdit) {
-                    currentTag += '|for=' + params.copyEdit;
-                }
-                break;
+			case 'Biên tập':
+				if (params.copyEdit) {
+					currentTag += '|for=' + params.copyEdit;
+				}
+				break;
 
-            case 'Chép dán':
-                if (params.copypaste) {
-                    currentTag += '|url=' + params.copypaste;
-                }
-                break;
+			case 'Chép dán':
+				if (params.copypaste) {
+					currentTag += '|url=' + params.copypaste;
+				}
+				break;
 
-            case 'Mở rộng ngôn ngữ':
-                currentTag += '|topic=';
-                currentTag += '|langcode=' + params.expandLanguageLangCode;
+			case 'Mở rộng ngôn ngữ':
+				currentTag += '|topic=';
+				currentTag += '|langcode=' + params.expandLanguageLangCode;
 
-                if (params.expandLanguageArticle !== null) {
-                    currentTag += '|otherarticle=' + params.expandLanguageArticle;
-                }
-                break;
+				if (params.expandLanguageArticle !== null) {
+					currentTag += '|otherarticle=' + params.expandLanguageArticle;
+				}
+				break;
 
-            case 'Expert needed':
-                if (params.expertNeeded) {
-                    currentTag += '|1=' + params.expertNeeded;
-                }
+			case 'Expert needed':
+				if (params.expertNeeded) {
+					currentTag += '|1=' + params.expertNeeded;
+				}
 
-                if (params.expertNeededTalk) {
-                    currentTag += '|talk=' + params.expertNeededTalk;
-                }
+				if (params.expertNeededTalk) {
+					currentTag += '|talk=' + params.expertNeededTalk;
+				}
 
-                if (params.expertNeededReason) {
-                    currentTag += '|reason=' + params.expertNeededReason;
-                }
-                break;
+				if (params.expertNeededReason) {
+					currentTag += '|reason=' + params.expertNeededReason;
+				}
+				break;
 
-            case 'Tầm nhìn hẹp':
-                currentTag += '|1=bài viết';
+			case 'Tầm nhìn hẹp':
+				currentTag += '|1=bài viết';
 
-                if (params.globalizeRegion) {
-                    currentTag += '|2=' + params.globalizeRegion;
-                }
-                break;
+				if (params.globalizeRegion) {
+					currentTag += '|2=' + params.globalizeRegion;
+				}
+				break;
 
-            case 'Không nổi bật':
-                if (params.notability !== 'none') {
-                    currentTag += '|' + params.notability;
-                }
-                break;
+			case 'Không nổi bật':
+				if (params.notability !== 'none') {
+					currentTag += '|' + params.notability;
+				}
+				break;
 
-            case 'Trộn lịch sử':
-                currentTag += '|originalpage=' + params.histmergeOriginalPage;
+			case 'Trộn lịch sử':
+				currentTag += '|originalpage=' + params.histmergeOriginalPage;
 
-                if (params.histmergeReason) {
-                    currentTag += '|reason=' + params.histmergeReason;
-                }
+				if (params.histmergeReason) {
+					currentTag += '|reason=' + params.histmergeReason;
+				}
 
-                if (params.histmergeSysopDetails) {
-                    currentTag += '|details=' + params.histmergeSysopDetails;
-                }
-                break;
+				if (params.histmergeSysopDetails) {
+					currentTag += '|details=' + params.histmergeSysopDetails;
+				}
+				break;
 
-            case 'Hợp nhất':
-            case 'Hợp nhất từ':
-            case 'Hợp nhất đến': {
-                params.mergeTag = tag;
+			case 'Hợp nhất':
+			case 'Hợp nhất từ':
+			case 'Hợp nhất đến': {
+				params.mergeTag = tag;
 
-                params.mergeTarget =
-                    Morebits.string.toUpperCaseFirstChar(
-                        params.mergeTarget.replace(/_/g, ' ')
-                    );
+				params.mergeTarget =
+					Morebits.string.toUpperCaseFirstChar(
+						params.mergeTarget.replace(/_/g, ' ')
+					);
 
-                currentTag += '|' + params.mergeTarget;
+				currentTag += '|' + params.mergeTarget;
 
-                if (
-                    mw.config.get('wgNamespaceNumber') === 0 &&
-                    (params.mergeReason || params.discussArticle)
-                ) {
-                    if (!params.discussArticle) {
-                        params.discussArticle =
-                            tag === 'Hợp nhất đến'
-                                ? params.mergeTarget
-                                : mw.config.get('wgTitle');
+				if (
+					mw.config.get('wgNamespaceNumber') === 0 &&
+					(params.mergeReason || params.discussArticle)
+				) {
+					if (!params.discussArticle) {
+						params.discussArticle =
+							tag === 'Hợp nhất đến'
+								? params.mergeTarget
+								: mw.config.get('wgTitle');
 
-                        params.nonDiscussArticle =
-                            tag === 'Hợp nhất đến'
-                                ? mw.config.get('wgTitle')
-                                : params.mergeTarget;
+						params.nonDiscussArticle =
+							tag === 'Hợp nhất đến'
+								? mw.config.get('wgTitle')
+								: params.mergeTarget;
 
-                        const direction =
-                            '[[' + params.nonDiscussArticle + ']]' +
-                            (tag === 'Hợp nhất' ? ' với ' : ' vào ') +
-                            '[[' + params.discussArticle + ']]';
+						const direction =
+							'[[' + params.nonDiscussArticle + ']]' +
+							(tag === 'Hợp nhất' ? ' với ' : ' vào ') +
+							'[[' + params.discussArticle + ']]';
 
-                        params.talkDiscussionTitleLinked =
-                            'Đề xuất hợp nhất ' + direction;
+						params.talkDiscussionTitleLinked =
+							'Đề xuất hợp nhất ' + direction;
 
-                        params.talkDiscussionTitle =
-                            params.talkDiscussionTitleLinked.replace(
-                                /\[\[(.*?)\]\]/g,
-                                '$1'
-                            );
-                    }
+						params.talkDiscussionTitle =
+							params.talkDiscussionTitleLinked.replace(
+								/\[\[(.*?)\]\]/g,
+								'$1'
+							);
+					}
 
-                    currentTag +=
-                        '|discuss=Talk:' +
-                        params.discussArticle +
-                        '#' +
-                        params.talkDiscussionTitle;
-                }
+					currentTag +=
+						'|discuss=Talk:' +
+						params.discussArticle +
+						'#' +
+						params.talkDiscussionTitle;
+				}
 
-                break;
-            }
+				break;
+			}
 
-            default:
-                return super.getTagText(tag);
-        }
+			default:
+				return super.getTagText(tag);
+		}
 
-        return (
-            currentTag +
-            '|date={{subst:CURRENTMONTHNAME}}/{{subst:CURRENTYEAR}}}}\n'
-        );
-    }
+		return (
+			currentTag +
+			'|date={{subst:CURRENTMONTHNAME}}/{{subst:CURRENTYEAR}}}}\n'
+		);
+	}
 
 	savePage() {
 		return super.savePage().then(() => {
@@ -1519,7 +1519,7 @@ TagCore.modeList = [
 export class Tag extends TagCore {
 	footerlinks = {
 		'Trợ giúp Twinkle': 'WP:TW/DOC#tag',
-        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
+		'Báo cáo lỗi TW2026': 'Thảo luận Wikipedia:Twinkle/Twinkle2026',
 	};
 
 	static userPreferences() {

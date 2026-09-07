@@ -2,13 +2,12 @@ import { BatchDeleteCore } from './core';
 
 export class BatchDelete extends BatchDeleteCore {
 
-	// Liên kết cuối cửa sổ công cụ
 	footerLinks = {
-		'Trợ giúp Twinkle': 'WP:TW/DOC#batchdelete',
-		'Để lại phản hồi': 'WT:TW',
+		'Trợ giúp Twinkle': 'WP:TW/DOC#batchundelete',
+		'Báo cáo lỗi TW2026': 'Thảo luận Wikipedia:Twinkle/Twinkle2026',
 	};
 
-	// Override constructor để thêm menu cho eliminator
+	// Nếu là ĐPV, bật mô đun này. BQV không cần hàm này
 	constructor() {
 		super();
 

@@ -2,68 +2,68 @@ import { NS_MAIN, ProtectCore } from './core';
 import { hatnoteRegex } from './common';
 
 export class Protect extends ProtectCore {
-	requestPageName = 'Wikipedia:Yêu cầu khóa hay mở khóa trang';
+    requestPageName = 'Wikipedia:Yêu cầu khóa hay mở khóa trang';
 
-	footerlinks = {
-		'Bản mẫu khóa': 'Bản mẫu:Khóa trang',
-		'Quy định khóa trang': 'WP:KHOA',
-		'Tùy chọn khóa': 'WP:TW/PREF#protect',
-		'Trợ giúp Twinkle': 'WP:TW/DOC#protect',
-		'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
-	};
+    footerlinks = {
+        'Bản mẫu khóa': 'Bản mẫu:Khóa trang',
+        'Quy định khóa trang': 'WP:KHOA',
+        'Tùy chọn khóa': 'WP:TW/PREF#protect',
+        'Trợ giúp Twinkle': 'WP:TW/DOC#protect',
+        'Báo cáo lỗi TW2026': 'Thảo luận Wikipedia:Twinkle/Twinkle2026',
+    };
 
     getProtectionLevels() {
-		return $.extend(true, super.getProtectionLevels(), {
+        return $.extend(true, super.getProtectionLevels(), {
             autoconfirmed: {
                 label: 'Thành viên tự xác nhận',
                 weight: 10,
                 types: ['edit', 'move', 'create'],
                 applicable: (type: string) => !(type === 'create' && mw.config.get('wgNamespaceNumber') === NS_MAIN),
             },
-			extendedconfirmed: {
-				label: 'Thành viên được xác nhận mở rộng',
-				weight: 20,
-				types: ['edit', 'move', 'create'],
-			},
+            extendedconfirmed: {
+                label: 'Thành viên được xác nhận mở rộng',
+                weight: 20,
+                types: ['edit', 'move', 'create'],
+            },
             autopatrolled: {
                 label: 'Người tự đánh dấu tuần tra',
                 weight: 25,
                 types: ['edit', 'move', 'create'],
             },
-			templateeditor: {
-				label: 'Kỹ thuật viên bản mẫu',
-				weight: 30,
-				applicable: this.isTemplate,
-    				types: ['edit', 'move'],
-			},
+            templateeditor: {
+                label: 'Kỹ thuật viên bản mẫu',
+                weight: 30,
+                applicable: this.isTemplate,
+                types: ['edit', 'move'],
+            },
             sysop: {
                 label: 'Bảo quản viên',
                 weight: 40,
                 types: ['edit', 'move', 'create'],
-			},
-		});
-	}
+            },
+        });
+    }
 
-	existingTagRegex =
-		/\s*(?:<noinclude>)?\s*\{\{\s*(?:pp-[^{}]*?|protected|(?:t|v|s|p-|usertalk-v|usertalk-s|sb|move)protected(?:2)?|protected template|privacy protection)\s*?\}\}\s*(?:<\/noinclude>)?\s*/gi;
+    existingTagRegex =
+        /\s*(?:<noinclude>)?\s*\{\{\s*(?:pp-[^{}]*?|protected|(?:t|v|s|p-|usertalk-v|usertalk-s|sb|move)protected(?:2)?|protected template|privacy protection)\s*?\}\}\s*(?:<\/noinclude>)?\s*/gi;
 
-	disableTaggingOnRedirectTemplateRegex =
-		/{{(?:redr|this is a redirect|r(?:edirect)?(?:.?cat.*)?[ _]?sh)/i;
+    disableTaggingOnRedirectTemplateRegex =
+        /{{(?:redr|this is a redirect|r(?:edirect)?(?:.?cat.*)?[ _]?sh)/i;
 
-	insertTagIntoPage(text: string, tag: string): string {
-		return new Morebits.wikitext.page(text)
-			.insertAfterTemplates(tag, hatnoteRegex)
-			.getText();
-	}
+    insertTagIntoPage(text: string, tag: string): string {
+        return new Morebits.wikitext.page(text)
+            .insertAfterTemplates(tag, hatnoteRegex)
+            .getText();
+    }
 
-	existingRequestRegex = new RegExp(
-		'===\\s*(\\[\\[)?\\s*:?\\s*' +
-			Morebits.string.escapeRegExp(Morebits.pageNameNorm) +
-			'\\s*(\\]\\])?\\s*===',
-		'm'
-	);
-    
-	
+    existingRequestRegex = new RegExp(
+        '===\\s*(\\[\\[)?\\s*:?\\s*' +
+        Morebits.string.escapeRegExp(Morebits.pageNameNorm) +
+        '\\s*(\\]\\])?\\s*===',
+        'm'
+    );
+
+
     getProtectionPresets(): quickFormElementData[] {
         return [
             { label: 'Không khóa', value: 'unprotect' },
@@ -224,7 +224,7 @@ export class Protect extends ProtectCore {
     }
 
     // LƯU Ý: Lý do nên được đồng bộ với [[MediaWiki:Protect-dropdown]]
-	protectionPresetsInfo = {
+    protectionPresetsInfo = {
         'pp-protected': {
             edit: 'sysop',
             move: 'sysop',
@@ -376,7 +376,7 @@ export class Protect extends ProtectCore {
         },
     };
 
-	protectionTags = [
+    protectionTags = [
         {
             label: 'Không có bản mẫu (xóa các bản mẫu khóa hiện có)',
             value: 'none',

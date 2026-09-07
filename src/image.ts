@@ -64,6 +64,7 @@ export class ImageModule extends TwinkleModule {
 		Window.addFooterLink('Quy định xóa nhanh', 'WP:XN');
 		Window.addFooterLink('Tùy chọn', 'WP:TW/PREF#image');
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#image');
+		Window.addFooterLink('Báo cáo lỗi TW2026', 'Thảo luận Wikipedia:Twinkle/Twinkle2026');
 
 		var form = new Morebits.quickForm(ImageModule.evaluate);
 		form.append({
@@ -89,46 +90,46 @@ export class ImageModule extends TwinkleModule {
 			event: ImageModule.choice,
 			list: [
 				{
-					label: 'Thiếu nguồn gốc (XN H4)',
+					label: 'Thiếu nguồn gốc (XN TT4)',
 					value: 'thiếu nguồn gốc',
 					checked: true,
 					tooltip: 'Hình ảnh hoặc tập tin thiếu thông tin nguồn gốc',
 				},
 				{
-					label: 'Thiếu giấy phép (XN H4)',
+					label: 'Thiếu giấy phép (XN TT4)',
 					value: 'thiếu giấy phép',
 					tooltip: 'Hình ảnh hoặc tập tin thiếu thông tin về giấy phép',
 				},
 				{
-					label: 'Thiếu nguồn gốc lẫn giấy phép (XN H4)',
+					label: 'Thiếu nguồn gốc lẫn giấy phép (XN TT4)',
 					value: 'thiếu nguồn gốc lẫn giấy phép',
 					tooltip: 'Hình ảnh hoặc tập tin thiếu thông tin về nguồn gốc lẫn giấy phép',
 				},
 				{
-					label: 'Sử dụng hợp lý không sử dụng (XN H5)',
+					label: 'Sử dụng hợp lý không sử dụng (XN TT5)',
 					value: 'SDHL không SD',
 					tooltip:
 						'Hình ảnh hoặc tập tin không được cấp phép để dùng trên Wikipedia và chỉ cho phép dùng theo tuyên bố sử dụng hợp lý như quy định Wikipedia:Nội dung không tự do, nhưng không dùng trong bài viết nào cả',
 				},
 				{
-					label: 'Thiếu cơ sở hợp lý (XN H6)',
+					label: 'Thiếu cơ sở hợp lý (XN TT6)',
 					value: 'thiếu sử dụng hợp lý',
 					tooltip:
 						'Hình ảnh hoặc tập tin được tuyên bố là dùng theo quy định sử dụng hợp lý của Wikipedia nhưng không có lời giải thích tại sao lại được cho phép dùng theo quy định đó',
 				},
 				{
-					label: 'Cơ sở hợp lý gây tranh cãi (XN H7)',
+					label: 'Cơ sở hợp lý gây tranh cãi (XN TT7)',
 					value: 'lý do SDHL vô lý',
 					tooltip: 'Hình ảnh hoặc tập tin có cơ sở hợp lý gây tranh cãi',
 				},
 				{
-					label: 'Sử dụng hợp lý thay thế được (XN H7)',
+					label: 'Sử dụng hợp lý thay thế được (XN TT7)',
 					value: 'SDHL thay thế được',
 					tooltip:
 						'Hình ảnh hoặc tập tin không thỏa mãn tiêu chí không tự do đầu tiên của Wikipedia tức là nó miêu tả sự vật mà rất có khả năng tìm được hoặc tạo được một hình tự do mà có lượng thông tin tương đương',
 				},
 				{
-					label: 'Thiếu sự cho phép (XN H11)',
+					label: 'Thiếu sự cho phép (XN TT11)',
 					value: 'thiếu bằng chứng',
 					tooltip: 'Hình ảnh hoặc tập tin không có bằng chứng là tác giả đồng ý cấp phép cho tập tin',
 				},

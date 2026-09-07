@@ -813,7 +813,7 @@ export class Xfd extends XfdCore {
         // 'Về thảo luận xóa': 'WP:XFD',
         'Tùy chọn BQX': 'WP:TW/PREF#xfd',
         'Trợ giúp TwinkleV3': 'WP:TW/DOC#xfd',
-        'Báo cáo lỗi TWV3': 'Thảo luận Wikipedia:Twinkle/TwinkleV3',
+        'Báo cáo lỗi TW2026': 'Thảo luận Wikipedia:Twinkle/Twinkle2026',
     };
 
     static userPreferences() {

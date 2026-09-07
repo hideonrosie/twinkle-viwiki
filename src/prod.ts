@@ -110,7 +110,7 @@ export class Prod extends TwinkleModule {
 
 		Window.addFooterLink('Tùy chọn PROD', 'WP:TW/PREF#prod');
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#prod');
-		Window.addFooterLink('Báo cáo lỗi TWV3', 'Thảo luận Wikipedia:Twinkle/TwinkleV3');
+		Window.addFooterLink('Báo cáo lỗi TW2026', 'Thảo luận Wikipedia:Twinkle/Twinkle2026');
 
 		form.append({ type: 'submit', label: 'Đề nghị xóa' });
 
@@ -154,7 +154,7 @@ export class Prod extends TwinkleModule {
 				field.append({
 					type: 'textarea',
 					name: 'reason',
-						label: 'Lý do đề nghị xóa:',
+					label: 'Lý do đề nghị xóa:',
 					value: this.defaultReason,
 				});
 				break;
@@ -323,7 +323,7 @@ export class Prod extends TwinkleModule {
 					summaryText = 'Đề nghị xóa sách theo [[WP:BOOKPROD]].';
 					tag =
 						'{{subst:book-prod|1=' +
-							Morebits.string.formatReasonText(params.reason || '') +
+						Morebits.string.formatReasonText(params.reason || '') +
 						(params.usertalk ? '|help=off' : '') +
 						'}}';
 				} else {
@@ -363,11 +363,11 @@ export class Prod extends TwinkleModule {
 				text = text.replace(
 					prod_re,
 					text.match(prod_re) +
-						'\n{{Proposed deletion endorsed|1=' +
-						(params.blp
-							? 'article is a [[WP:BLPPROD|biography of a living person with no sources]]'
-							: Morebits.string.formatReasonText(params.reason || '')) +
-						'}}\n'
+					'\n{{Proposed deletion endorsed|1=' +
+					(params.blp
+						? 'article is a [[WP:BLPPROD|biography of a living person with no sources]]'
+						: Morebits.string.formatReasonText(params.reason || '')) +
+					'}}\n'
 				);
 
 				params.logEndorsing = true;

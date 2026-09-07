@@ -19,7 +19,6 @@ import { Prod } from './prod';
 import { Welcome } from './welcome';
 import { Talkback } from './talkback';
 import { Arv } from './arv';
-import { Image } from './image';
 import { ImageModule } from './image';
 
 // register some globals for debugging, as per twinkle v2
@@ -32,7 +31,7 @@ if (!Morebits.userIsInGroup('autoconfirmed') && !Morebits.userIsInGroup('confirm
 
 Twinkle.userAgent = `Twinkle (${mw.config.get('wgWikiID')})`;
 
-Twinkle.summaryAd = ' ([[Wikipedia:Twinkle/TwinkleV3|TwinkleV3]])';
+Twinkle.summaryAd = ' ([[Wikipedia:Twinkle/Twinkle2026|Twinkle2026]])';
 
 Twinkle.changeTags = 'twinkle';
 
@@ -58,7 +57,6 @@ Twinkle.registeredModules = [
 	Talkback,
 	Unlink,
 	BatchUndelete,
-	Image,
 	ImageModule,
 ];
 

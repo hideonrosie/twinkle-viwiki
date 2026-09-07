@@ -26,7 +26,7 @@ export class Talkback extends TwinkleModule {
 		Window.setScriptName('Twinkle');
 		Window.addFooterLink('Tùy chọn hồi âm', 'WP:TW/PREF#talkback');
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#talkback');
-		Window.addFooterLink('Báo cáo lỗi TWV3', 'Thảo luận Wikipedia:Twinkle/TwinkleV3');
+		Window.addFooterLink('Báo cáo lỗi TW2026', 'Thảo luận Wikipedia:Twinkle/Twinkle2026');
 
 		var form = new Morebits.quickForm(Talkback.evaluate);
 
@@ -228,103 +228,103 @@ export class Talkback extends TwinkleModule {
 		string,
 		{ label: string; text: string; editSummary: string; defaultSelected?: boolean }
 	> = {
-        tncbqv: {
-			label: "WP:TNCBQV (Tin nhắn cho bảo quản viên)",
-			text: '{{subst:AN-notice|thread=$SECTION}} ~~~~',
-			editSummary: "Thông báo về một cuộc thảo luận có liên quan đến bạn tại [[Wikipedia:Tin nhắn cho bảo quản viên]]",
-        },
-        dtnd: {
-			label: "WP:DTND (Đổi tên người dùng)",
-			text: '{{subst:Chú ý DTND|chữ ký=có}}',
-			editSummary: "Thông báo: Vui lòng kiểm tra và phản hồi tại [[Wikipedia:Đổi tên người dùng]]",
-		},
-		// an: {
-		// 	label: "WP:AN (Administrators' noticeboard)",
-		// 	text: '{{subst:AN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard]]",
-		// },
-		// an3: {
-		// 	label: "WP:AN3 (Administrators' noticeboard/Edit warring)",
-		// 	text: '{{subst:An3-notice|$SECTION}} ~~~~',
-		// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard/Edit warring]]",
-		// },
-		// ani: {
-		// 	label: "WP:ANI (Administrators' noticeboard/Incidents)",
-		// 	text:
-		// 		"== Notice of Administrators' noticeboard/Incidents discussion ==\n" +
-		// 		'{{subst:ANI-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard/Incidents]]",
-		// 	defaultSelected: true,
-		// },
-		// // let's keep AN and its cousins at the top
-		// afchd: {
-		// 	label: 'WP:AFCHD (Articles for creation/Help desk)',
-		// 	text: '{{subst:AFCHD/u|$SECTION}} ~~~~',
-		// 	editSummary: 'You have replies at the [[Wikipedia:AFCHD|Articles for Creation Help Desk]]',
-		// },
-		// blpn: {
-		// 	label: 'WP:BLPN (Biographies of living persons noticeboard)',
-		// 	text: '{{subst:BLPN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Biographies of living persons/Noticeboard]]',
-		// },
-		// coin: {
-		// 	label: 'WP:COIN (Conflict of interest noticeboard)',
-		// 	text: '{{subst:Coin-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Conflict of interest/Noticeboard]]',
-		// },
-		// drn: {
-		// 	label: 'WP:DRN (Dispute resolution noticeboard)',
-		// 	text: '{{subst:DRN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Dispute resolution noticeboard]]',
-		// },
-		// effp: {
-		// 	label: 'WP:EFFP/R (Edit filter false positive report)',
-		// 	text: '{{EFFPReply|1=$SECTION|2=~~~~}}',
-		// 	editSummary:
-		// 		'You have replies to your [[Wikipedia:Edit filter/False positives/Reports|edit filter false positive report]]',
-		// },
-		// eln: {
-		// 	label: 'WP:ELN (External links noticeboard)',
-		// 	text: '{{subst:ELN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:External links/Noticeboard]]',
-		// },
-		// ftn: {
-		// 	label: 'WP:FTN (Fringe theories noticeboard)',
-		// 	text: '{{subst:Ftn-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Fringe theories/Noticeboard]]',
-		// },
-		// hd: {
-		// 	label: 'WP:HD (Help desk)',
-		// 	text: '== Your question at the Help desk ==\n' + '{{helpdeskreply|1=$SECTION|ts=~~~~~}}',
-		// 	editSummary: 'You have replies at the [[Wikipedia:Help desk|Wikipedia help desk]]',
-		// },
-		// norn: {
-		// 	label: 'WP:NORN (Reliable sources noticeboard)',
-		// 	text: '{{subst:Norn-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Reliable sources/Noticeboard]]',
-		// },
-		// npovn: {
-		// 	label: 'WP:NPOVN (Neutral point of view noticeboard)',
-		// 	text: '{{subst:NPOVN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Neutral point of view/Noticeboard]]',
-		// },
-		// rsn: {
-		// 	label: 'WP:RSN (Reliable sources noticeboard)',
-		// 	text: '{{subst:RSN-notice|thread=$SECTION}} ~~~~',
-		// 	editSummary: 'Notice of discussion at [[Wikipedia:Reliable sources/Noticeboard]]',
-		// },
-		// th: {
-		// 	label: 'WP:THQ (Teahouse question forum)',
-		// 	text:
-		// 		"== Teahouse talkback: you've got messages! ==\n{{WP:Teahouse/Teahouse talkback|WP:Teahouse/Questions|$SECTION|ts=~~~~}}",
-		// 	editSummary: 'You have replies at the [[Wikipedia:Teahouse/Questions|Teahouse question board]]',
-		// },
-		// otrs: {
-		// 	label: 'WP:OTRS/N (OTRS noticeboard)',
-		// 	text: '{{OTRSreply|1=$SECTION|2=~~~~}}',
-		// 	editSummary: 'You have replies at the [[Wikipedia:OTRS noticeboard|OTRS noticeboard]]',
-		// },
-	};
+			tncbqv: {
+				label: "WP:TNCBQV (Tin nhắn cho bảo quản viên)",
+				text: '{{subst:AN-notice|thread=$SECTION}} ~~~~',
+				editSummary: "Thông báo về một cuộc thảo luận có liên quan đến bạn tại [[Wikipedia:Tin nhắn cho bảo quản viên]]",
+			},
+			dtnd: {
+				label: "WP:DTND (Đổi tên người dùng)",
+				text: '{{subst:Chú ý DTND|chữ ký=có}}',
+				editSummary: "Thông báo: Vui lòng kiểm tra và phản hồi tại [[Wikipedia:Đổi tên người dùng]]",
+			},
+			// an: {
+			// 	label: "WP:AN (Administrators' noticeboard)",
+			// 	text: '{{subst:AN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard]]",
+			// },
+			// an3: {
+			// 	label: "WP:AN3 (Administrators' noticeboard/Edit warring)",
+			// 	text: '{{subst:An3-notice|$SECTION}} ~~~~',
+			// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard/Edit warring]]",
+			// },
+			// ani: {
+			// 	label: "WP:ANI (Administrators' noticeboard/Incidents)",
+			// 	text:
+			// 		"== Notice of Administrators' noticeboard/Incidents discussion ==\n" +
+			// 		'{{subst:ANI-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: "Notice of discussion at [[Wikipedia:Administrators' noticeboard/Incidents]]",
+			// 	defaultSelected: true,
+			// },
+			// // let's keep AN and its cousins at the top
+			// afchd: {
+			// 	label: 'WP:AFCHD (Articles for creation/Help desk)',
+			// 	text: '{{subst:AFCHD/u|$SECTION}} ~~~~',
+			// 	editSummary: 'You have replies at the [[Wikipedia:AFCHD|Articles for Creation Help Desk]]',
+			// },
+			// blpn: {
+			// 	label: 'WP:BLPN (Biographies of living persons noticeboard)',
+			// 	text: '{{subst:BLPN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Biographies of living persons/Noticeboard]]',
+			// },
+			// coin: {
+			// 	label: 'WP:COIN (Conflict of interest noticeboard)',
+			// 	text: '{{subst:Coin-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Conflict of interest/Noticeboard]]',
+			// },
+			// drn: {
+			// 	label: 'WP:DRN (Dispute resolution noticeboard)',
+			// 	text: '{{subst:DRN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Dispute resolution noticeboard]]',
+			// },
+			// effp: {
+			// 	label: 'WP:EFFP/R (Edit filter false positive report)',
+			// 	text: '{{EFFPReply|1=$SECTION|2=~~~~}}',
+			// 	editSummary:
+			// 		'You have replies to your [[Wikipedia:Edit filter/False positives/Reports|edit filter false positive report]]',
+			// },
+			// eln: {
+			// 	label: 'WP:ELN (External links noticeboard)',
+			// 	text: '{{subst:ELN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:External links/Noticeboard]]',
+			// },
+			// ftn: {
+			// 	label: 'WP:FTN (Fringe theories noticeboard)',
+			// 	text: '{{subst:Ftn-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Fringe theories/Noticeboard]]',
+			// },
+			// hd: {
+			// 	label: 'WP:HD (Help desk)',
+			// 	text: '== Your question at the Help desk ==\n' + '{{helpdeskreply|1=$SECTION|ts=~~~~~}}',
+			// 	editSummary: 'You have replies at the [[Wikipedia:Help desk|Wikipedia help desk]]',
+			// },
+			// norn: {
+			// 	label: 'WP:NORN (Reliable sources noticeboard)',
+			// 	text: '{{subst:Norn-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Reliable sources/Noticeboard]]',
+			// },
+			// npovn: {
+			// 	label: 'WP:NPOVN (Neutral point of view noticeboard)',
+			// 	text: '{{subst:NPOVN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Neutral point of view/Noticeboard]]',
+			// },
+			// rsn: {
+			// 	label: 'WP:RSN (Reliable sources noticeboard)',
+			// 	text: '{{subst:RSN-notice|thread=$SECTION}} ~~~~',
+			// 	editSummary: 'Notice of discussion at [[Wikipedia:Reliable sources/Noticeboard]]',
+			// },
+			// th: {
+			// 	label: 'WP:THQ (Teahouse question forum)',
+			// 	text:
+			// 		"== Teahouse talkback: you've got messages! ==\n{{WP:Teahouse/Teahouse talkback|WP:Teahouse/Questions|$SECTION|ts=~~~~}}",
+			// 	editSummary: 'You have replies at the [[Wikipedia:Teahouse/Questions|Teahouse question board]]',
+			// },
+			// otrs: {
+			// 	label: 'WP:OTRS/N (OTRS noticeboard)',
+			// 	text: '{{OTRSreply|1=$SECTION|2=~~~~}}',
+			// 	editSummary: 'You have replies at the [[Wikipedia:OTRS noticeboard|OTRS noticeboard]]',
+			// },
+		};
 
 	static evaluate(e) {
 		var input = Morebits.quickForm.getInputData(e.target);
