@@ -2229,9 +2229,11 @@
 	Morebits.wiki.actionCompleted.event = function () {
 		if (Morebits.wiki.actionCompleted.notice) {
 			Morebits.status.actionCompleted(Morebits.wiki.actionCompleted.notice);
+			Morebits.wiki.actionCompleted.notice = null;
 		}
 		if (Morebits.wiki.actionCompleted.redirect) {
 			var redirectUrl = Morebits.wiki.actionCompleted.redirect;
+			Morebits.wiki.actionCompleted.redirect = null;
 			// if it isn't a URL or relative path, make it one. TODO: This breaks on the articles 'http://', 'ftp://', and similar ones.
 			if (!(/^\w+:\/\//).test(redirectUrl) && !(/^\//).test(redirectUrl)) {
 				redirectUrl = mw.util.getUrl(redirectUrl);
