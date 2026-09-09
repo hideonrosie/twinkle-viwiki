@@ -93,6 +93,7 @@ export class ImageModule extends TwinkleModule {
 			});
 		}
 
+		var form = new Morebits.quickForm(ImageModule.evaluate);
 		form.append({
 			type: 'checkbox',
 			list: checkList,
