@@ -1,4 +1,4 @@
-# 6 tháng 9 năm 2026
+# 6 tháng 9 năm 2026 - Phiên bản v1.0.0
 
 - **XfD**: Hỗ trợ các biểu quyết: [Wikipedia:Biểu quyết xoá bài](https://vi.wikipedia.org/wiki/Wikipedia:Bi%E1%BB%83u_quy%E1%BA%BFt_xo%C3%A1_b%C3%A0i) (AfD), [Wikipedia:Biểu quyết xoá tập tin](https://vi.wikipedia.org/wiki/Wikipedia:Bi%E1%BB%83u_quy%E1%BA%BFt_xo%C3%A1_t%E1%BA%ADp_tin) (FfD), [Wikipedia:Biểu quyết xoá trang (thể loại, bản mẫu và mô đun)](https://vi.wikipedia.org/wiki/Wikipedia:Bi%E1%BB%83u_quy%E1%BA%BFt_xo%C3%A1_trang_(th%E1%BB%83_lo%E1%BA%A1i,_b%E1%BA%A3n_m%E1%BA%ABu_v%C3%A0_m%C3%B4_%C4%91un)) (PfD), [Wikipedia:Biểu quyết xoá trang (khác)](https://vi.wikipedia.org/wiki/Wikipedia:Bi%E1%BB%83u_quy%E1%BA%BFt_xo%C3%A1_trang_(kh%C3%A1c)) (MfD).
 - **Warn**: Nay đã hỗ trợ thêm nội dung cảnh báo vào cùng đề mục trong cùng tháng hiện tại. Không hỗ trợ autolevel (tự động chọn cấp độ cảnh báo), người dùng phải chọn thủ công cấp độ cảnh báo.
@@ -6,7 +6,7 @@
 
 ---
 
-# 7 tháng 9 năm 2026
+# 7 tháng 9 năm 2026 - Phiên bản v1.0.1
 
 ## 1. Mô đun mới
 
@@ -49,3 +49,10 @@
 
 ## 4. Thay đổi tên của dự án
 - Tên của dự án hiện được đổi từ `TwinkleV3` -> `Twinkle2026`, vì TwinkleV3 là phiên bản của twinkle-core, không hợp lý.
+
+---
+
+# 9 tháng 9 năm 2026 - Phiên bản v1.0.2
+- morebits.js: Sửa lỗi không thể tuần tra sửa đổi trang do cố gắng gọi `mw.config.get('pageTriageNamespaces')` trên wiki không có [PageTriage](https://mediawiki.org/wiki/Extension:PageTriage) được cài đặt. Điều này ảnh hưởng đến các mô đun sau: CSD, Tag. [569ed09](https://github.com/hideonrosie/twinkle-viwiki/commit/569ed09062f57899fcfab69a49b44c9a61733458)
+- DI: Thêm khả năng đánh dấu tuần tra tập tin mới. [161dda6](https://github.com/hideonrosie/twinkle-viwiki/commit/161dda6008b9fa8ec355f5bfdb9aa08d918fa75e).
+- Config: Xóa các dòng thừa liên quan đến mô đun SharedIP. [4e6279e](https://github.com/hideonrosie/twinkle-viwiki/commit/4e6279e1b7c4f664005a37268bcb80be3bc56106).
