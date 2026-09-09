@@ -753,7 +753,7 @@ class Fluff extends TwinkleModule {
 				Morebits.status.info('Info', msg('opening-talk', params.user));
 
 				var windowQuery = {
-					title: 'User talk:' + params.user,
+					title: 'Thảo luận Thành viên:' + params.user,
 					action: 'edit',
 					preview: 'yes',
 					vanarticle: params.pagename.replace(/_/g, ' '),
@@ -823,7 +823,7 @@ class Fluff extends TwinkleModule {
 				var contribsLink = '[[Special:Contributions/' + userName + '|' + userName + ']]';
 				var contribsLen = unescape(encodeURIComponent(contribsLink)).length;
 				if (resultLen + contribsLen <= 499) {
-					var talkLink = ' ([[User talk:' + userName + '|talk]])';
+					var talkLink = ' ([[Thảo luận Thành viên:' + userName + '|thảo luận]])';
 					if (resultLen + contribsLen + unescape(encodeURIComponent(talkLink)).length <= 499) {
 						result = Morebits.string.safeReplace(result, '%USER%', contribsLink + talkLink);
 					} else {
