@@ -88,7 +88,6 @@ const defaultConfig = {
 	// Warn
 	defaultWarningGroup: '1',
 	combinedSingletMenus: false,
-	showSharedIPNotice: true,
 	watchWarnings: '1 month',
 	oldSelect: false,
 	customWarningList: [],
@@ -104,9 +103,6 @@ const defaultConfig = {
 	quickWelcomeTemplate: 'welcome',
 	customWelcomeList: [],
 	customWelcomeSignature: true,
-
-	// Shared
-	markSharedIPAsMinor: true,
 
 	// Talkback
 	markTalkbackAsMinor: true,
