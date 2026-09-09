@@ -15,6 +15,12 @@ export class ImageModule extends TwinkleModule {
 					default: true,
 				} as Preference,
 				{
+					name: 'markDeliPagesAsPatrolled',
+					label: 'Đánh dấu tuần tra tập tin khi đề nghị xóa (DI)',
+					type: 'boolean',
+					default: true,
+				} as Preference,
+				{
 					name: 'deliWatchPage',
 					label: 'Thêm trang tập tin vào danh sách theo dõi khi gắn thẻ đề nghị xóa',
 					type: 'enum',
@@ -66,19 +72,30 @@ export class ImageModule extends TwinkleModule {
 		Window.addFooterLink('Trợ giúp Twinkle', 'WP:TW/DOC#image');
 		Window.addFooterLink('Báo cáo lỗi TW2026', 'Thảo luận Wikipedia:Twinkle/Twinkle2026');
 
-		var form = new Morebits.quickForm(ImageModule.evaluate);
+		var checkList = [
+			{
+				label: 'Thông báo cho người tải lên',
+				value: 'notify',
+				name: 'notify',
+				tooltip:
+					'Đừng chọn mục này nếu có nhiều thông báo hình ảnh muốn gởi đến cùng một người tải lên, và để tránh tràn ngập các thông báo trên trang thảo luận của họ.',
+				checked: getPref('notifyUserOnDeli'),
+			},
+		];
+
+		if (Morebits.userIsSysop || Morebits.userIsInGroup('patroller')) {
+			checkList.push({
+				label: 'Đánh dấu tuần tra tập tin',
+				value: 'patrol',
+				name: 'patrol',
+				tooltip: 'Đánh dấu tuần tra tập tin khi thêm bản mẫu đề nghị xóa',
+				checked: getPref('markDeliPagesAsPatrolled'),
+			});
+		}
+
 		form.append({
 			type: 'checkbox',
-			list: [
-				{
-					label: 'Thông báo cho người tải lên',
-					value: 'notify',
-					name: 'notify',
-					tooltip:
-						'Đừng chọn mục này nếu có nhiều thông báo hình ảnh muốn gởi đến cùng một người tải lên, và để tránh tràn ngập các thông báo trên trang thảo luận của họ.',
-					checked: getPref('notifyUserOnDeli'),
-				},
-			],
+			list: checkList,
 		});
 		var field = form.append({
 			type: 'field',
@@ -345,6 +362,11 @@ export class ImageModule extends TwinkleModule {
 					break;
 			}
 			pageobj.setCreateOption('nocreate');
+
+			if (params.patrol) {
+				pageobj.triage();
+			}
+
 			pageobj.save();
 		},
 

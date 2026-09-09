@@ -76,6 +76,7 @@ const defaultConfig = {
 
 	// Image (DI)
 	notifyUserOnDeli: true,
+	markDeliPagesAsPatrolled: true,
 	deliWatchPage: 'default',
 	deliWatchUser: 'default',
 
