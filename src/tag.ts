@@ -1062,19 +1062,26 @@ class ArticleMode extends TagMode {
 				// least redirects to the actual name
 
 				// All tags have their first class name as "box-" + template name
-				if (e.className.indexOf('box-') === 0) {
-					if (['box-Nhiều_vấn_đề', 'box-Multiple_issues'].indexOf(e.classList[0]) !== -1) {
+				var className = typeof e.className === 'string' ? e.className : (e.getAttribute ? e.getAttribute('class') || '' : '');
+				if (className && className.indexOf('box-') === 0) {
+					var firstClass = e.classList && e.classList[0];
+					if (firstClass && ['box-Nhiều_vấn_đề', 'box-Multiple_issues'].indexOf(firstClass) !== -1) {
 						$(e)
 							.find('.ambox')
-							.each((idx, e) => {
-								var tag = e.classList[0].slice(4).replace(/_/g, ' ');
-								this.existingTags.push(tag);
+							.each((idx, el) => {
+								var elClass = el.classList && el.classList[0];
+								if (elClass && elClass.indexOf('box-') === 0) {
+									var tag = elClass.slice(4).replace(/_/g, ' ');
+									this.existingTags.push(tag);
+								}
 							});
 						return; // continue
 					}
 
-					var tag = e.classList[0].slice(4).replace(/_/g, ' ');
-					this.existingTags.push(tag);
+					if (firstClass && firstClass.indexOf('box-') === 0) {
+						var tag = firstClass.slice(4).replace(/_/g, ' ');
+						this.existingTags.push(tag);
+					}
 				}
 			});
 
@@ -1102,7 +1109,7 @@ class ArticleMode extends TagMode {
 		if (['Hợp nhất', 'Hợp nhất từ', 'Hợp nhất đến'].filter((t: string) => tags.indexOf(t) !== -1).length > 1) {
 			return 'Chỉ chọn một trong {{Hợp nhất}}, {{Hợp nhất từ}} và {{Hợp nhất đến}}. Nếu cần hợp nhất nhiều bài, hãy dùng {{Hợp nhất}} và phân tách tên bài bằng ký tự | (trong trường hợp này Twinkle không thể tự động gắn thẻ các bài khác).';
 		}
-		if ((params.mergeTagOther || params.mergeReason) && params.mergeTarget.indexOf('|') !== -1) {
+		if ((params.mergeTagOther || params.mergeReason) && params.mergeTarget && params.mergeTarget.indexOf('|') !== -1) {
 			return 'Hiện chưa hỗ trợ gắn thẻ nhiều bài trong một lần hợp nhất hoặc mở thảo luận cho nhiều bài. Hãy tắt tùy chọn gắn thẻ bài viết khác và/hoặc xóa ô lý do rồi thử lại.';
 		}
 	}
