@@ -48,15 +48,24 @@ module.exports = {
 					: req.url.endsWith('.css')
 					? 'text/css'
 					: 'text/plain';
-				response.writeHead(200, { 'Content-Type': `${ctype}; charset=utf-8` });
+				response.writeHead(200, {
+					'Content-Type': `${ctype}; charset=utf-8`,
+					'Cache-Control': 'no-cache, no-store, must-revalidate'
+				});
 				response.end(readFile(corePath + path), 'utf-8');
 			});
 			server.app.get('/css', function (req, response) {
-				response.writeHead(200, { 'Content-Type': `text/css; charset=utf-8` });
+				response.writeHead(200, {
+					'Content-Type': `text/css; charset=utf-8`,
+					'Cache-Control': 'no-cache, no-store, must-revalidate'
+				});
 				response.end(readFile('./css/twinkle.css'), 'utf-8');
 			});
 			server.app.get('/', function (req, response) {
-				response.writeHead(200, { 'Content-Type': 'text/javascript; charset=utf-8' });
+				response.writeHead(200, {
+					'Content-Type': 'text/javascript; charset=utf-8',
+					'Cache-Control': 'no-cache, no-store, must-revalidate'
+				});
 				response.end(readFile('./dev-loader.js'), 'utf-8');
 			});
 			return middlewares;
