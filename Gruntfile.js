@@ -2,9 +2,11 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const { execSync } = require('child_process');
 const args = require('minimist')(process.argv.slice(2));
+const fs = require('fs');
 
 const OUTPUT_DIR = './build';
 const OUTPUT_FILE = './build/twinkle.js';
+const corePath = fs.existsSync('./twinkle-core') ? './twinkle-core' : './node_modules/twinkle-core';
 
 function isGitWorkDirClean() {
 	try {
@@ -133,8 +135,8 @@ module.exports = function (grunt) {
 		copy: {
 			main: {
 				files: [
-					{ src: './node_modules/twinkle-core/morebits/morebits.js', dest: 'build/morebits.js' },
-					{ src: './node_modules/twinkle-core/morebits/morebits.css', dest: 'build/morebits.css' },
+					{ src: corePath + '/morebits/morebits.js', dest: 'build/morebits.js' },
+					{ src: corePath + '/morebits/morebits.css', dest: 'build/morebits.css' },
 					{ src: './css/twinkle.css', dest: 'build/twinkle.css' },
 					{ src: './css/twinkle-pagestyles.css', dest: 'build/twinkle-pagestyles.css' },
 				],
