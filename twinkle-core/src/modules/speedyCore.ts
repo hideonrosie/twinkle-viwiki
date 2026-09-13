@@ -209,11 +209,11 @@ export abstract class SpeedyCore extends TwinkleModule {
 					event: (event) => event.stopPropagation(),
 				},
 				{
-					label: 'Đánh dấu để yêu cầu khóa khởi tạo trang',
+					label: 'Yêu cầu khóa khả năng tạo trang',
 					value: 'requestsalt',
 					name: 'requestsalt',
 					tooltip:
-						'Khi được chọn, thẻ xóa nhanh sẽ được kèm theo một thẻ {{salt}} yêu cầu bảo quản viên hoặc điều phối viên áp dụng khóa khởi tạo trang. Chỉ chọn nếu trang này đã được tạo lại nhiều lần.',
+						'Khi được chọn, thẻ {{salt}} sẽ được thêm cùng với thẻ xóa nhanh để yêu cầu bảo quản viên hoặc điều phối viên thực hiện khóa khả năng khởi tạo trang. Chỉ chọn nếu trang này đã được tạo lại nhiều lần.',
 					event: (event) => event.stopPropagation(),
 				},
 				{
@@ -1208,21 +1208,21 @@ export abstract class SpeedyCore extends TwinkleModule {
 					label: 'Thông báo cho người tạo trang khi tiến hành xóa trang bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv1', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3']
+					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
 				},
 				{
 					name: 'notifyUserOnSpeedyDeletionNomination',
 					label: 'Thông báo cho người tạo trang khi gắn thẻ Xóa nhanh bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c8', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv1', 'tv2', 'tv3', 'tl1', 'tl2', 'bm1', 'bm2', 'bm3']
+					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
 				},
 				{
 					name: 'welcomeUserOnSpeedyDeletionNotification',
 					label: 'Hoan nghênh người tạo trang cùng lúc với việc thông báo Xóa nhanh cho các tiêu chí',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: []
+					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt2', 'tt3', 'tt7', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
 				},
 				{
 					name: 'logSpeedyNominations',

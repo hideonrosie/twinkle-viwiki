@@ -4047,7 +4047,7 @@
 				var link = document.createElement('a');
 				link.setAttribute('href', mw.util.getUrl(ctx.pageName));
 				link.appendChild(document.createTextNode(ctx.pageName));
-				ctx.statusElement.info(['completed (', link, ')']);
+				ctx.statusElement.info(['hoàn tất (', link, ')']);
 				if (ctx.onSaveSuccess) {
 					ctx.onSaveSuccess(this);  // invoke callback
 				}
@@ -5720,7 +5720,7 @@
 				var link = document.createElement('a');
 				link.setAttribute('href', mw.util.getUrl(userLink));
 				link.appendChild(document.createTextNode(userLink));
-				ctx.statusElement.info(['completed (', link, ')']);
+				ctx.statusElement.info(['hoàn tất (', link, ')']);
 				if (ctx['on' + action + 'Success']) {
 					ctx['on' + action + 'Success'](this);  // invoke callback
 				}
@@ -7195,7 +7195,7 @@
 					}
 					if (pageName) {
 						// we know the page title - display a relevant message
-						statelem.info(msg('batch-done-page', pageName, 'completed ([[' + pageName + ']])'));
+						statelem.info(msg('batch-done-page', pageName, 'hoàn tất ([[' + pageName + ']])'));
 					} else {
 						// we don't know the page title - just display a generic message
 						statelem.info(msg('done', 'done'));
@@ -7206,7 +7206,7 @@
 				}
 
 			} else if (typeof arg === 'string' && ctx.options.preserveIndividualStatusLines) {
-				new Morebits.status(arg, msg('batch-done-page', arg, 'completed ([[' + arg + ']])'));
+				new Morebits.status(arg, msg('batch-done-page', arg, 'hoàn tất ([[' + arg + ']])'));
 			}
 
 			ctx.countFinishedSuccess++;
@@ -7251,7 +7251,7 @@
 				}
 			} else if (ctx.countFinished === total) {
 				var statusString = msg('batch-progress', ctx.countFinishedSuccess, ctx.countFinished, 'Done (' + ctx.countFinishedSuccess +
-					'/' + ctx.countFinished + ' actions completed successfully)');
+					'/' + ctx.countFinished + ' tác vụ đã hoàn tất thành công)');
 				if (ctx.countFinishedSuccess < ctx.countFinished) {
 					ctx.statusElement.warn(statusString);
 				} else {

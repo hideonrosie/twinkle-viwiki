@@ -507,11 +507,11 @@ export abstract class XfdMode {
 	// Not overridden for any venue
 	getNotifyEditSummary(): string {
 		return (
-			'Notification: [[' +
+			'Thông báo: Đã [[' +
 			this.params.discussionpage +
-			'|listing]] of [[:' +
+			'|đề cử]] [[:' +
 			Morebits.pageNameNorm +
-			']] at [[WP:' +
+			']] tại [[WP:' +
 			this.getFieldsetLabel() +
 			']].'
 		);
@@ -540,22 +540,22 @@ export abstract class XfdMode {
 		var usl = new Morebits.userspaceLogger(getPref('xfdLogPageName')); // , 'Adding entry to userspace log');
 
 		usl.initialText =
-			"This is a log of all [[WP:XFD|deletion discussion]] nominations made by this user using [[WP:TW|Twinkle]]'s XfD module.\n\n" +
-			'If you no longer wish to keep this log, you can turn it off using the [[Wikipedia:Twinkle/Preferences|preferences panel]], and ' +
-			'nominate this page for speedy deletion under [[WP:CSD#U1|CSD U1]].' +
-			(Morebits.userIsSysop ? '\n\nThis log does not track XfD-related deletions made using Twinkle.' : '');
+			"Đây là nhật trình đề cử biểu quyết xóa trang bằng mô đun biểu quyết xóa của [[WP:TW|Twinkle]].\n\n" +
+			'Nếu bạn không muốn giữ nhật trình này nữa, bạn có thể tắt nó bằng cách sử dụng [[Wikipedia:Twinkle/Preferences|trang tùy chỉnh]], và ' +
+			'đề cử trang này để xóa nhanh theo [[WP:XN#TV1|XN TV1]].' +
+			(Morebits.userIsSysop ? '\n\nNhật trình này không theo dõi các thao tác Xóa nhanh thực hiện bởi Twinkle.' : '');
 
 		usl.changeTags = Twinkle.changeTags;
 		return usl.log(this.getUserspaceLoggingText(), this.getUserspaceLoggingEditSummary());
 	}
 
 	getUserspaceLoggingEditSummary() {
-		return 'Logging ' + this.params.venue + ' nomination of [[:' + Morebits.pageNameNorm + ']].';
+		return 'Đang ghi nhật trình ' + this.params.venue + ' đề cử xóa [[:' + Morebits.pageNameNorm + ']].';
 	}
 
 	getUserspaceLoggingText1(): string {
 		return `
-			# [[:{{subst:FULLPAGENAME}}]]: {{subst:#ifeq:{{subst:NAMESPACENUMBER}}|6| ([{{fullurl:Special:Log|page={{urlencode:{{subst:FULLPAGENAME}}}}}} log])|}} nominated at [[WP:{{subst:uc:$1}}|$1]]{{subst:#if:$2|; notified {{user|1=$2}}|}}
+			# [[:{{subst:FULLPAGENAME}}]]: {{subst:#ifeq:{{subst:NAMESPACENUMBER}}|6| ([{{fullurl:Special:Log|page={{urlencode:{{subst:FULLPAGENAME}}}}}} log])|}} đề cử tại [[WP:{{subst:uc:$1}}|$1]]{{subst:#if:$2|; thông báo {{user|1=$2}}|}}
 		`;
 	}
 
@@ -565,10 +565,10 @@ export abstract class XfdMode {
 		// If a logged file is deleted but exists on commons, the wikilink will be blue, so provide a link to the log
 		var fileLogLink =
 			mw.config.get('wgNamespaceNumber') === NS_FILE
-				? ' ([{{fullurl:Special:Log|page=' + mw.util.wikiUrlencode(mw.config.get('wgPageName')) + '}} log])'
+				? ' ([{{fullurl:Special:Log|page=' + mw.util.wikiUrlencode(mw.config.get('wgPageName')) + '}} nhật trình])'
 				: '';
 		// CFD/S and RM don't have canonical links
-		var nominatedLink = params.discussionpage ? '[[' + params.discussionpage + '|nominated]]' : 'nominated';
+		var nominatedLink = params.discussionpage ? '[[' + params.discussionpage + '|đề cử]]' : 'đề cử';
 
 		var appendText =
 			'# [[:' +
@@ -577,20 +577,20 @@ export abstract class XfdMode {
 			fileLogLink +
 			' ' +
 			nominatedLink +
-			' at [[WP:' +
+			' tại [[WP:' +
 			params.venue +
 			'|' +
 			params.venue +
-			']]';
+			']].';
 
 		appendText += this.getUserspaceLoggingExtraInfo();
 
 		if (params.initialContrib && params.notifycreator) {
-			appendText += '; notified {{user|1=' + params.initialContrib + '}}';
+			appendText += '; đã thông báo {{user|1=' + params.initialContrib + '}}';
 		}
 		appendText += ' ~~~~~';
 		if (params.reason) {
-			appendText += "\n#* '''Reason''': " + Morebits.string.formatReasonForLog(params.reason);
+			appendText += "\n#* '''Lý do''': " + Morebits.string.formatReasonForLog(params.reason);
 		}
 		return appendText;
 	}
