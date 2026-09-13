@@ -38,4 +38,7 @@
 	"thu": "T5",
 	"fri": "T6",
 	"sat": "T7"
+	"summary-added": "Đã gắn thẻ {{list:$1}}",
+	"summary-removed": "Đã gỡ thẻ {{list:$1}}",
+	"summary-added-removed": "Đã gắn thẻ {{list:$1}} và gỡ thẻ {{list:$2}}"
 }
