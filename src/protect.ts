@@ -228,16 +228,19 @@ export class Protect extends ProtectCore {
         'pp-protected': {
             edit: 'sysop',
             move: 'sysop',
+            expiry: '1 day',
             reason: undefined,
         },
         'pp-dispute': {
             edit: 'sysop',
             move: 'sysop',
+            expiry: '1 day',
             reason: '[[Wikipedia:KT#Tranh cãi về nội dung|Bút chiến thiếu tính xây dựng]]',
         },
         'pp-vandalism': {
             edit: 'sysop',
             move: 'sysop',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Phá hoại|phá hoại]]',
         },
         'pp-usertalk': {
@@ -257,46 +260,54 @@ export class Protect extends ProtectCore {
         'pp-30-500-vandalism': {
             edit: 'extendedconfirmed',
             move: 'extendedconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Phá hoại|phá hoại]]',
             template: 'pp-30-500',
         },
         'pp-30-500-disruptive': {
             edit: 'extendedconfirmed',
             move: 'extendedconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Sửa đổi phá hoại|sửa đổi gây hại]]',
             template: 'pp-30-500',
         },
         'pp-30-500-blp': {
             edit: 'extendedconfirmed',
             move: 'extendedconfirmed',
+            expiry: '1 day',
             reason: 'Vi phạm [[Wikipedia:Tiểu sử người đang sống|quy định về tiểu sử người đang sống]]',
             template: 'pp-30-500',
         },
         'pp-30-500-sock': {
             edit: 'extendedconfirmed',
             move: 'extendedconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Tài khoản con rối|tài khoản rối]] sửa',
             template: 'pp-30-500',
         },
 
         'pp-semi-vandalism': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Phá hoại|phá hoại]]',
             template: 'pp-vandalism',
         },
         'pp-semi-disruptive': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Sửa đổi phá hoại|sửa đổi gây hại]]',
             template: 'pp-protected',
         },
         'pp-semi-unsourced': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason:
                 'Thêm [[Wikipedia:Thông tin kiểm chứng được|nội dung không nguồn hoặc nguồn yếu]]',
             template: 'pp-protected',
         },
         'pp-semi-blp': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason:
                 'Vi phạm quy định về [[Wikipedia:Tiểu sử người đang sống|tiểu sử người đang sống]]',
             template: 'pp-blp',
@@ -321,25 +332,30 @@ export class Protect extends ProtectCore {
 
         'pp-semi-sock': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason: 'Thường xuyên bị [[Wikipedia:Tài khoản con rối|tài khoản rối]] sửa',
             template: 'pp-sock',
         },
         'pp-semi-protected': {
             edit: 'autoconfirmed',
+            expiry: '1 day',
             reason: undefined,
             template: 'pp-protected',
         },
 
         'pp-move': {
             move: 'sysop',
+            expiry: '1 day',
             reason: undefined,
         },
         'pp-move-dispute': {
             move: 'sysop',
+            expiry: '1 day',
             reason: '[[Wikipedia:Quy định khóa trang#Khóa di chuyển trang|Tranh chấp di chuyển trang]]',
         },
         'pp-move-vandalism': {
             move: 'sysop',
+            expiry: '1 day',
             reason: '[[Wikipedia:Quy định khóa trang#Khóa di chuyển trang|Phá hoại di chuyển trang]]',
         },
         'pp-move-indef': {
