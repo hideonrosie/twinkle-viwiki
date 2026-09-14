@@ -279,7 +279,7 @@ export abstract class XfdMode {
 	 * Actions performed after the form is rendered.
 	 * @param renderedFieldset
 	 */
-	postRender(renderedFieldset: HTMLFieldSetElement) { }
+	postRender(_renderedFieldset: HTMLFieldSetElement) { }
 
 	/**
 	 * Return any warnings about the choice of the selected venue (e.g. using
