@@ -1,5 +1,5 @@
 import { TwinkleModule } from '../twinkleModule';
-import { makeArray, obj_entries, obj_values, stripNs } from '../utils';
+import { makeArray, obj_entries, stripNs } from '../utils';
 import { msg } from '../messenger';
 import { Api } from '../Api';
 import { Page } from '../Page';
