@@ -310,7 +310,7 @@ export class BatchDeleteCore extends TwinkleModule {
 			// If lists of subpages were already loaded once, they are
 			// available without use of any API calls
 			if (this.subpagesLoaded) {
-				$.each(this.pages, (i, el) => {
+				$.each(this.pages, (_i, el) => {
 					// Get back the subgroup from subgroup_, where we saved it
 					if (el.subgroup === null && el.subgroup_) {
 						el.subgroup = el.subgroup_;
@@ -331,7 +331,7 @@ export class BatchDeleteCore extends TwinkleModule {
 			$(e.target).after(loadingText);
 
 			var pages = $(form.pages)
-				.map((i, el) => {
+				.map((_i, el) => {
 					return el.value;
 				})
 				.get();
@@ -424,7 +424,7 @@ export class BatchDeleteCore extends TwinkleModule {
 				}
 			);
 		} else if (!e.target.checked) {
-			$.each(this.pages, (i, el) => {
+			$.each(this.pages, (_i, el) => {
 				if (el.subgroup) {
 					// Remove subgroup after saving its contents in subgroup_
 					// so that it can be retrieved easily if user decides to
