@@ -445,7 +445,7 @@ export class BatchDeleteCore extends TwinkleModule {
 	 * Returns an array with a list of strings to be included with the page name.
 	 * @param page
 	 */
-	getMetadata(page): string[] {
+	getMetadata(_page): string[] {
 		return [];
 	}
 
