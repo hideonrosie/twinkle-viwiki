@@ -65,6 +65,7 @@ export class User extends Morebits.wiki.user {
 }
 
 // The non-standard way of overriding the functions means we have to tell TS about it in some way.
+/* eslint-disable no-redeclare */
 export interface User {
 	load(): JQuery.Promise<Morebits.wiki.api>;
 
