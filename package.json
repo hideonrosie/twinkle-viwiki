@@ -7,6 +7,7 @@
 		"lint": "eslint . --ext .js --ext .ts",
 		"lint:fix": "eslint . --ext .js --ext .ts --fix",
 		"build": "grunt build",
+		"build-vi": "grunt build --excludeEnglishMessages",
 		"quickbuild": "webpack",
 		"start": "node scripts/server.js",
 		"test:prod": "webpack && jest",
