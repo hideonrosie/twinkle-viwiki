@@ -163,7 +163,7 @@ export class UnlinkCore extends TwinkleModule {
 			} else {
 				form.append({ type: 'header', label: msg('file-usage') });
 				namespaces = [];
-				$.each(getPref('unlinkNamespaces'), (k, v) => {
+				$.each(getPref('unlinkNamespaces'), (_k, v) => {
 					namespaces.push(v === '0' ? msg('blanknamespace') : mw.config.get('wgFormattedNamespaces')[v]);
 				});
 				form.append({
@@ -210,7 +210,7 @@ export class UnlinkCore extends TwinkleModule {
 			}
 			form.append({ type: 'header', label: msg('backlinks') });
 			namespaces = [];
-			$.each(getPref('unlinkNamespaces'), (k, v) => {
+			$.each(getPref('unlinkNamespaces'), (_k, v) => {
 				namespaces.push(v === '0' ? msg('blanknamespace') : mw.config.get('wgFormattedNamespaces')[v]);
 			});
 			form.append({
