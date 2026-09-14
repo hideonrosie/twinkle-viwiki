@@ -1071,7 +1071,7 @@ export abstract class BlockCore extends TwinkleModule {
 
 	seeAlsos = [];
 
-	toggle_see_alsos(e: QuickFormEvent) {}
+	toggle_see_alsos(_e: QuickFormEvent) {}
 
 	update_form(e, data) {
 		var form = e.target.form,
