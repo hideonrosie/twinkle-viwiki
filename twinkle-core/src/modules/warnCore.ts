@@ -104,7 +104,7 @@ export abstract class WarnCore extends TwinkleModule {
 			tooltip: 'Đầu tiên, chọn loại cảnh báo, sau đó chọn cảnh báo cụ thể để gửi.',
 		});
 
-		let main_group = main_select.append({
+		let _main_group = main_select.append({
 			type: 'select',
 			name: 'main_group',
 			tooltip: 'Bạn có thể thay đổi loại cảnh báo mặc định trong tùy chọn Twinkle',
