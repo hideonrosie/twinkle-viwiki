@@ -74,11 +74,24 @@ mw.foo(
 );
 ```
 
-## Declarations
+## Naming
+
+Because this is a TypeScript project, consistent naming conventions help maintain readability:
+
+*   **Classes**: `PascalCase` (e.g., `BlockCore`, `TwinkleModule`, `Page`, `User`).
+*   **Functions and Variables**: `camelCase` (e.g., `makeWindow`, `processUserInfo`).
+*   **Event Handlers**: Form and UI event handlers inside modules traditionally use `snake_case` (e.g., `change_action`, `change_block64`, `toggle_see_alsos`).
+*   **Utility Shims**: ES6 polyfills/shims in `utils.ts` use prefixed `snake_case` (e.g., `obj_entries`, `arr_includes`).
+
+## Structure
+
+The project uses ES6 Modules (`import` and `export`) rather than wrapping files in closures or attaching properties to global variables.
+
+### Declarations
 
 Variables must be declared before use. Since the project uses TypeScript/ES6, `let` and `const` are supported and encouraged for new code. However, `var` is still heavily used due to legacy code.
 
-When writing callbacks, prefer **Arrow Functions** (`=>`) to naturally preserve the `this` context without needing `.bind(this)` or `var self = this;`.
+When writing callbacks, prefer **Arrow functions** (`=>`) to naturally preserve the `this` context without needing `.bind(this)` or `var self = this;`.
 
 **Yes**
 ```typescript
@@ -94,19 +107,6 @@ pageDeleter.run(function(pageName) {
 	self.callbacks.doExtras(pageName);
 });
 ```
-
-## Naming
-
-Because this is a TypeScript project, consistent naming conventions help maintain readability:
-
-*   **Classes**: `PascalCase` (e.g., `BlockCore`, `TwinkleModule`, `Page`, `User`).
-*   **Functions and Variables**: `camelCase` (e.g., `makeWindow`, `processUserInfo`).
-*   **Event Handlers**: Form and UI event handlers inside modules traditionally use `snake_case` (e.g., `change_action`, `change_block64`, `toggle_see_alsos`).
-*   **Utility Shims**: ES6 polyfills/shims in `utils.ts` use prefixed `snake_case` (e.g., `obj_entries`, `arr_includes`).
-
-## Modules and Core Code
-
-The project uses ES6 Modules (`import` and `export`) rather than wrapping files in closures or attaching properties to global variables.
 
 ### Module Structure (`twinkle-core/src/modules/`)
 Most modules follow an object-oriented design inherited from `TwinkleModule`.
