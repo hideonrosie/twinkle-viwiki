@@ -145,7 +145,7 @@ export function initMessaging() {
 		loadMediaWikiMessages(mwMessageList, Twinkle.language),
 		loadTwinkleCoreMessages(Twinkle.language),
 	])
-		.catch((e) => {
+		.catch((_e) => {
 			mw.notify('Failed to load messages needed for Twinkle', { type: 'error' });
 		})
 		.finally(() => {
