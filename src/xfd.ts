@@ -687,11 +687,6 @@ class Pfd extends XfdMode {
     }
 }
 
-
-
-
-
-
 class Mfd extends XfdMode {
     static venueCode = 'MfD';
     static venueLabel = 'MfD (Biểu quyết xóa trang khác)';
