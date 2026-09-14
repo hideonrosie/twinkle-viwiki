@@ -574,13 +574,13 @@ export abstract class BlockCore extends TwinkleModule {
 								label: msg('block-auto-label'),
 								name: 'autoblock',
 								value: '1',
-						  }
+							}
 						: {
 								checked: this.field_block_options.hardblock,
 								label: msg('block-hard-label'),
 								name: 'hardblock',
 								value: '1',
-						  },
+							},
 					{
 						checked: this.field_block_options.watchuser,
 						label: msg('block-watch-label'),
