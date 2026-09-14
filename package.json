@@ -10,6 +10,7 @@
 		"build-vi": "grunt build --excludeEnglishMessages",
 		"quickbuild": "webpack",
 		"start": "node scripts/server.js",
+		"deploy": "node scripts/deploy.js",
 		"test:prod": "webpack && jest",
 		"test": "env DEBUG=true webpack && jest -i",
 		"test:unit": "webpack && jest --selectProjects unit",
