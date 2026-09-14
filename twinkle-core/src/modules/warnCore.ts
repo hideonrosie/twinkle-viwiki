@@ -395,7 +395,7 @@ export abstract class WarnCore extends TwinkleModule {
 		}
 	}
 
-	getInputConfig(template: string): quickFormElementData {
+	getInputConfig(_template: string): quickFormElementData {
 		return {
 			label: 'Trang được liên kết',
 			value: mw.util.getParamValue('vanarticle') || '',
@@ -427,7 +427,7 @@ export abstract class WarnCore extends TwinkleModule {
 	/**
 	 * Add some notices for the Twinkle user when they select specific templates to use
 	 */
-	perWarningNotices(template): JQuery {
+	perWarningNotices(_template): JQuery {
 		return $();
 	}
 
