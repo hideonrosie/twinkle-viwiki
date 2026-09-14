@@ -1496,7 +1496,7 @@ class ListDialog {
 		var current = {};
 		$(tbody)
 			.find('input[type="text"]')
-			.each(function (inputkey, input: HTMLInputElement) {
+			.each(function (_inputkey, input: HTMLInputElement) {
 				if ($(input).hasClass('twinkle-config-customlist-value')) {
 					current = { value: input.value };
 				} else {
