@@ -900,7 +900,7 @@ export class QuickFilter {
 
 	static onInputChange(this: HTMLInputElement) {
 		// flush the DOM of all existing underline spans
-		QuickFilter.$allCheckboxDivs.find('.search-hit').each(function (i, e) {
+		QuickFilter.$allCheckboxDivs.find('.search-hit').each(function (_i, e) {
 			var label_element = e.parentElement;
 			// This would convert <label>Hello <span class=search-hit>wo</span>rld</label>
 			// to <label>Hello world</label>
