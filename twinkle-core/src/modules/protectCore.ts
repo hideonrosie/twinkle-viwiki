@@ -255,7 +255,7 @@ export abstract class ProtectCore extends TwinkleModule {
 			if (adminEditDeferred) {
 				adminEditDeferred.done((admin) => {
 					if (admin) {
-						$.each(['edit', 'move', 'create', 'stabilize', 'cascading'], (i, type) => {
+						$.each(['edit', 'move', 'create', 'stabilize', 'cascading'], (_i, type) => {
 							if (this.currentProtectionLevels[type]) {
 								this.currentProtectionLevels[type].admin = admin;
 							}
