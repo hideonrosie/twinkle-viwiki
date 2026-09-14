@@ -455,7 +455,7 @@ export class BatchDeleteCore extends TwinkleModule {
 		var form = event.target;
 
 		var numProtected = $(Morebits.quickForm.getElements(form, 'pages')).filter(function (
-			index,
+			_index,
 			element: HTMLInputElement
 		) {
 			return element.checked && (element.nextElementSibling as HTMLLabelElement).style.color === 'red';
