@@ -97,10 +97,10 @@ export class BatchUndeleteCore extends TwinkleModule {
 					label:
 						title +
 						(editProt
-							? msg('word-separator') +
-							  (editProt.expiry === 'infinity'
-									? msg('create-protected-indef')
-									: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
+								? msg('word-separator') +
+									(editProt.expiry === 'infinity'
+										? msg('create-protected-indef')
+										: msg('create-protected', new Morebits.date(editProt.expiry).calendar('utc')))
 							: ''),
 					value: title,
 					checked: true,
