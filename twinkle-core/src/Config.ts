@@ -593,7 +593,7 @@ export class Config {
 							};
 							if (pref.setDisplayOrder) {
 								// add check boxes according to the given display order
-								$.each(pref.setDisplayOrder, function (itemkey, item) {
+								$.each(pref.setDisplayOrder, function (_itemkey, item) {
 									worker(item, pref.setValues[item]);
 								});
 							} else {
@@ -920,7 +920,7 @@ export class Config {
 								userValue = [];
 								if (pref.setDisplayOrder) {
 									// read only those keys specified in the display order
-									$.each(pref.setDisplayOrder, function (itemkey, item) {
+									$.each(pref.setDisplayOrder, function (_itemkey, item) {
 										if (form[pref.name + '_' + item].checked) {
 											userValue.push(item);
 										}
