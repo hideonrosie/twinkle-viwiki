@@ -214,7 +214,7 @@ export abstract class ProtectCore extends TwinkleModule {
 			// Save requested page's watched status for later in case needed when filing request
 			this.watched = page.watchlistexpiry || page.watched === '';
 
-			$.each(page.protection, (index, protection) => {
+			$.each(page.protection, (_index, protection) => {
 				// Don't overwrite actual page protection with cascading protection
 				if (!protection.source) {
 					current[protection.type] = {
