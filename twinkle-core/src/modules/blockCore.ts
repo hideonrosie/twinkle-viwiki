@@ -1102,7 +1102,7 @@ export abstract class BlockCore extends TwinkleModule {
 		$(form)
 			.find('[name=field_block_options]')
 			.find(':checkbox')
-			.each((i, el: HTMLInputElement) => {
+			.each((_i, el: HTMLInputElement) => {
 				// don't override original options if useInitialOptions is set
 				if (data.useInitialOptions && data[el.name] === undefined) {
 					return;
