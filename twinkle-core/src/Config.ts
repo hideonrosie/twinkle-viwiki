@@ -1396,7 +1396,7 @@ class ListDialog {
 
 		// content rows
 		var gotRow = false;
-		$.each(curvalue, function (k, v) {
+		$.each(curvalue, function (_k, v) {
 			gotRow = true;
 			ListDialog.addRow(dlgtbody, v.value, v.label);
 		});
