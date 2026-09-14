@@ -137,7 +137,7 @@ export function makeOptoutLink(module: string) {
  */
 export function makeTemplate(name: string, parameters: Record<string | number, string>): string {
 	let parameterText = obj_entries(parameters)
-		.filter(([k, v]) => !!v) // ignore params with no value
+		.filter(([_k, v]) => !!v) // ignore params with no value
 		.map(([name, value]) => `|${name}=${value}`)
 		.join('');
 	return '{{' + name + parameterText + '}}';
