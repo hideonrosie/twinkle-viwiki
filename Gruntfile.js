@@ -26,21 +26,21 @@ function makeHeader() {
 	let header =
 `/*  _______________________________________________________________________________	
  * |                                                                               |
- * |                     === WARNING: GLOBAL GADGET FILE ===                       |
- * |                   Changes to this page affect many users.                     |
- * |  Please discuss changes on the talk page or on [[WT:Gadget]] before editing.  |
+ * |                === CẢNH BÁO: TẬP TIN TIỆN ÍCH TOÀN WEBSITE ===                |
+ * |        Các thay đổi ở đây có thể ảnh hưởng đến hàng loạt người sử dụng.       |
+ * |          Vui lòng thảo luận tại [[WT:TW]] trước khi sửa đổi trang này.        |
  * |_______________________________________________________________________________|
  *
- * Built from source code at GitHub repository [https://github.com/hideonrosie/twinkle-viwiki]
- * All changes should be made in the repository. Please do not attempt to edit this file directly.
+ * Được build từ kho mã nguồn GitHub [https://github.com/hideonrosie/twinkle-viwiki]
+ * Mọi thay đổi nên được sửa đổi trực tiếp trên kho mã đó. Đừng sửa trực tiếp trang này.
 `;
 	if (includeCommitHashInComment) {
 		const commitSHA = execSync('git rev-parse HEAD').toString().trim();
 		header +=
-` * This build was generated from the source files at the repository as of the commit
- * ${commitSHA}. You can browse the repo at that point in time using this link:
+` * Bản dựng này được tạo ra từ các tập tin nguồn tại kho mã tính đến thời điểm commit
+ * ${commitSHA}. Bạn có thể duyệt kho mã tại thời điểm đó bằng liên kết này:
  * https://github.com/hideonrosie/twinkle-viwiki/tree/${commitSHA}
- * Changes between two commits of Twinkle can be compared using
+ * Thay đổi giữa các commit có thể được xem tại liên kết sau:
  * https://github.com/hideonrosie/twinkle-viwiki/compare/COMMIT_HASH_1..COMMIT_HASH_2
 `;
 	}
