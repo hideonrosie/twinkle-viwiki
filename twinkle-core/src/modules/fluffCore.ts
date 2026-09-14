@@ -248,7 +248,7 @@ class Fluff extends TwinkleModule {
 				) {
 					var $list = $('#mw-content-text').find('ul li:has(span.mw-uctop):has(.mw-changeslist-diff)');
 
-					$list.each((key, current) => {
+					$list.each((_key, current) => {
 						// revid is also available in the href of both
 						// .mw-changeslist-date or .mw-changeslist-diff
 						var page = $(current).find('.mw-contributions-title').text();
@@ -278,7 +278,7 @@ class Fluff extends TwinkleModule {
 					.not('.mw-rcfilters-ui-highlights-enhanced-toplevel')
 					.find('.mw-changeslist-line-inner, td.mw-enhanced-rc-nested');
 
-				$list.each((key, current) => {
+				$list.each((_key, current) => {
 					// The :not is possibly unnecessary, as it appears that
 					// .mw-userlink is simply not present if the username is hidden
 					var vandal = $(current).find('.mw-userlink:not(.history-deleted)').text();
