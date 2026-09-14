@@ -1,5 +1,4 @@
 import { Twinkle } from './twinkle';
-import { obj_values } from './utils';
 
 let prefs: Record<string, any>;
 
