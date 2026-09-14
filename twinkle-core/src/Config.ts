@@ -1483,7 +1483,7 @@ class ListDialog {
 		$tbody.find('tr').slice(1).remove(); // all rows except the first (header) row
 		// add the new values
 		var curvalue = $button.data('value');
-		$.each(curvalue, function (k, v) {
+		$.each(curvalue, function (_k, v) {
 			ListDialog.addRow(tbody, v.value, v.label);
 		});
 
