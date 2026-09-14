@@ -461,7 +461,7 @@ export abstract class WarnCore extends TwinkleModule {
 		this.showPreview(form);
 	}
 
-	validateInputs(params: Record<string, any>): string | void { }
+	validateInputs(_params: Record<string, any>): string | void { }
 
 	evaluate(e) {
 		var userTalkPage = new mw.Title(mw.config.get('wgRelevantUserName'), NS_USER_TALK);
