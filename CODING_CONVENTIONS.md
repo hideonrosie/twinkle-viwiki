@@ -1,8 +1,8 @@
-# Twinkle Coding Conventions
+# Twinkle2026 coding conventions
 
 This page describes the coding conventions for TypeScript and JavaScript in the Twinkle2026 (vi.wikipedia.org) codebase. While inspired by MediaWiki's conventions, this document reflects the **actual tooling and patterns** used in this repository.
 
-## Linting and Formatting
+## Linting
 
 Twinkle2026 uses **ESLint** for catching logical errors and **Prettier** for automated code formatting. Formatting concerns like spacing, indentation, and line wrapping are entirely handled by Prettier.
 
@@ -19,15 +19,14 @@ npm run format
 npm run lint
 ```
 
-## Whitespace and Formatting
-
+## Whitespace
+### Spaces
 Unlike MediaWiki's default JavaScript style, this repository relies on **Prettier's default formatting**:
 * **Indentation**: Use **tabs**.
-* **Line length**: Maximum **100 characters**. Prettier will automatically wrap long function calls, arrays, and objects.
 * **Quotes**: Use **single quotes** (`'`).
 * **Parentheses spacing**: Do **NOT** leave spaces inside parentheses (unless forced by multiline wrapping). This directly contrasts with MediaWiki style.
 
-**Yes (Prettier style - Used in Twinkle)**
+**Yes (Prettier style)**
 ```typescript
 a.foo = bar + baz;
 
@@ -55,6 +54,24 @@ function baz( foo, bar ) {
 
 baz( 'banana', 'pear' );
 foo = bar[ 0 ];
+```
+
+### Line length
+Lines should wrap at no more than **80–100 characters**. Prettier will automatically wrap long function calls, arrays, and objects.
+
+**Yes (Prettier will automatically wrap to maintain < 100 characters)**
+```typescript
+// One line
+if (mw.foo.hasBar() && mw.foo.getThis() === 'that') {
+	return { first: 'Who', second: 'What' };
+}
+
+// Multi-line (Prettier automatically wraps long function calls and arrays)
+mw.foo(
+	['first', 'nested', 'value'],
+	'second',
+	'third'
+);
 ```
 
 ## Declarations
