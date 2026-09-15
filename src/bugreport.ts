@@ -107,6 +107,14 @@ export class BugReport extends TwinkleModule {
 			tooltip: 'Mô tả kết quả bạn mong đợi nếu không xảy ra lỗi (không bắt buộc)',
 		});
 
+		field.append({
+			type: 'textarea',
+			name: 'useragent',
+			label: 'Thông tin thiết bị/Hệ điều hành:',
+			tooltip: 'Thông tin trình duyệt của bạn (tự động điền, bạn có thể chỉnh sửa nếu muốn ẩn thông tin)',
+			value: navigator.userAgent,
+		});
+
 		form.append({ type: 'submit', label: 'Gửi báo cáo lỗi' });
 
 		var result = form.render();
@@ -133,16 +141,19 @@ export class BugReport extends TwinkleModule {
 		var details = input.details.trim();
 		var reproduce = input.reproduce ? input.reproduce.trim() : '';
 		var expected = input.expected ? input.expected.trim() : '';
+		var useragent = input.useragent ? input.useragent.trim() : navigator.userAgent;
 
 		var reportText =
-			`{{subst:Wikipedia:Twinkle/Twinkle2026/bug` +
+			`{{Wikipedia:Twinkle/Twinkle2026/bug` +
 			`| tiêu đề = ` + title +
+			`| trạng thái = ` +
 			`| mô đun = ` + module +
 			`| trang = ` + page +
 			`| chi tiết lỗi = ` + details +
 			`| cách tái tạo lỗi = ` + reproduce +
 			`| kết quả mong đợi = ` + expected +
-			`}}`;
+			`| thiết bị = ` + useragent +
+			`}}\n~~~~`;
 
 		const targetPageName = 'Thảo luận Wikipedia:Twinkle/Twinkle2026';
 
