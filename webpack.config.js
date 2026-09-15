@@ -1,31 +1,36 @@
 const fs = require('fs');
 const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
+const webpack = require('webpack');
+const { EsbuildPlugin } = require('esbuild-loader');
 
 const corePath = args.core || (fs.existsSync(path.resolve(__dirname, 'twinkle-core')) ? './twinkle-core' : './node_modules/twinkle-core');
 
 module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
+	cache: {
+		type: 'filesystem',
+	},
 
 	entry: './src/twinkle.ts',
 	target: ['web', 'es6'],
 	module: {
 		rules: [
 			{
-				test: /\.ts$/,
-				loader: 'ts-loader',
+				test: /\.[jt]s$/,
+				loader: 'esbuild-loader',
 				options: {
-					transpileOnly: true,
+					target: 'es2015',
 				},
 			},
-			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				options: {
-					presets: [['@babel/preset-env', { targets: 'defaults', loose: true }]],
-				},
-			},
+		],
+	},
+	optimization: {
+		minimizer: [
+			new EsbuildPlugin({
+				target: 'es2015',
+			}),
 		],
 	},
 	resolve: {
@@ -34,6 +39,12 @@ module.exports = {
 			'twinkle-core': path.resolve(__dirname, 'twinkle-core'),
 		} : {},
 	},
+	plugins: [
+		new webpack.IgnorePlugin({
+			resourceRegExp: /^\.\/(?!en\.json|vi\.json).*\.json$/,
+			contextRegExp: /twinkle-core[\\/]i18n$/,
+		}),
+	],
 	output: {
 		filename: 'twinkle.js',
 		path: path.resolve(__dirname, 'build'),
