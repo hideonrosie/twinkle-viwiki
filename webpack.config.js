@@ -9,6 +9,9 @@ const corePath = args.core || (fs.existsSync(path.resolve(__dirname, 'twinkle-co
 module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
+	cache: {
+		type: 'filesystem',
+	},
 
 	entry: './src/twinkle.ts',
 	target: ['web', 'es6'],
