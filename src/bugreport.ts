@@ -144,15 +144,16 @@ export class BugReport extends TwinkleModule {
 		var useragent = input.useragent ? input.useragent.trim() : navigator.userAgent;
 
 		var reportText =
-			`{{Wikipedia:Twinkle/Twinkle2026/bug` +
-			`| tiêu đề = ` + title +
-			`| trạng thái = ` +
-			`| mô đun = ` + module +
-			`| trang = ` + page +
-			`| chi tiết lỗi = ` + details +
-			`| cách tái tạo lỗi = ` + reproduce +
-			`| kết quả mong đợi = ` + expected +
-			`| thiết bị = ` + useragent +
+			`== ` + title + ` ==\n` +
+			`{{Wikipedia:Twinkle/Twinkle2026/bug\n` +
+			`| trạng thái = \n` +
+			`| triage = \n` +
+			`| mô đun = ` + module + `\n` +
+			`| trang = ` + page + `\n` +
+			`| chi tiết lỗi = ` + details + `\n` +
+			`| cách tái tạo lỗi = ` + reproduce + `\n` +
+			`| kết quả mong đợi = ` + expected + `\n` +
+			`| thiết bị = ` + useragent + `\n` +
 			`}}\n~~~~`;
 
 		const targetPageName = 'Thảo luận Wikipedia:Twinkle/Twinkle2026';
