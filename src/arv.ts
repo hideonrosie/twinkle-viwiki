@@ -42,7 +42,7 @@ export class Arv extends TwinkleModule {
 			function () {
 				Arv.callback(username, isIP);
 			},
-			'Báo cáo phá hoại',
+			'Báo cáo thành viên',
 			'tw-arv',
 			'Báo cáo ' + userType + ' này đến bảo quản viên'
 		);
@@ -245,23 +245,27 @@ export class Arv extends TwinkleModule {
 			work_area.append({ type: 'input', name: 'page', label: 'Trang liên kết chính: ', tooltip: 'Để trống nếu không liên kết đến trang trong báo cáo', value: mw.util.getParamValue('vanarticle') || '' });
 			work_area.append({ type: 'input', name: 'badid', label: 'ID sửa đổi khi bị phá hoại: ', tooltip: 'Để trống nếu không có liên kết khác biệt', value: mw.util.getParamValue('vanarticlerevid') || '' });
 			work_area.append({ type: 'input', name: 'goodid', label: 'ID sửa đổi tốt cuối cùng: ', tooltip: 'Để trống cho liên kết khác biệt với bản sửa đổi trước đó', value: mw.util.getParamValue('vanarticlegoodrevid') || '' });
-			work_area.append({ type: 'checkbox', name: 'arvtype', list: [
-				{ label: 'Phá hoại sau khi cảnh báo mức 4 được thiết lập', value: 'final' },
-				{ label: 'Phá hoại sau khi bị cấm gần đây', value: 'postblock' },
-				{ label: 'Rõ ràng là một tài khoản chỉ phá hoại', value: 'vandalonly', disabled: mw.util.isIPAddress(root.uid.value, true) },
-				{ label: 'Tài khoản chỉ để quảng cáo', value: 'promoonly', disabled: mw.util.isIPAddress(root.uid.value, true) },
-				{ label: 'Tài khoản là spambot hoặc bị xâm phạm', value: 'spambot' }
-			] });
+			work_area.append({
+				type: 'checkbox', name: 'arvtype', list: [
+					{ label: 'Phá hoại sau khi cảnh báo mức 4 được thiết lập', value: 'final' },
+					{ label: 'Phá hoại sau khi bị cấm gần đây', value: 'postblock' },
+					{ label: 'Rõ ràng là một tài khoản chỉ phá hoại', value: 'vandalonly', disabled: mw.util.isIPAddress(root.uid.value, true) },
+					{ label: 'Tài khoản chỉ để quảng cáo', value: 'promoonly', disabled: mw.util.isIPAddress(root.uid.value, true) },
+					{ label: 'Tài khoản là spambot hoặc bị xâm phạm', value: 'spambot' }
+				]
+			});
 			work_area.append({ type: 'textarea', name: 'reason', label: 'Bình luận: ' });
 		} else if (value === 'username') {
 			work_area = new Morebits.quickForm.element({ type: 'field', label: 'Báo cáo vi phạm tên người dùng', name: 'work_area' });
-			work_area.append({ type: 'checkbox', name: 'arvtype', list: [
-				{ label: 'Tên người dùng gây hiểu lầm', value: 'gây hiểu lầm' },
-				{ label: 'Tên người dùng mang tính quảng cáo', value: 'mang tính quảng cáo' },
-				{ label: 'Tên người dùng ngụ ý sử dụng chung', value: 'dùng chung' },
-				{ label: 'Tên người dùng mang tính phản cảm', value: 'phản cảm' },
-				{ label: 'Tên người dùng gây rối', value: 'gây rối' }
-			] });
+			work_area.append({
+				type: 'checkbox', name: 'arvtype', list: [
+					{ label: 'Tên người dùng gây hiểu lầm', value: 'gây hiểu lầm' },
+					{ label: 'Tên người dùng mang tính quảng cáo', value: 'mang tính quảng cáo' },
+					{ label: 'Tên người dùng ngụ ý sử dụng chung', value: 'dùng chung' },
+					{ label: 'Tên người dùng mang tính phản cảm', value: 'phản cảm' },
+					{ label: 'Tên người dùng gây rối', value: 'gây rối' }
+				]
+			});
 			work_area.append({ type: 'textarea', name: 'reason', label: 'Bình luận: ' });
 		} else if (value === 'puppet') {
 			work_area = new Morebits.quickForm.element({ type: 'field', label: 'Báo cáo con rối đáng ngờ', name: 'work_area' });
@@ -362,16 +366,16 @@ export class Arv extends TwinkleModule {
 					if (
 						new RegExp(
 							'\\{\\{\\s*(?:(?:[Ii][Pp])?[Vv]andal|[Uu]serlinks)\\s*\\|\\s*(?:1=)?\\s*' +
-								Morebits.string.escapeRegExp(uid) +
-								'\\s*\\}\\}'
+							Morebits.string.escapeRegExp(uid) +
+							'\\s*\\}\\}'
 						).test(text)
 					) {
 						aivPage.getStatusElement().error('Đã báo cáo trước đó, sẽ không tiếp tục báo cáo');
 						Morebits.status.printUserText(
 							reason,
 							'Trong trường hợp bạn muốn báo cáo thủ công, thì khung dưới đây là các bình luận bạn đã viết trước đó ' +
-								$aivLink +
-								':'
+							$aivLink +
+							':'
 						);
 						return;
 					}
@@ -388,8 +392,8 @@ export class Arv extends TwinkleModule {
 						if (
 							new RegExp(
 								'\\{\\{\\s*(?:(?:[Ii][Pp])?[Vv]andal|[Uu]serlinks)\\s*\\|\\s*(?:1=)?\\s*' +
-									Morebits.string.escapeRegExp(uid) +
-									'\\s*\\}\\}'
+								Morebits.string.escapeRegExp(uid) +
+								'\\s*\\}\\}'
 							).test(tb2Text)
 						) {
 							if (
@@ -403,8 +407,8 @@ export class Arv extends TwinkleModule {
 								Morebits.status.printUserText(
 									reason,
 									'Trong trường hợp bạn muốn báo cáo thủ công, thì khung dưới đây là các bình luận bạn đã viết trước đó ' +
-										$aivLink +
-										':'
+									$aivLink +
+									':'
 								);
 								return;
 							}
@@ -415,14 +419,14 @@ export class Arv extends TwinkleModule {
 						aivPage.getStatusElement().status('Đang thêm báo cáo mới...');
 						aivPage.setEditSummary('Báo cáo [[Đặc biệt:Đóng góp/' + uid + '|' + uid + ']].');
 						aivPage.setChangeTags(Twinkle.changeTags);
-							aivPage.setAppendText(
-								'\n== Báo cáo phá hoại ==\n*{{' +
-								(mw.util.isIPAddress(uid, true) ? 'IPvandal' : 'vandal') +
-								'|' +
-								(/=/.test(uid) ? '1=' : '') +
-								uid +
-								'}} &ndash; ' +
-								reason
+						aivPage.setAppendText(
+							'\n== Báo cáo thành viên' + uid + '==\n*{{' +
+							(mw.util.isIPAddress(uid, true) ? 'IPvandal' : 'vandal') +
+							'|' +
+							(/=/.test(uid) ? '1=' : '') +
+							uid +
+							'}} &ndash; ' +
+							reason
 						);
 						aivPage.append();
 					});
@@ -482,8 +486,8 @@ export class Arv extends TwinkleModule {
 						Morebits.status.printUserText(
 							reason,
 							'Trong trường hợp bạn muốn báo cáo thủ công, khung dưới đây là các bình luận bạn đã viết trước đó ' +
-								$uaaLink +
-								':'
+							$uaaLink +
+							':'
 						);
 						return;
 					}
@@ -523,10 +527,10 @@ export class Arv extends TwinkleModule {
 				sockParameters.sockpuppets = puppetReport
 					? [uid]
 					: Morebits.array.uniq(
-							$.map($('input:text[name=sockpuppet]', form), function (o) {
-								return (o as HTMLInputElement).value || null;
-							})
-					  );
+						$.map($('input:text[name=sockpuppet]', form), function (o) {
+							return (o as HTMLInputElement).value || null;
+						})
+					);
 
 				Morebits.simpleWindow.setButtonsEnabled(false);
 				Morebits.status.init(form);
@@ -689,16 +693,16 @@ export class Arv extends TwinkleModule {
 
 		// notify all user accounts if requested
 		if (params.notify && params.sockpuppets.length > 0) {
-				var notifyEditSummary = 'Thông báo về việc nghi ngờ là con rối.';
+			var notifyEditSummary = 'Thông báo về việc nghi ngờ là con rối.';
 			var notifyText = '\n\n{{subst:socksuspectnotice|1=' + params.uid + '}} ~~~~';
 
 			// notify user's master account
-				var masterTalkPage = new Morebits.wiki.page('User talk:' + params.uid, 'Thông báo cho chủ rối bị nghi ngờ');
-				masterTalkPage.setFollowRedirect(true);
-				masterTalkPage.setEditSummary(notifyEditSummary);
-				masterTalkPage.setChangeTags(Twinkle.changeTags);
-				masterTalkPage.setAppendText(notifyText);
-				masterTalkPage.append();
+			var masterTalkPage = new Morebits.wiki.page('User talk:' + params.uid, 'Thông báo cho chủ rối bị nghi ngờ');
+			masterTalkPage.setFollowRedirect(true);
+			masterTalkPage.setEditSummary(notifyEditSummary);
+			masterTalkPage.setChangeTags(Twinkle.changeTags);
+			masterTalkPage.setAppendText(notifyText);
+			masterTalkPage.append();
 
 			var statusIndicator = new Morebits.status('Đang thông báo cho các tài khoản con rối bị nghi ngờ', '0%');
 			var total = params.sockpuppets.length;
