@@ -450,7 +450,7 @@
 		var childContainer = null;
 		var label;
 		var id = (in_id ? in_id + '_' : '') + 'node_' + Morebits.quickForm.element.id++;
-		if (data.adminonly && !Morebits.userIsSysop) {
+		if (data.adminonly && !Morebits.userIsSysop && !Morebits.userIsInGroup('eliminator')) {
 			// hell hack alpha
 			data.type = 'hidden';
 		}
@@ -4238,7 +4238,7 @@
 		 */
 		var fnPreflightChecks = function (action, onFailure) {
 			// if a non-admin tries to do this, don't bother
-			if (!Morebits.userIsSysop && action !== 'move') {
+			if (!Morebits.userIsSysop && action !== 'move' && !Morebits.userIsInGroup('eliminator')) {
 				ctx.statusElement.error('Cannot ' + action + 'page : only admins can do that');
 				onFailure(this);
 				return false;
