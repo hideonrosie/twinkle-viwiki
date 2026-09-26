@@ -13,6 +13,7 @@ export type BlockPresetInfo = {
 	forRegisteredOnly?: boolean;
 	forAnonOnly?: boolean;
 	forRangeOnly?: boolean;
+	forTempAccountsOnly?: boolean;
 	nocreate?: boolean;
 	nonstandard?: boolean;
 	disabletalk?: boolean;
@@ -1010,14 +1011,27 @@ export abstract class BlockCore extends TwinkleModule {
 				}
 
 				var blockSettings = this.blockPresetsInfo[blockPreset.value];
+				let allowedUserType: boolean;
+				// for regular users and temporary accounts
+				if (blockSettings.forRegisteredOnly) {
+					allowedUserType = this.isRegistered;
+					// for temporary accounts
+				} else if (blockSettings.forTempAccountsOnly) {
+					allowedUserType = typeof mw.util.isTemporaryUser === 'function' ? mw.util.isTemporaryUser(this.relevantUserName) : false;
+					// for IPs
+				} else if (blockSettings.forAnonOnly) {
+					allowedUserType = !this.isRegistered;
+				} else {
+					// Any type of user
+					allowedUserType = true;
+				}
+
 				if (
-					(blockSettings.requireGroup && !Morebits.userIsInGroup(blockSettings.requireGroup)) ||
-					(blockSettings.forRegisteredOnly && !this.isRegistered) ||
-					(blockSettings.forAnonOnly && this.isRegistered)
+					(blockSettings.requireGroup && !Morebits.userIsInGroup(blockSettings.requireGroup))
 				) {
 					return;
 				}
-				if (!show_template || !blockSettings.templateName) {
+				if (!(blockSettings.templateName && show_template) && allowedUserType) {
 					var templateName = blockSettings.templateName || blockPreset.value;
 					return {
 						label: (show_template ? '{{' + templateName + '}}: ' : '') + blockPreset.label,
@@ -1071,7 +1085,7 @@ export abstract class BlockCore extends TwinkleModule {
 
 	seeAlsos = [];
 
-	toggle_see_alsos(_e: QuickFormEvent) {}
+	toggle_see_alsos(_e: QuickFormEvent) { }
 
 	update_form(e, data) {
 		var form = e.target.form,
