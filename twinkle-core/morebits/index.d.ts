@@ -4,7 +4,7 @@
 
 declare namespace Morebits {
 	namespace i18n {
-		function setParser(parser: {get: ((...args: any[]) => string)})
+		function setParser(parser: { get: ((...args: any[]) => string) })
 	}
 
 	namespace l10n {
@@ -218,6 +218,8 @@ declare namespace Morebits {
 			 * @deprecated
 			 */
 			setCallbackParameters(callbackParameters: any);
+
+			setPatrolStatusMessage(message: string);
 			/**
 			 * @deprecated
 			 */

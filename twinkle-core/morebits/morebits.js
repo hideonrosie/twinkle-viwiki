@@ -3372,6 +3372,15 @@
 		};
 
 		/**
+		 * Sets the status message to display when patrolling the page.
+		 *
+		 * @param {string} message
+		 */
+		this.setPatrolStatusMessage = function (message) {
+			ctx.patrolStatusMessage = message;
+		};
+
+		/**
 		 * @returns {object} - The object previously set by `setCallbackParameters()`.
 		 */
 		this.getCallbackParameters = function () {
@@ -4395,7 +4404,8 @@
 				query.tags = ctx.changeTags;
 			}
 
-			var patrolStat = new Morebits.status('Marking page as patrolled');
+			var patrolStatText = ctx.patrolStatusMessage || 'Đánh dấu tuần tra trang';
+			var patrolStat = new Morebits.status(patrolStatText);
 
 			ctx.patrolProcessApi = new Morebits.wiki.api('patrolling page...', query, null, patrolStat);
 			ctx.patrolProcessApi.setParent(this);
