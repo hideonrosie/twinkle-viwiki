@@ -330,6 +330,26 @@ const articleTagList: tagListType = {
 				},
 			},
 			{
+				tag: 'AI tạo sinh',
+				description: 'Nội dung có vẻ như được tạo bởi một mô hình ngôn ngữ lớn (AI)',
+				subgroup: [
+					{
+						name: 'llmReason',
+						parameter: 'reason',
+						type: 'input',
+						label: 'Lý do: ',
+						tooltip: 'Một lời giải thích ngắn gọn sẽ được thêm vào thẻ. Tùy chọn, nhưng được khuyến nghị nên điền Lý do hoặc Thảo luận.'
+					},
+					{
+						name: 'llmTalk',
+						parameter: 'talk',
+						type: 'input',
+						label: 'Thảo luận: ',
+						tooltip: 'Tên đề mục trên trang thảo luận của bài viết nơi vấn đề đang được thảo luận. Không nhập liên kết, chỉ nhập tên đề mục. Tùy chọn, nhưng được khuyến nghị nên điền Lý do hoặc Thảo luận.'
+					}
+				]
+			},
+			{
 				tag: 'Quá nhiều liên kết ngoài',
 				description: 'Có những liên kết ngoài phạm quy',
 			},
