@@ -836,48 +836,47 @@ class ArticleMode extends TagMode {
 		const $oldParser = $('.mw-parser-output');
 		const $newParser = $('.mw-parser-output section[data-mw-section-id="0"]');
 		const $scanTarget = $newParser.length ? $newParser : $oldParser;
-		
+
 		$scanTarget.children().each((i, e) => {
+			const $e = $(e);
 			// break out on encountering the first heading, which means we are no
 			// longer in the lead section
-			if (e.classList.contains('mw-heading') || e.tagName === 'H2') {
+			if ($e.hasClass('mw-heading') || $e.is('h2')) {
 				return false;
 			}
 
-				// The ability to remove tags depends on the template's {{ambox}} |name=
-				// parameter bearing the template's correct name (preferably) or a name that at
-				// least redirects to the actual name
+			// The ability to remove tags depends on the template's {{ambox}} |name=
+			// parameter bearing the template's correct name (preferably) or a name that at
+			// least redirects to the actual name
 
-				// All tags have their first class name as "box-" + template name
-				var className = typeof e.className === 'string' ? e.className : (e.getAttribute ? e.getAttribute('class') || '' : '');
-				if (className && className.indexOf('box-') === 0) {
-					var firstClass = e.classList && e.classList[0];
-					if (firstClass && ['box-Nhiều_vấn_đề', 'box-Multiple_issues'].indexOf(firstClass) !== -1) {
-						$(e)
-							.find('.ambox')
-							.each((idx, el) => {
-								var elClass = el.classList && el.classList[0];
-								if (elClass && elClass.indexOf('box-') === 0) {
-									var tag = elClass.slice(4).replace(/_/g, ' ');
-									this.existingTags.push(tag);
-								}
-							});
-						return; // continue
-					}
-
-					if (firstClass && firstClass.indexOf('box-') === 0) {
-						var tag = firstClass.slice(4).replace(/_/g, ' ');
-						this.existingTags.push(tag);
-					}
+			// All tags have their first class name as "box-" + template name
+			let classStr = ($e.attr('class') || '').trim();
+			let firstClass = classStr.split(/\s+/)[0];
+			
+			if (firstClass && firstClass.indexOf('box-') === 0) {
+				if (['box-Nhiều_vấn_đề', 'box-Multiple_issues'].indexOf(firstClass) !== -1) {
+					$e.find('.ambox').each((idx, el) => {
+						let elClassStr = ($(el).attr('class') || '').trim();
+						let elFirstClass = elClassStr.split(/\s+/)[0];
+						if (elFirstClass && elFirstClass.indexOf('box-') === 0) {
+							var tag = elFirstClass.slice(4).replace(/_/g, ' ');
+							this.existingTags.push(tag);
+						}
+					});
+					return; // continue
 				}
-			});
 
-		// {{Uncategorized}} and {{Improve categories}} are usually placed at the end
-		if ($('.box-Uncategorized').length) {
-			this.existingTags.push('Uncategorized');
+				var tag = firstClass.slice(4).replace(/_/g, ' ');
+				this.existingTags.push(tag);
+			}
+		});
+
+		// {{Chưa phân loại}} and {{Cải thiện thể loại}} are usually placed at the end
+		if ($('.box-Chưa_phân_loại').length) {
+			this.existingTags.push('Chưa phân loại');
 		}
-		if ($('.box-Improve_categories').length) {
-			this.existingTags.push('Improve categories');
+		if ($('.box-Cải_thiện_thể_loại').length) {
+			this.existingTags.push('Cải thiện thể loại');
 		}
 	}
 
@@ -970,7 +969,7 @@ class ArticleMode extends TagMode {
 					params.mergeTarget = params.mergeReason = params.mergeTagOther = null;
 				}
 				return false; // remove from params.newTags
-			} else if (tag === 'Uncategorized' || tag === 'Improve categories') {
+			} else if (tag === 'Chưa phân loại' || tag === 'Cải thiện thể loại') {
 				this.pageText += '\n\n' + this.getTagText(tag);
 				return false; // remove from params.newTags, since it's now already inserted
 			}
