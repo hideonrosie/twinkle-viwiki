@@ -7,7 +7,7 @@ export class Prod extends TwinkleModule {
 
 	portletName = 'Đề nghị xóa';
 	portletId = 'twinkle-prod';
-	portletTooltip = 'Đề nghị xóa theo [[WP:PROD]]';
+	portletTooltip = 'Đề nghị xóa theo [[WP:DNX]]';
 
 	constructor() {
 		super();
@@ -64,10 +64,10 @@ export class Prod extends TwinkleModule {
 		var form = new Morebits.quickForm(this.evaluate.bind(this));
 
 		if (this.namespace === 'article') {
-			Window.addFooterLink('Quy định đề nghị xóa', 'WP:PROD');
-			Window.addFooterLink('Quy định đề nghị xóa tiểu sử người còn sống', 'WP:BLPPROD');
+			Window.addFooterLink('Quy định đề nghị xóa', 'WP:DNX');
+			Window.addFooterLink('Quy định đề nghị xóa tiểu sử người còn sống', 'WP:DNXTSNDS');
 		} else if (this.namespace === 'file') {
-			Window.addFooterLink('Quy định đề nghị xóa tập tin', 'WP:PROD');
+			Window.addFooterLink('Quy định đề nghị xóa tập tin', 'WP:DNX');
 		}
 
 		var field = form.append({
@@ -182,7 +182,7 @@ export class Prod extends TwinkleModule {
 				var boldtext = document.createElement('b');
 				boldtext.appendChild(
 					document.createTextNode(
-						'Xin lưu ý rằng chỉ tiểu sử người còn sống không có nguồn mới đủ điều kiện dùng thẻ này, theo nghĩa hẹp.'
+						'Xin lưu ý rằng chỉ tiểu sử người còn sống không có nguồn được tạo sau ngày 14 tháng 3 năm 2021 mới đủ điều kiện dùng thẻ này, theo nghĩa hẹp.'
 					)
 				);
 				field.append({
@@ -207,7 +207,8 @@ export class Prod extends TwinkleModule {
 			'Template:Old XfD multi|Template:Old MfD|Template:Oldffdfull|' + // Common prior XfD talk page templates
 			'Template:Oldpuffull|' + // Legacy prior XfD template
 			'Template:Olddelrev|' + // Prior DRV template
-			'Template:Old prod';
+			'Template:Oldprod|' +
+			'Template:Đề nghị xóa trước đó';
 		var query = {
 			action: 'query',
 			titles: talk_title,
@@ -225,11 +226,11 @@ export class Prod extends TwinkleModule {
 			var numTemplates = templates && templates.length;
 			if (numTemplates) {
 				var template = templates[0].title;
-				if (numTemplates === 1 && template === 'Template:Old prod') {
+				if (numTemplates === 1 && template === 'Bản mẫu:Đề nghị xóa trước đó') {
 					this.params.oldProdPresent = true; // Mark for reference later, when deciding if to endorse
 					// if there are multiple templates, at least one of them would be a prior xfd template
 				} else {
-					statelem.warn('Đã tìm thấy bản mẫu XfD trước đó trên trang thảo luận, hủy quy trình');
+					statelem.warn('Đã tìm thấy bản mẫu DNX trước đó trên trang thảo luận, hủy quy trình');
 					return $.Deferred().reject();
 				}
 			}
@@ -244,7 +245,7 @@ export class Prod extends TwinkleModule {
 		return ts.lookupCreation().then(() => {
 			params.initialContrib = ts.getCreator();
 			params.creation = ts.getCreationTimestamp();
-			ts.getStatusElement().info('Đã tìm thấy người tạo: ' + params.initialContrib);
+			ts.getStatusElement().info('Đã tìm thấy người tạo trang: ' + params.initialContrib);
 		});
 	}
 
@@ -317,17 +318,17 @@ export class Prod extends TwinkleModule {
 
 				var tag;
 				if (params.blp) {
-					summaryText = 'Đề nghị xóa bài viết theo [[WP:BLPPROD]].';
+					summaryText = 'Đề nghị xóa bài viết theo [[WP:DNX]].';
 					tag = '{{subst:prod blp' + (params.usertalk ? '|help=off' : '') + '}}';
 				} else if (params.book) {
-					summaryText = 'Đề nghị xóa sách theo [[WP:BOOKPROD]].';
+					summaryText = 'Đề nghị xóa sách theo [[WP:DNX]].';
 					tag =
 						'{{subst:book-prod|1=' +
 						Morebits.string.formatReasonText(params.reason || '') +
 						(params.usertalk ? '|help=off' : '') +
 						'}}';
 				} else {
-					summaryText = 'Đề nghị xóa ' + (this.namespace === 'article' ? 'bài viết' : 'tập tin') + ' theo [[WP:PROD]].';
+					summaryText = 'Đề nghị xóa ' + (this.namespace === 'article' ? 'bài viết' : 'tập tin') + ' theo [[WP:DNX]].';
 					tag =
 						'{{subst:prod|1=' +
 						Morebits.string.formatReasonText(params.reason || '') +
@@ -335,23 +336,23 @@ export class Prod extends TwinkleModule {
 						'}}';
 				}
 
-				// Insert tag after short description or any hatnotes
+				// Đặt bản mẫu bên dưới hatnotes hoặc mô tả ngắn
 				var wikipage = new Morebits.wikitext.page(text);
 				text = wikipage.insertAfterTemplates(tag + '\n', hatnoteRegex).getText();
 			} else {
-				// already tagged for PROD, so try endorsing it
-				var prod2_re = /{{(?:Proposed deletion endorsed|prod-?2).*?}}/i;
+				// Trong trường hợp bài đã bị ĐNX trước đó, thêm Tán thành ĐNX
+				var prod2_re = /{{(?:Tán thành đề nghị xóa|prod-?2).*?}}/i;
 				if (prod2_re.test(text)) {
 					statelem.warn(
-						'Trang đã có cả bản mẫu {{proposed deletion}} và {{proposed deletion endorsed}}, hủy quy trình'
+						'Trang đã có cả bản mẫu {{proposed deletion}} và {{Tán thành đề nghị xóa}}, hủy quy trình'
 					);
 					return def.reject();
 				}
 				var confirmtext =
-					'Đã tìm thấy thẻ {{proposed deletion}} trên trang này.\nBạn có muốn thêm thẻ {{proposed deletion endorsed}} kèm lý do của mình không?';
+					'Đã tìm thấy thẻ {{proposed deletion}} trên trang này.\nBạn có muốn thêm thẻ {{Tán thành đề nghị xóa}} kèm lý do của mình không?';
 				if (params.blp && !/{{\s*Prod blp\/dated/.test(text)) {
 					confirmtext =
-						'Đã tìm thấy thẻ {{proposed deletion}} không phải BLP trên bài viết này.\nBạn có muốn thêm thẻ {{proposed deletion endorsed}} với lý do "bài viết là tiểu sử người còn sống không có nguồn" không?';
+						'Đã tìm thấy thẻ {{proposed deletion}} không phải BLP trên bài viết này.\nBạn có muốn thêm thẻ {{Tán thành đề nghị xóa}} với lý do "bài viết là tiểu sử người còn sống không có nguồn" không?';
 				}
 				if (!confirm(confirmtext)) {
 					statelem.warn('Đã hủy theo yêu cầu người dùng');
@@ -359,13 +360,13 @@ export class Prod extends TwinkleModule {
 				}
 
 				summaryText =
-					'Xác nhận đề nghị xóa theo [[WP:' + (params.blp ? 'BLP' : params.book ? 'BOOK' : '') + 'PROD]].';
+					'Xác nhận đề nghị xóa theo [[WP:DNX' + (params.blp ? 'TSNDS' : params.book ? '' : '') + ']].';
 				text = text.replace(
 					prod_re,
 					text.match(prod_re) +
-					'\n{{Proposed deletion endorsed|1=' +
+					'\n{{Tán thành đề nghị xóa|1=' +
 					(params.blp
-						? 'article is a [[WP:BLPPROD|biography of a living person with no sources]]'
+						? 'Đây là một [[WP:DNXTSNDS|tiểu sử người còn sống không có nguồn]]'
 						: Morebits.string.formatReasonText(params.reason || '')) +
 					'}}\n'
 				);
@@ -391,12 +392,12 @@ export class Prod extends TwinkleModule {
 			return $.Deferred().resolve();
 		}
 
-		// Add {{Old prod}} to the talk page
-		var oldprodfull = '{{Old prod|nom=' + mw.config.get('wgUserName') + '|nomdate={{subst:#time: Y-m-d}}}}\n';
+		// Add {{Đề nghị xóa trước đó}} to the talk page
+		var oldprodfull = '{{Đề nghị xóa trước đó|nom=' + mw.config.get('wgUserName') + '|nomdate={{subst:#time: Y-m-d}}}}\n';
 		var talktitle = new mw.Title(mw.config.get('wgPageName')).getTalkPage()!.getPrefixedText();
-		var talkpage = new Page(talktitle, 'Đặt {{Old prod}} trên trang thảo luận');
+		var talkpage = new Page(talktitle, 'Đặt {{Đề nghị xóa trước đó}} trên trang thảo luận');
 		talkpage.setPrependText(oldprodfull);
-		talkpage.setEditSummary('Thêm {{Old prod}}');
+		talkpage.setEditSummary('Thêm {{Đề nghị xóa trước đó}}');
 		talkpage.setFollowRedirect(true); // match behavior for page tagging
 		talkpage.setCreateOption('recreate');
 		return talkpage.prepend();
@@ -460,9 +461,9 @@ export class Prod extends TwinkleModule {
 		var params = this.params;
 		var usl = new Morebits.userspaceLogger(getPref('prodLogPageName'));
 		usl.initialText =
-			"Đây là nhật ký tất cả thẻ [[WP:PROD|đề nghị xóa]] được người dùng này gắn hoặc xác nhận bằng mô-đun PROD của [[WP:TW|Twinkle]].\n\n" +
+			"Đây là nhật ký tất cả thẻ [[WP:DNX|đề nghị xóa]] được người dùng này gắn hoặc xác nhận bằng mô đun DNX của [[WP:TW|Twinkle]].\n\n" +
 			'Nếu không muốn giữ nhật ký này, bạn có thể tắt trong [[Wikipedia:Twinkle/Preferences|bảng tùy chọn]], rồi ' +
-			'đề nghị xóa nhanh trang này theo [[WP:TCXN#TV1|TV1]].\n';
+			'đề nghị xóa nhanh trang này theo [[WP:TCXN#TV1|XN TV1]].\n';
 
 		var logText = '# [[:' + Morebits.pageNameNorm + ']]';
 		var summaryText;
@@ -476,9 +477,9 @@ export class Prod extends TwinkleModule {
 			if (params.reason) {
 				logText += "\n#* '''Lý do''': " + params.reason + '\n';
 			}
-			summaryText = 'Ghi nhật ký xác nhận đề nghị xóa (PROD) [[:' + Morebits.pageNameNorm + ']].';
+			summaryText = 'Ghi nhật trình xác nhận đề nghị xóa [[:' + Morebits.pageNameNorm + ']].';
 		} else {
-			logText += (params.blp ? 'BLP ' : params.book ? 'BOOK' : '') + 'PROD';
+			logText += 'DNX' + (params.blp ? 'TSNDS' : params.book ? '' : '');
 			if (params.logInitialContrib) {
 				logText += '; đã thông báo {{user|' + params.logInitialContrib + '}}';
 			}
@@ -486,7 +487,7 @@ export class Prod extends TwinkleModule {
 			if (!params.blp && params.reason) {
 				logText += "#* '''Lý do''': " + Morebits.string.formatReasonForLog(params.reason) + '\n';
 			}
-			summaryText = 'Ghi nhật ký đề nghị xóa (PROD) [[:' + Morebits.pageNameNorm + ']].';
+			summaryText = 'Ghi nhật trình đề nghị xóa [[:' + Morebits.pageNameNorm + ']].';
 		}
 		usl.changeTags = Twinkle.changeTags;
 
