@@ -260,7 +260,7 @@ export class Block extends BlockCore {
 			expiry: 'infinity',
 			forTempAccountsOnly: true,
 			nocreate: true,
-			reason: '[[WP:Quy định cấm thành viên#Lách lệnh cấm|Lách lệnh cấm]]',
+			reason: '[[WP:Quy định cấm thành viên#Thoái thác cấm|Lách lệnh cấm]]',
 			summary: 'Tài khoản tạm thời này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
 		},
 		'uw-lblock': {
