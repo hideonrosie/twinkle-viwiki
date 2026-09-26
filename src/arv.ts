@@ -36,7 +36,7 @@ export class Arv extends TwinkleModule {
 		if (Morebits.ip.isRange(username) && !Morebits.ip.validCIDR(username)) {
 			return;
 		}
-		var userType = isIP ? 'IP' + (Morebits.ip.isRange(username) ? ' (dải)' : '') : 'người dùng';
+		var userType = isIP ? 'địa chỉ IP' + (Morebits.ip.isRange(username) ? ' (dải)' : '') : 'thành viên';
 
 		addPortletLink(
 			function () {
@@ -420,7 +420,7 @@ export class Arv extends TwinkleModule {
 						aivPage.setEditSummary('Báo cáo [[Đặc biệt:Đóng góp/' + uid + '|' + uid + ']].');
 						aivPage.setChangeTags(Twinkle.changeTags);
 						aivPage.setAppendText(
-							'\n== Báo cáo thành viên' + uid + '==\n*{{' +
+							'\n== Báo cáo [[Đặc biệt:Đóng góp/' + uid + '|' + uid + ']] ==\n*{{' +
 							(mw.util.isIPAddress(uid, true) ? 'IPvandal' : 'vandal') +
 							'|' +
 							(/=/.test(uid) ? '1=' : '') +
