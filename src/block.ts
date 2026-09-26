@@ -839,7 +839,15 @@ export class Block extends BlockCore {
 					!params.blank_duration &&
 					!new Morebits.date(params.expiry).isValid()
 				) {
-					text += '|time=' + params.expiry;
+					let translatedExpiry = String(params.expiry)
+						.replace(/seconds?/i, 'giây')
+						.replace(/minutes?/i, 'phút')
+						.replace(/hours?/i, 'giờ')
+						.replace(/days?/i, 'ngày')
+						.replace(/weeks?/i, 'tuần')
+						.replace(/months?/i, 'tháng')
+						.replace(/years?/i, 'năm');
+					text += '|time=' + translatedExpiry;
 				}
 			}
 
