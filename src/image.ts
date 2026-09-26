@@ -365,6 +365,7 @@ export class ImageModule extends TwinkleModule {
 			pageobj.setCreateOption('nocreate');
 
 			if (params.patrol) {
+				pageobj.setPatrolStatusMessage('Đánh dấu tuần tra tập tin');
 				pageobj.triage();
 			}
 
