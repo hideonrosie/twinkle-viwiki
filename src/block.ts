@@ -107,7 +107,13 @@ export class Block extends BlockCore {
 			reason: '{{webhostblock}}',
 			sig: null,
 		},
-
+		'rangeblock': {
+			nocreate: true,
+			nonstandard: true,
+			forAnonOnly: true,
+			reason: '{{Cấm dải IP}}',
+			sig: null,
+		},
 		'uw-3block': {
 			autoblock: true,
 			expiry: '24 hours',
@@ -497,6 +503,7 @@ export class Block extends BlockCore {
 			label: 'Các lý do cấm phổ biến',
 			list: [
 				{ label: 'Cấm vô danh', value: 'anonblock' },
+				{ label: 'Cấm dải IP', value: 'rangeblock' },
 				{
 					label: 'Cấm vô danh - có thể là một trường học',
 					value: 'anonblock - school',
