@@ -150,7 +150,7 @@ export abstract class BlockCore extends TwinkleModule {
 		var form = new Morebits.quickForm((e) => this.evaluate(e));
 		var actionfield = form.append({
 			type: 'field',
-			label: 'Type of action',
+			label: 'Chọn loại tác vụ',
 		});
 		actionfield.append({
 			type: 'checkbox',
@@ -468,7 +468,7 @@ export abstract class BlockCore extends TwinkleModule {
 		this.saveFieldset($('[name=field_template_options]'));
 
 		if (input.block) {
-			field_preset = new Morebits.quickForm.element({ type: 'field', label: 'Preset', name: 'field_preset' });
+			field_preset = new Morebits.quickForm.element({ type: 'field', label: 'Thiết lập định sẵn', name: 'field_preset' });
 			field_preset.append({
 				type: 'select',
 				name: 'preset',
@@ -571,17 +571,17 @@ export abstract class BlockCore extends TwinkleModule {
 					},
 					this.isRegistered
 						? {
-								checked: this.field_block_options.autoblock,
-								label: msg('block-auto-label'),
-								name: 'autoblock',
-								value: '1',
-							}
+							checked: this.field_block_options.autoblock,
+							label: msg('block-auto-label'),
+							name: 'autoblock',
+							value: '1',
+						}
 						: {
-								checked: this.field_block_options.hardblock,
-								label: msg('block-hard-label'),
-								name: 'hardblock',
-								value: '1',
-							},
+							checked: this.field_block_options.hardblock,
+							label: msg('block-hard-label'),
+							name: 'hardblock',
+							value: '1',
+						},
 					{
 						checked: this.field_block_options.watchuser,
 						label: msg('block-watch-label'),
@@ -741,7 +741,7 @@ export abstract class BlockCore extends TwinkleModule {
 				});
 			}
 
-			var $previewlink = $('<a id="twinkleblock-preview-link">Preview</a>');
+			var $previewlink = $('<a id="twinkleblock-preview-link">Xem trước</a>');
 			$previewlink.off('click').on('click', () => {
 				this.preview($form[0]);
 			});
@@ -828,13 +828,13 @@ export abstract class BlockCore extends TwinkleModule {
 			mw.util.addCSS(
 				// Reduce padding
 				'.select2-results .select2-results__option { padding-top: 1px; padding-bottom: 1px; }' +
-					// Adjust font size
-					'.select2-container .select2-dropdown .select2-results { font-size: 13px; }' +
-					'.select2-container .selection .select2-selection__rendered { font-size: 13px; }' +
-					// Remove black border
-					'.select2-container--default.select2-container--focus .select2-selection--multiple { border: 1px solid #aaa; }' +
-					// Make the tiny cross larger
-					'.select2-selection__choice__remove { font-size: 130%; }'
+				// Adjust font size
+				'.select2-container .select2-dropdown .select2-results { font-size: 13px; }' +
+				'.select2-container .selection .select2-selection__rendered { font-size: 13px; }' +
+				// Remove black border
+				'.select2-container--default.select2-container--focus .select2-selection--multiple { border: 1px solid #aaa; }' +
+				// Make the tiny cross larger
+				'.select2-selection__choice__remove { font-size: 130%; }'
 			);
 		} else {
 			$form.find('fieldset[name="field_block_options"]').hide();
@@ -911,8 +911,8 @@ export abstract class BlockCore extends TwinkleModule {
 					isIndefinite
 						? msg('block-expiry-indefinite')
 						: new Morebits.date(this.currentBlockInfo.expiry).isValid()
-						? msg('block-expiry-date', this.currentBlockInfo.expiry)
-						: ''
+							? msg('block-expiry-date', this.currentBlockInfo.expiry)
+							: ''
 				);
 
 			let info = '';
