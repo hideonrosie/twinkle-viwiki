@@ -114,7 +114,7 @@ export class XfdCore extends TwinkleModule {
 			this.mode.preview(this.result); // |result| is defined below
 		});
 		previewlink.style.cursor = 'pointer';
-		previewlink.textContent = 'Preview';
+		previewlink.textContent = 'Xem trước';
 		form.append({ type: 'div', id: 'xfdpreview', label: [previewlink] });
 		form.append({ type: 'div', id: 'twinklexfd-previewbox', style: 'display: none' });
 
@@ -550,7 +550,14 @@ export abstract class XfdMode {
 	}
 
 	getUserspaceLoggingEditSummary() {
-		return 'Đang ghi nhật trình ' + this.params.venue + ' đề cử xóa [[:' + Morebits.pageNameNorm + ']].';
+		const venueMap: { [key: string]: string } = {
+			AfD: 'BQXB',
+			FfD: 'BQXTT',
+			PfD: 'BQXT',
+			MfD: 'BQXT',
+		};
+		const translatedVenue = venueMap[this.params.venue] || this.params.venue;
+		return 'Đang ghi nhật trình đề cử ' + translatedVenue + ' [[:' + Morebits.pageNameNorm + ']].';
 	}
 
 	getUserspaceLoggingText1(): string {

@@ -19,7 +19,7 @@ function num2order(num: number): string {
 
 class Afd extends XfdMode {
     static venueCode = 'AfD';
-    static venueLabel = 'AfD (Biểu quyết xóa bài)';
+    static venueLabel = 'Biểu quyết xóa bài';
 
     static isDefaultChoice() {
         return mw.config.get('wgNamespaceNumber') === 0 && !Morebits.isPageRedirect();
@@ -33,9 +33,9 @@ class Afd extends XfdMode {
 
     getVenueWarning() {
         if (mw.config.get('wgNamespaceNumber') !== 0) {
-            return 'AfD thường chỉ thích hợp cho các bài viết.';
+            return 'BQXB chỉ dành cho bài viết.';
         } else if (mw.config.get('wgIsRedirect')) {
-            return 'Vui lòng sử dụng RfD cho các trang chuyển hướng.';
+            return 'Vui lòng sử dụng RfD cho các trang đổi hướng.';
         }
     }
 
@@ -55,11 +55,11 @@ class Afd extends XfdMode {
             type: 'checkbox',
             list: [
                 {
-                    label: 'Bao thẻ xóa với <noinclude>',
+                    label: 'Bao thẻ xóa với &lt;noinclude&gt;',
                     value: 'noinclude',
                     name: 'noinclude',
                     tooltip:
-                        'Tính năng này sẽ bao thẻ xóa trong &lt;noinclude&gt; để không bị nhúng vào nội dung. Tùy chọn này thường không cần thiết.',
+                        'Bao thẻ xóa trong &lt;noinclude&gt; để không bị nhúng vào nội dung. Thường không cần thiết.',
                 },
             ],
         });
@@ -262,10 +262,10 @@ class Afd extends XfdMode {
             var date_header_regex = new RegExp('(==\\s*' + vnMonth + ' năm ' + year + '\\s*==)');
 
             if (date_header_regex.test(text)) {
-                statelem.info("Tìm thấy mục của tháng hiện tại, tiến hành thêm thảo luận");
+                statelem.info("Tìm thấy đề mục của tháng hiện tại, tiến hành thêm thảo luận");
                 text = text.replace(date_header_regex, '$1\n' + added_data);
             } else {
-                statelem.info('Không tìm thấy mục của tháng hiện tại, tiến hành tạo mới');
+                statelem.info('Không tìm thấy đề mục của tháng hiện tại, đang tiến hành thêm mới');
                 // Find <!-- Twinkle V3: Tạo thêm đề mục dưới dòng này sau khi sang tháng mới-->
                 var insert_regex = /(<!--\s*Twinkle V3: Tạo thêm đề mục dưới dòng này sau khi sang tháng mới\s*-->)/i;
                 if (insert_regex.test(text)) {
@@ -297,7 +297,7 @@ class Afd extends XfdMode {
 
 class Ffd extends XfdMode {
     static venueCode = 'FfD';
-    static venueLabel = 'FfD (Biểu quyết xóa tập tin)';
+    static venueLabel = 'Biểu quyết xóa tập tin';
 
     static isDefaultChoice() {
         return mw.config.get('wgNamespaceNumber') === 6;
@@ -313,7 +313,7 @@ class Ffd extends XfdMode {
 
     getVenueWarning() {
         if (mw.config.get('wgNamespaceNumber') !== 6) {
-            return "FfD được chọn nhưng trang này có vẻ không phải là một tập tin!";
+            return "Dường như trang này không phải là trang tập tin!";
         }
     }
 
@@ -371,7 +371,7 @@ class Ffd extends XfdMode {
 
     addToList() {
         let params = this.params;
-        var pageobj = new Page(params.logpage, "Thêm thảo luận vào danh sách");
+        var pageobj = new Page(params.logpage, "Thêm biểu quyết vào danh sách");
         pageobj.setFollowRedirect(true);
         return pageobj.load().then(() => {
             var text = pageobj.getPageText();
@@ -410,7 +410,7 @@ class Ffd extends XfdMode {
 
 class Pfd extends XfdMode {
     static venueCode = 'PfD';
-    static venueLabel = 'PfD (Biểu quyết xóa/hợp nhất thể loại, bản mẫu, mô đun)';
+    static venueLabel = 'Biểu quyết xóa/hợp nhất thể loại, bản mẫu, mô đun';
 
     static isDefaultChoice() {
         return [10, 14, 828].indexOf(mw.config.get('wgNamespaceNumber')) !== -1;
@@ -594,7 +594,7 @@ class Pfd extends XfdMode {
             return this.tagForMerge(pageobj, params);
         });
 
-        let prefix = params.isModule ? 'Module:' : 'Template:';
+        let prefix = params.isModule ? 'Mô đun:' : 'Bản mẫu:';
         let otherpageobj = new Page(
             `${prefix}${params.pfdtarget}${docOrNot}`,
             `Thêm thẻ hợp nhất vào ${moduleDocOrTemplate} đích`
@@ -651,7 +651,7 @@ class Pfd extends XfdMode {
     addToList() {
         let params = this.params;
 
-        var pageobj = new Page(params.logpage, "Thêm thảo luận vào danh sách");
+        var pageobj = new Page(params.logpage, "Thêm biểu quyết vào danh sách");
         pageobj.setFollowRedirect(true);
         return pageobj.load().then(() => {
             var added_data = this.getDiscussionWikitext();
@@ -689,7 +689,7 @@ class Pfd extends XfdMode {
 
 class Mfd extends XfdMode {
     static venueCode = 'MfD';
-    static venueLabel = 'MfD (Biểu quyết xóa trang khác)';
+    static venueLabel = 'Biểu quyết xóa trang (khác)';
 
     static isDefaultChoice() {
         return (
@@ -779,7 +779,7 @@ class Mfd extends XfdMode {
 
     addToList() {
         let params = this.params;
-        let pageobj = new Page(params.logpage, "Thêm thảo luận vào danh sách");
+        let pageobj = new Page(params.logpage, "Thêm biểu quyết vào danh sách");
         pageobj.setFollowRedirect(true);
         return pageobj.load().then(() => {
             var text = pageobj.getPageText();
