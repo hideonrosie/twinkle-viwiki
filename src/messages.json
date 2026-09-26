@@ -41,5 +41,6 @@
 	"bullet-separator": " • ",
 	"summary-added": "Đã gắn thẻ {{list:$1}}",
 	"summary-removed": "Đã gỡ thẻ {{list:$1}}",
-	"summary-added-removed": "Đã gắn thẻ {{list:$1}} và gỡ thẻ {{list:$2}}"
+	"summary-added-removed": "Đã gắn thẻ {{list:$1}} và gỡ thẻ {{list:$2}}",
+	"block-warn-noreason": "Bạn chưa cung cấp lý do để cấm!"
 }
