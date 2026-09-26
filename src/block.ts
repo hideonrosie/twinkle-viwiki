@@ -255,6 +255,14 @@ export class Block extends BlockCore {
 			reason: '[[WP:Quy định cấm thành viên#Lách lệnh cấm|Lách lệnh cấm]]',
 			summary: 'Địa chỉ IP này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
 		},
+		'uw-tempevadeblock': {
+			autoblock: true,
+			expiry: 'infinity',
+			forTempAccountsOnly: true,
+			nocreate: true,
+			reason: '[[WP:Quy định cấm thành viên#Lách lệnh cấm|Lách lệnh cấm]]',
+			summary: 'Tài khoản tạm thời này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
+		},
 		'uw-lblock': {
 			autoblock: true,
 			expiry: 'infinity',
@@ -545,6 +553,10 @@ export class Block extends BlockCore {
 				{
 					label: 'Địa chỉ IP được sử dụng để lách lệnh cấm',
 					value: 'uw-ipevadeblock'
+				},
+				{
+					label: 'Tài khoản tạm thời được sử dụng để lách lệnh cấm',
+					value: 'uw-tempevadeblock'
 				},
 				{
 					label: 'Vi phạm quy định về tiêu sử người đang sống',
