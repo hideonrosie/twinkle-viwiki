@@ -125,7 +125,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			});
 			deleteOptions.append({
 				type: 'header',
-				label: 'Lựa chọn liên quan đến xóa',
+				label: 'Tùy chọn liên quan đến xóa',
 			});
 			if (
 				mw.config.get('wgNamespaceNumber') % 2 === 0 &&

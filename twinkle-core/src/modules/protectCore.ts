@@ -411,7 +411,7 @@ export abstract class ProtectCore extends TwinkleModule {
 
 		switch (e.target.values) {
 			case 'protect':
-				field_preset = new Morebits.quickForm.element({ type: 'field', label: 'Preset', name: 'field_preset' });
+				field_preset = new Morebits.quickForm.element({ type: 'field', label: 'Thiết lập định sẵn', name: 'field_preset' });
 				field_preset.append({
 					type: 'select',
 					name: 'category',
@@ -586,7 +586,7 @@ export abstract class ProtectCore extends TwinkleModule {
 				}
 			/* falls through */
 			case 'tag':
-				field1 = new Morebits.quickForm.element({ type: 'field', label: 'Tagging options', name: 'field1' });
+				field1 = new Morebits.quickForm.element({ type: 'field', label: 'Tùy chọn gắn thẻ', name: 'field1' });
 				field1.append({ type: 'div', name: 'currentprot', label: ' ' }); // holds the current protection
 				// level, as filled out by the async
 				// callback
