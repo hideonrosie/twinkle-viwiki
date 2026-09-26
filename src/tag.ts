@@ -268,7 +268,7 @@ const articleTagList: tagListType = {
 		'Dọn dẹp chung': [
 			{
 				tag: 'Cần dọn dẹp',
-				description: '{{Cleanup}} -- yêu cầu dọn dẹp',
+				description: 'Yêu cầu dọn dẹp',
 				subgroup: {
 					name: 'cleanup',
 					parameter: 'reason',
@@ -281,13 +281,11 @@ const articleTagList: tagListType = {
 			},
 			{
 				tag: 'Cần dọn dẹp-viết lại',
-				description:
-					'{{Cleanup rewrite}} -- cần được viết lại hoàn toàn để tuân thủ theo các tiêu chuẩn chất lượng của Wikipedia',
+				description: 'Cần được viết lại hoàn toàn để tuân thủ theo các tiêu chuẩn chất lượng của Wikipedia',
 			},
 			{
 				tag: 'Biên tập',
-				description:
-					'{{Biên tập}} -- sửa các lỗi ngữ pháp, chính tả, tính mạch lạc, trau chuốt hành văn tiếng Việt',
+				description: 'Sửa các lỗi ngữ pháp, chính tả, tính mạch lạc, trau chuốt hành văn tiếng Việt',
 				subgroup: {
 					name: 'copyEdit',
 					parameter: 'for',
@@ -301,7 +299,7 @@ const articleTagList: tagListType = {
 			},
 			{
 				tag: 'Định dạng',
-				description: '{{Định dạng}} -- cần định dạng',
+				description: 'Cần định dạng',
 			},
 		],
 
@@ -321,8 +319,7 @@ const articleTagList: tagListType = {
 			},
 			{
 				tag: 'Chép dán',
-				description:
-					'{{Copypaste}} -- có thể đã được sao chép và dán từ một nơi khác',
+				description: 'Có thể đã được sao chép và dán từ một nơi khác',
 				excludeInGroup: true,
 				subgroup: {
 					name: 'copypaste',
@@ -335,102 +332,87 @@ const articleTagList: tagListType = {
 			},
 			{
 				tag: 'Quá nhiều liên kết ngoài',
-				description:
-					'{{External links}} -- có những liên kết ngoài phạm quy',
+				description: 'Có những liên kết ngoài phạm quy',
 			},
 			{
 				tag: 'Không tự do',
-				description:
-					'{{Non-free}} -- có thể chứa quá nhiều nội dung, tập tin có bản quyền',
+				description: 'Có thể chứa quá nhiều nội dung, tập tin có bản quyền',
 			},
 			{
 				tag: 'Tự mâu thuẫn',
-				description:
-					'{{Tự mâu thuẫn}} -- có những tình tiết tự mâu thuẫn nhau',
+				description: 'Có những tình tiết tự mâu thuẫn nhau',
 			},
 		],
 
 		'Bố cục': [
 			{
 				tag: 'Dọn dẹp lại',
-				description: '{{Cleanup reorganize}} -- cần sửa lại bố cục toàn bài',
+				description: 'Cần sửa lại bố cục toàn bài',
 			},
 			{
 				tag: 'Phân chia thành các mục con',
-				description:
-					'{{Sections}} -- cần được chia thành các đề mục để người đọc dễ nắm bắt nội dung',
+				description: 'Cần được chia thành các đề mục để người đọc dễ nắm bắt nội dung',
 			},
 			{
 				tag: 'Quá nhiều đề mục',
-				description: '{{Too many sections}} -- quá nhiều đề mục',
+				description: 'Quá nhiều đề mục',
 			},
 			{
 				tag: 'Quá dài',
-				description:
-					'{{Very long}} -- quá dài để đọc và điều hướng một cách dễ dàng',
+				description: 'Quá dài để đọc và điều hướng một cách dễ dàng',
 			},
 			{
 				tag: 'Chia',
-				description:
-					'{{Chia}} -- chia bài này ra thành nhiều bài hoặc tạo bài con cho bài này',
+				description: 'Chia bài này ra thành nhiều bài hoặc tạo bài con cho bài này',
 			},
 		],
 
 		'Phần mở đầu': [
 			{
 				tag: 'Thiếu mở đầu',
-				description: '{{Lead missing}} -- không có phần mở đầu',
+				description: 'Không có phần mở đầu',
 			},
 			{
 				tag: 'Viết lại phần mở đầu',
-				description:
-					'{{Lead rewrite}} -- phần mở đầu cần được viết lại theo quy định',
+				description: 'Phần mở đầu cần được viết lại theo quy định',
 			},
 			{
 				tag: 'Mở đầu quá dài',
-				description:
-					'{{Lead too long}} -- phần mở đầu quá dài so với độ dài của bài',
+				description: 'Phần mở đầu quá dài so với độ dài của bài',
 			},
 			{
 				tag: 'Mở đầu quá ngắn',
-				description:
-					'{{Lead too short}} -- phần mở đầu quá ngắn và cần được mở rộng để tóm tắt các điểm chính',
+				description: 'Phần mở đầu quá ngắn và cần được mở rộng để tóm tắt các điểm chính',
 			},
 			{
 				tag: 'Chỉ có ở phần mở đầu',
-				description:
-					'{{Chỉ có ở phần mở đầu}} -- một số thông tin không có trong thân bài',
+				description: 'Một số thông tin không có trong thân bài',
 			},
 		],
 
 		'Tiểu sử người đang sống': [
 			{
-				tag: 'Cleanup Congress bio',
-				description:
-					'{{Cleanup Congress bio}} -- tiểu sử chép từ Danh mục Tiểu sử Quốc hội Hoa Kỳ',
+				tag: 'Dọn dẹp Tiểu sử Quốc hội Hoa Kỳ',
+				description: 'Tiểu sử chép từ Danh mục Tiểu sử Quốc hội Hoa Kỳ',
 			},
 		],
 
 		'Bài về tác phẩm hư cấu': [
 			{
 				tag: 'Tóm tắt cốt truyện',
-				description:
-					'{{All plot}} -- gần như chỉ thấy tóm tắt cốt truyện, thiếu thông tin về quá trình sáng tác, tạo ra tác phẩm, đánh giá chuyên môn',
+				description: 'Gần như chỉ thấy tóm tắt cốt truyện, thiếu thông tin về quá trình sáng tác, tạo ra tác phẩm, đánh giá chuyên môn',
 			},
 			{
 				tag: 'Cách viết hư cấu',
-				description:
-					'{{Fiction}} -- không phân biệt được giữa thực tế và hư cấu',
+				description: 'Không phân biệt được giữa thực tế và hư cấu',
 			},
 			{
 				tag: 'Thiếu tóm tắt cốt truyện',
-				description:
-					'{{No plot}} -- cần một bản tóm tắt cốt truyện',
+				description: 'Cần một bản tóm tắt cốt truyện',
 			},
 			{
 				tag: 'Tóm lược dài',
-				description:
-					'{{Long plot}} -- tóm tắt cốt truyện quá dài hoặc quá chi tiết',
+				description: 'Tóm tắt cốt truyện quá dài hoặc quá chi tiết',
 			},
 		],
 	},
@@ -439,8 +421,7 @@ const articleTagList: tagListType = {
 		'Độ nổi bật': [
 			{
 				tag: 'Không nổi bật',
-				description:
-					'{{Notability}} -- chủ thể có thể không đáp ứng nguyên tắc chung về độ nổi bật',
+				description: 'Chủ thể có thể không đáp ứng nguyên tắc chung về độ nổi bật',
 				subgroup: {
 					name: 'notability',
 					type: 'select',
@@ -470,21 +451,19 @@ const articleTagList: tagListType = {
 			},
 			{
 				tag: 'Có nguồn',
-				description:
-					'{{Có nguồn}} -- có người đã thử tìm nguồn và cho rằng chủ thể này đủ độ nổi bật',
+				description: 'Có người đã thử tìm nguồn và cho rằng chủ thể này đủ độ nổi bật',
 			},
 		],
 
 		'Phong cách viết': [
-			{ tag: 'Bài quảng cáo', description: '{{Advert}} -- được viết như một quảng cáo' },
-			{ tag: 'Bình luận cá nhân', description: '{{Essay-like}} -- viết như một bài luận cá nhân, tiểu luận chủ quan hay nghị luận và trình bày tư tưởng, quan điểm riêng của người viết' },
-			{ tag: 'Quan điểm người hâm mộ', description: '{{Fanpov}} -- được viết từ quan điểm của một người hâm mộ' },
-			{ tag: 'Như sơ yếu lý lịch', description: '{{Like resume}} -- được viết như một sơ yếu lý lịch' },
-			{ tag: 'Cẩm nang', description: '{{Cẩm nang}} -- viết như cẩm nang hướng dẫn du lịch, hướng dẫn cách chơi, cách làm, cách sử dụng, cách nấu, cách thực hiện quy trình...' },
+			{ tag: 'Bài quảng cáo', description: 'Được viết như một quảng cáo' },
+			{ tag: 'Bình luận cá nhân', description: 'Viết như một bài luận cá nhân, tiểu luận chủ quan hay nghị luận và trình bày tư tưởng, quan điểm riêng của người viết' },
+			{ tag: 'Quan điểm người hâm mộ', description: 'Được viết từ quan điểm của một người hâm mộ' },
+			{ tag: 'Như sơ yếu lý lịch', description: 'Được viết như một sơ yếu lý lịch' },
+			{ tag: 'Cẩm nang', description: 'Viết như cẩm nang hướng dẫn du lịch, hướng dẫn cách chơi, cách làm, cách sử dụng, cách nấu, cách thực hiện quy trình...' },
 			{
 				tag: 'Dọn dẹp văn phong báo chí',
-				description:
-					'{{Cleanup-PR}} -- đọc như một thông cáo báo chí hoặc bài viết tin tức',
+				description: 'Đọc như một thông cáo báo chí hoặc bài viết tin tức',
 				subgroup: {
 					type: 'hidden',
 					name: 'cleanupPR1',
@@ -492,29 +471,30 @@ const articleTagList: tagListType = {
 					value: 'article',
 				},
 			},
-			{ tag: 'Trích dẫn quá dài', description: '{{Over-quotation}} -- trích dẫn quá nhiều hoặc quá dài cho một bài viết bách khoa' },
-			{ tag: 'Văn xuôi', description: '{{Prose}} -- đang ở dạng danh sách nhưng cần chuyển thành dạng văn xuôi' },
-			{ tag: 'Chuyên môn', description: '{{Technical}} -- lối viết quá nặng về chuyên môn để hầu hết người đọc có thể hiểu' },
-			{ tag: 'Văn phong', description: '{{Tone}} -- giọng văn không bách khoa theo kiểu Wikipedia' },
-			{ tag: 'Khẩu ngữ', description: '{{Khẩu ngữ}} -- dùng khẩu ngữ, văn nói, từ lóng' },
-			{ tag: 'Sách giáo khoa', description: '{{Sách giáo khoa}} -- viết như sách giáo khoa, giáo trình đại học' },
-			{ tag: 'Specific', description: '{{Specific}} -- chủ yếu chỉ liệt kê các ví dụ, thiếu thông tin khái quát về chủ đề bài viết' },
+			{ tag: 'Trích dẫn quá dài', description: 'Trích dẫn quá nhiều hoặc quá dài cho một bài viết bách khoa' },
+			{ tag: 'Văn xuôi', description: 'Đang ở dạng danh sách nhưng cần chuyển thành dạng văn xuôi' },
+			{ tag: 'Chuyên môn', description: 'Lối viết quá nặng về chuyên môn để hầu hết người đọc có thể hiểu' },
+			{ tag: 'Văn phong', description: 'Giọng văn không bách khoa theo kiểu Wikipedia' },
+			{ tag: 'Khẩu ngữ', description: 'Dùng khẩu ngữ, văn nói, từ lóng' },
+			{ tag: 'Sách giáo khoa', description: 'Viết như sách giáo khoa, giáo trình đại học' },
+			{ tag: 'Specific', description: 'Chủ yếu chỉ liệt kê các ví dụ, thiếu thông tin khái quát về chủ đề bài viết' },
 		],
 
 		'Giác quan (hoặc thiếu giác quan)': [
-			{ tag: 'Gây nhầm lẫn', description: '{{Confusing}} -- khó hiểu hoặc không rõ ràng' },
-			{ tag: 'Khó hiểu', description: '{{Incomprehensible}} -- nội dung rất tối nghĩa hoặc khó hiểu' },
-			{ tag: 'Không trọng tâm', description: '{{Unfocused}} -- thiếu trọng tâm, lan man hoặc viết về nhiều hơn một chủ đề' },
-			{ tag: 'Lạc đề', description: '{{Lạc đề}} -- lạc đề hoặc hơi lạc đề' },
-			{ tag: 'Đoạn quan trọng', description: '{{Đoạn quan trọng}} -- nghi ngờ độ quan trọng của đoạn này so với chủ đề bài viết' },
+			{ tag: 'Gây nhầm lẫn', description: 'Khó hiểu hoặc không rõ ràng' },
+			{ tag: 'Khó hiểu', description: 'Nội dung rất tối nghĩa hoặc khó hiểu' },
+			{ tag: 'Không trọng tâm', description: 'Thiếu trọng tâm, lan man hoặc viết về nhiều hơn một chủ đề' },
+			{ tag: 'Lạc đề', description: 'Lạc đề hoặc hơi lạc đề' },
+			{ tag: 'Đoạn quan trọng', description: 'Nghi ngờ độ quan trọng của đoạn này so với chủ đề bài viết' },
 		],
 
 		'Thông tin và chi tiết': [
-			{ tag: 'Ngữ cảnh', description: '{{Context}} -- không đủ ngữ cảnh cho những người không quen thuộc với chủ đề này' },
-			{ tag: 'Cleanup book', description: '{{Cleanup book}} -- không đủ ngữ cảnh về quyển sách' },
+			{ tag: 'Ngữ cảnh', description: 'Không đủ ngữ cảnh cho những người không quen thuộc với chủ đề này' },
+			{ tag: 'Dọn dẹp sách', description: 'Không đủ ngữ cảnh về quyển sách' },
+			{ tag: 'Quá nhiều ví dụ', description: 'Có thể chứa quá nhiều ví dụ lan man, dư thừa hoặc không liên quan' },
 			{
 				tag: 'Cần chuyên gia',
-				description: '{{Expert needed}} -- cần sự chú ý từ một chuyên gia về chủ đề này',
+				description: 'Cần sự chú ý từ một chuyên gia về chủ đề này',
 				subgroup: [
 					{
 						name: 'expertNeeded',
@@ -539,67 +519,67 @@ const articleTagList: tagListType = {
 					},
 				],
 			},
-			{ tag: 'Quá chi tiết', description: '{{Overly detailed}} -- quá nhiều chi tiết phức tạp' },
-			{ tag: 'Nhấn mạnh quá mức', description: '{{Undue weight}} -- thiên lệch, viết quá nhiều về một số lập trường, sự cố hoặc tranh cãi' },
-			{ tag: 'Chuyện bên lề', description: '{{Chuyện bên lề}} -- liệt kê các thông tin bên lề' },
-			{ tag: 'Quá nhiều ảnh', description: '{{Quá nhiều ảnh}} -- quá nhiều hình ảnh, biểu đồ hoặc sơ đồ so với chiều dài tổng thể của bài' },
+			{ tag: 'Quá chi tiết', description: 'Quá nhiều chi tiết phức tạp' },
+			{ tag: 'Nhấn mạnh quá mức', description: 'Thiên lệch, viết quá nhiều về một số lập trường, sự cố hoặc tranh cãi' },
+			{ tag: 'Chuyện bên lề', description: 'Liệt kê các thông tin bên lề' },
+			{ tag: 'Quá nhiều ảnh', description: 'Quá nhiều hình ảnh, biểu đồ hoặc sơ đồ so với chiều dài tổng thể của bài' },
 		],
 
 		'Tính chất thời gian': [
 			{
 				tag: 'Đang diễn ra',
-				description: '{{Current}} -- một sự kiện đang diễn ra',
+				description: 'Một sự kiện đang diễn ra',
 				excludeInGroup: true,
 			},
-			{ tag: 'Truyền hình tương lai', description: '{{Truyền hình tương lai}} -- chương trình truyền hình sắp phát sóng' },
-			{ tag: 'Mới qua đời', description: '{{Mới qua đời}} -- chủ thể trong bài vừa qua đời' },
-			{ tag: 'Thảm họa đang xảy ra', description: '{{Thảm họa đang xảy ra}} -- thảm họa đang xảy ra' },
-			{ tag: 'Lỗi thời hoặc sai thời', description: '{{Lỗi thời hoặc sai thời}} -- dùng từ sai so với giai đoạn lịch sử, nội dung đã lỗi thời mà không ghi số năm' },
-			{ tag: 'Lỗi thời', description: '{{Update}} -- cần cập nhật các thông tin mới nhất' },
+			{ tag: 'Truyền hình tương lai', description: 'Chương trình truyền hình sắp phát sóng' },
+			{ tag: 'Mới qua đời', description: 'Chủ thể trong bài vừa qua đời' },
+			{ tag: 'Thảm họa đang xảy ra', description: 'Thảm họa đang xảy ra' },
+			{ tag: 'Lỗi thời hoặc sai thời', description: 'Dùng từ sai so với giai đoạn lịch sử, nội dung đã lỗi thời mà không ghi số năm' },
+			{ tag: 'Lỗi thời', description: 'Cần cập nhật các thông tin mới nhất' },
 		],
 
 		'Tính trung lập, thiên vị': [
-			{ tag: 'Tự truyện', description: '{{Autobiography}} -- văn phong tự truyện và cách viết không trung lập' },
-			{ tag: 'Có xung đột lợi ích', description: '{{COI}} -- người tạo bài hoặc người đóng góp chính cho bài viết có thể có xung đột lợi ích' },
+			{ tag: 'Tự truyện', description: 'Văn phong tự truyện và cách viết không trung lập' },
+			{ tag: 'Có xung đột lợi ích', description: 'Người tạo bài hoặc người đóng góp chính cho bài viết có thể có xung đột lợi ích' },
 			{
 				tag: 'Tầm nhìn hẹp',
-				description: '{{Globalize}} -- có thể không đại diện cho một cái nhìn toàn cầu về chủ đề',
+				description: 'Có thể không đại diện cho một cái nhìn toàn cầu về chủ đề',
 				subgroup: {
 					name: 'globalizeRegion',
 					type: 'input',
 					label: 'Tập trung quá mức vào quốc gia hoặc khu vực nào đó: ',
 				},
 			},
-			{ tag: 'Tâng bốc', description: '{{Tâng bốc}} -- chứa các từ ngữ quảng bá một cách chủ quan mà không đưa ra dẫn chứng thực sự' },
-			{ tag: 'Thái độ trung lập', description: '{{POV}} -- không duy trì quan điểm trung lập' },
-			{ tag: 'Recentism', description: '{{Recentism}} -- chứa quá nhiều nội dung về các sự kiện diễn ra gần đây khiến bài bị mất cân đối' },
-			{ tag: 'Quá ít quan điểm', description: '{{Too few opinions}} -- có thể không bao gồm tất cả các quan điểm quan trọng' },
-			{ tag: 'Có đóng góp được trả thù lao', description: '{{Đóng góp được trả thù lao}} -- có các đóng góp được trả thù lao, có thể dẫn tới xung đột lợi ích, cần biên tập lại' },
-			{ tag: 'Thù lao không công khai', description: '{{Undisclosed paid}} -- có thể đã được tạo hoặc chỉnh sửa để đổi lại các khoản thù lao hay lợi lộc chưa khai báo' },
-			{ tag: 'Diễn đạt không rõ ràng', description: '{{Weasel}} -- diễn đạt mơ hồ thường đi kèm thông tin thiên lệch hoặc không thể kiểm chứng được' },
+			{ tag: 'Tâng bốc', description: 'Chứa các từ ngữ quảng bá một cách chủ quan mà không đưa ra dẫn chứng thực sự' },
+			{ tag: 'Thái độ trung lập', description: 'Không duy trì quan điểm trung lập' },
+			{ tag: 'Chủ nghĩa thời sự', description: 'Chứa quá nhiều nội dung về các sự kiện diễn ra gần đây khiến bài bị mất cân đối' },
+			{ tag: 'Quá ít quan điểm', description: 'Có thể không bao gồm tất cả các quan điểm quan trọng' },
+			{ tag: 'Có đóng góp được trả thù lao', description: 'Có các đóng góp được trả thù lao, có thể dẫn tới xung đột lợi ích, cần biên tập lại' },
+			{ tag: 'Thù lao không công khai', description: 'Có thể đã được tạo hoặc chỉnh sửa để đổi lại các khoản thù lao hay lợi lộc chưa khai báo' },
+			{ tag: 'Diễn đạt không rõ ràng', description: 'Diễn đạt mơ hồ thường đi kèm thông tin thiên lệch hoặc không thể kiểm chứng được' },
 		],
 
 		'Tính chính xác': [
-			{ tag: 'Phỏng đoán', description: '{{Phỏng đoán}} -- chứa các dự đoán không nguồn chứng thực, thông tin về những sự kiện sẽ không xảy ra' },
-			{ tag: 'Tranh chấp', description: '{{Disputed}} -- nghi ngờ độ chính xác của bài' },
-			{ tag: 'Tin vịt', description: '{{Tin vịt}} -- một phần hoặc toàn bài có thể là chuyện bịa đặt, không có thật' },
+			{ tag: 'Phỏng đoán', description: 'Chứa các dự đoán không nguồn chứng thực, thông tin về những sự kiện sẽ không xảy ra' },
+			{ tag: 'Tranh chấp', description: 'Nghi ngờ độ chính xác của bài' },
+			{ tag: 'Tin vịt', description: 'Một phần hoặc toàn bài có thể là chuyện bịa đặt, không có thật' },
 		],
 
 		'Khả năng xác minh và nguồn': [
-			{ tag: 'TSNDS không nguồn', description: '{{TSNDS không nguồn}} -- Tiểu sử người đang sống (TSNĐS) không có nguồn nào cả (với các bài viết tạo sau ngày 14/03/2021, hãy sử dụng BLP PROD)' },
-			{ tag: 'TSNDS nguồn', description: '{{TSNDS nguồn}} -- TSNĐS cần thêm nguồn để xác minh' },
-			{ tag: 'TSNDS tự xuất bản', description: '{{TSNDS tự xuất bản}} -- TSNĐS chỉ chứa nguồn tự xuất bản nên cần thêm các nguồn khác' },
-			{ tag: 'Thiếu nguồn gốc', description: '{{Thiếu nguồn gốc}} -- không có nguồn nào cả' },
-			{ tag: 'Chỉ có một nguồn', description: '{{Chỉ có một nguồn}} -- gần như chỉ dựa vào một nguồn duy nhất' },
-			{ tag: 'Chú thích trong bài', description: '{{More citations needed}} -- có thể đã có vài nguồn nhưng vẫn cần thêm nguồn và tài liệu tham khảo' },
-			{ tag: 'Cần thêm nguồn y khoa', description: '{{Cần thêm nguồn y khoa}} -- cần thêm nguồn chuyên môn y khoa' },
-			{ tag: 'Nguồn sơ cấp', description: '{{Nguồn sơ cấp}} -- dựa quá nhiều vào nguồn sơ cấp (vd, do chính chủ thể phát hành, sách tự truyện...)' },
-			{ tag: 'Tự xuất bản', description: '{{Tự xuất bản}} -- chứa quá nhiều nguồn tự xuất bản (blog, diễn đàn, mạng xã hội, sách tự xuất bản...)' },
-			{ tag: 'Thiếu nguồn từ bên thứ ba', description: '{{Third-party}} -- phụ thuộc quá nhiều vào các nguồn liên quan có quá chặt chẽ với chủ thể, cần nguồn trung lập hơn' },
-			{ tag: 'Nguồn không đáng tin cậy', description: '{{Nguồn không đáng tin cậy}} -- một số nguồn có thể không đáng tin cậy theo quy định của Wikipedia' },
-			{ tag: 'Kiểm tra chú thích', description: '{{Kiểm tra chú thích}} -- thông tin trong bài bách khoa không khớp với nguồn' },
-			{ tag: 'Nghiên cứu chưa công bố', description: '{{Original research}} -- chứa nghiên cứu chưa công bố, phát hiện mới, dữ kiện mới, thông tin tự chế, tự tổng hợp, tự suy luận ra' },
-			{ tag: 'Tổng hợp', description: '{{Tổng hợp}} -- chứa nội dung tự tổng hợp từ các nguồn tham khảo để truyền đạt các ý tưởng chưa hề tồn tại trong các nguồn đó' },
+			{ tag: 'TSNDS không nguồn', description: 'Tiểu sử người đang sống (TSNĐS) không có nguồn nào cả (với các bài viết tạo sau ngày 14/03/2021, hãy sử dụng BLP PROD)' },
+			{ tag: 'TSNDS nguồn', description: 'TSNĐS cần thêm nguồn để xác minh' },
+			{ tag: 'TSNDS tự xuất bản', description: 'TSNĐS chỉ chứa nguồn tự xuất bản nên cần thêm các nguồn khác' },
+			{ tag: 'Thiếu nguồn gốc', description: 'Không có nguồn nào cả' },
+			{ tag: 'Chỉ có một nguồn', description: 'Gần như chỉ dựa vào một nguồn duy nhất' },
+			{ tag: 'Chú thích trong bài', description: 'Có thể đã có vài nguồn nhưng vẫn cần thêm nguồn và tài liệu tham khảo' },
+			{ tag: 'Cần thêm nguồn y khoa', description: 'Cần thêm nguồn chuyên môn y khoa' },
+			{ tag: 'Nguồn sơ cấp', description: 'Dựa quá nhiều vào nguồn sơ cấp (vd, do chính chủ thể phát hành, sách tự truyện...)' },
+			{ tag: 'Tự xuất bản', description: 'Chứa quá nhiều nguồn tự xuất bản (blog, diễn đàn, mạng xã hội, sách tự xuất bản...)' },
+			{ tag: 'Thiếu nguồn từ bên thứ ba', description: 'Phụ thuộc quá nhiều vào các nguồn liên quan có quá chặt chẽ với chủ thể, cần nguồn trung lập hơn' },
+			{ tag: 'Nguồn không đáng tin cậy', description: 'Một số nguồn có thể không đáng tin cậy theo quy định của Wikipedia' },
+			{ tag: 'Kiểm tra chú thích', description: 'Thông tin trong bài bách khoa không khớp với nguồn' },
+			{ tag: 'Nghiên cứu chưa công bố', description: 'Chứa nghiên cứu chưa công bố, phát hiện mới, dữ kiện mới, thông tin tự chế, tự tổng hợp, tự suy luận ra' },
+			{ tag: 'Tổng hợp', description: 'Chứa nội dung tự tổng hợp từ các nguồn tham khảo để truyền đạt các ý tưởng chưa hề tồn tại trong các nguồn đó' },
 		],
 	},
 
@@ -607,26 +587,24 @@ const articleTagList: tagListType = {
 		'Ngôn ngữ': [
 			{
 				tag: 'Đang dịch 2',
-				description: '{{Đang dịch 2}} -- đang tiến hành dịch từ Wikipedia ngôn ngữ khác',
+				description: 'Đang tiến hành dịch từ Wikipedia ngôn ngữ khác',
 			},
 			{
 				tag: 'Chưa dịch phần lớn',
-				description: '{{Chưa dịch phần lớn}} -- phần lớn bài vẫn chưa dịch xong',
+				description: 'Phần lớn bài vẫn chưa dịch xong',
 			},
 			{
 				tag: 'Chất lượng dịch',
-				description: '{{Rough translation}} -- dịch kém từ ngôn ngữ khác',
+				description: 'Dịch kém từ ngôn ngữ khác',
 				excludeInGroup: true,
 			},
 			{
 				tag: 'Cần hiệu đính',
-				description:
-					'{{Cần hiệu đính}} -- cần người giỏi ngữ văn tiếng Việt hiệu đính',
+				description: 'Cần người giỏi ngữ văn tiếng Việt hiệu đính',
 			},
 			{
 				tag: 'Mở rộng ngôn ngữ',
-				description:
-					'{{Mở rộng ngôn ngữ}} -- có thể nâng cấp bài bằng cách dịch từ Wikipedia ngôn ngữ khác',
+				description: 'Có thể nâng cấp bài bằng cách dịch từ Wikipedia ngôn ngữ khác',
 				excludeInGroup: true,
 				subgroup: [
 					{
@@ -650,19 +628,19 @@ const articleTagList: tagListType = {
 		],
 
 		'Liên kết trong bài': [
-			{ tag: 'Đường cùng', description: '{{Dead end}} -- bài viết không có liên kết đến các bài viết khác' },
-			{ tag: 'Mồ côi', description: '{{Orphan}} -- không được liên kết với bất kỳ bài viết nào' },
-			{ tag: 'Quá nhiều liên kết', description: '{{Overlinked}} -- quá nhiều liên kết lặp, liên kết những từ ai cũng hiểu, không hữu ích cho người đọc' },
-			{ tag: 'Quá ít liên kết', description: '{{Underlinked}} -- cần thêm các liên kết đến các bài viết khác để người đọc hiểu hơn về ngữ cảnh' },
+			{ tag: 'Đường cùng', description: 'Bài viết không có liên kết đến các bài viết khác' },
+			{ tag: 'Mồ côi', description: 'Không được liên kết với bất kỳ bài viết nào' },
+			{ tag: 'Quá nhiều liên kết', description: 'Quá nhiều liên kết lặp, liên kết những từ ai cũng hiểu, không hữu ích cho người đọc' },
+			{ tag: 'Quá ít liên kết', description: 'Cần thêm các liên kết đến các bài viết khác để người đọc hiểu hơn về ngữ cảnh' },
 		],
 
 		'Kỹ thuật dẫn nguồn': [
-			{ tag: 'Phong cách trích dẫn', description: '{{Citation style}} -- cách ghi nguồn không nhất quán' },
-			{ tag: 'Toàn URL', description: '{{Cleanup bare URLs}} -- nguồn toàn là URL trần (bare URL), dễ bị hỏng liên kết' },
-			{ tag: 'Chú thích trong hàng', description: '{{No footnotes}} -- có tài liệu tham khảo nhưng thân bài không có chú thích trong hàng nào' },
-			{ tag: 'Cần nhiều trích dẫn trong bài hơn', description: '{{More footnotes}} -- có tài liệu tham khảo nhưng cần thêm chú thích trong hàng' },
-			{ tag: 'Cần chú thích hoàn chỉnh', description: '{{Cần chú thích hoàn chỉnh}} -- chú thích nguồn còn thiếu tên bài, đơn vị xuất bản, tên tác giả, ngày tháng và số trang' },
-			{ tag: 'Citations broken', description: '{{Citations broken}} -- nguồn trong chú thích bị hỏng hoặc lỗi thời' },
+			{ tag: 'Phong cách trích dẫn', description: 'Cách ghi nguồn không nhất quán' },
+			{ tag: 'Toàn URL', description: 'Nguồn toàn là URL trần (bare URL), dễ bị hỏng liên kết' },
+			{ tag: 'Chú thích trong hàng', description: 'Có tài liệu tham khảo nhưng thân bài không có chú thích trong hàng nào' },
+			{ tag: 'Cần nhiều trích dẫn trong bài hơn', description: 'Có tài liệu tham khảo nhưng cần thêm chú thích trong hàng' },
+			{ tag: 'Cần chú thích hoàn chỉnh', description: 'Chú thích nguồn còn thiếu tên bài, đơn vị xuất bản, tên tác giả, ngày tháng và số trang' },
+			{ tag: 'Chú thích hỏng', description: 'Nguồn trong chú thích bị hỏng hoặc lỗi thời' },
 		],
 
 		'Chuyển sang dự án Wiki khác': [
@@ -674,13 +652,12 @@ const articleTagList: tagListType = {
 		'Thể loại': [
 			{
 				tag: 'Cải thiện thể loại',
-				description:
-					'{{Cải thiện thể loại}} -- cần thêm các thể loại khác hoặc phân vào thể loại con cụ thể hơn',
+				description: 'Cần thêm các thể loại khác hoặc phân vào thể loại con cụ thể hơn',
 				excludeInGroup: true,
 			},
 			{
 				tag: 'Chưa phân loại',
-				description: '{{Chưa phân loại}} -- chưa xếp vào thể loại nào',
+				description: 'Chưa xếp vào thể loại nào',
 				excludeInGroup: true,
 			},
 		],
@@ -689,8 +666,7 @@ const articleTagList: tagListType = {
 	'Trộn/Hợp nhất nội dung': [
 		{
 			tag: 'Trộn lịch sử',
-			description:
-				'{{History merge}} -- một trang khác sẽ được hợp nhất lịch sử của nó vào trang này',
+			description: 'Một trang khác sẽ được hợp nhất lịch sử của nó vào trang này',
 			excludeInGroup: true,
 			dupeAllowed: true,
 			subgroup: [
@@ -723,23 +699,20 @@ const articleTagList: tagListType = {
 		},
 		{
 			tag: 'Hợp nhất',
-			description:
-				'{{Merge}} -- yêu cầu hợp nhất bài này vào một bài khác',
+			description: 'Yêu cầu hợp nhất bài này vào một bài khác',
 			excludeInGroup: true,
 			subgroup: getMergeSubgroups('Hợp nhất'),
 		},
 		{
 			tag: 'Hợp nhất từ',
-			description:
-				'{{Merge from}} -- một bài viết khác nên được hợp nhất vào bài này',
+			description: 'Một bài viết khác nên được hợp nhất vào bài này',
 			excludeInGroup: true,
 			dupeAllowed: true,
 			subgroup: getMergeSubgroups('Hợp nhất từ'),
 		},
 		{
 			tag: 'Hợp nhất đến',
-			description:
-				'{{Merge to}} -- yêu cầu hợp nhất bài này vào một bài khác',
+			description: 'Yêu cầu hợp nhất bài này vào một bài khác',
 			excludeInGroup: true,
 			subgroup: getMergeSubgroups('Hợp nhất đến'),
 		},
@@ -748,18 +721,16 @@ const articleTagList: tagListType = {
 	'Thông tin': [
 		{
 			tag: 'Đang tạo bài',
-			description: '{{Đang tạo bài}} -- đang tạo bài mới',
+			description: 'Đang tạo bài mới',
 		},
 		{
 			tag: 'Đang sửa đổi',
-			description:
-				'{{In use}} -- đang trải qua một sửa đổi lớn trong thời gian ngắn',
+			description: 'Đang trải qua một sửa đổi lớn trong thời gian ngắn',
 			excludeInGroup: true,
 		},
 		{
 			tag: 'Đang viết',
-			description:
-				'{{Under construction}} -- đang trong quá trình mở rộng hoặc đại tu',
+			description: 'Đang trong quá trình mở rộng hoặc đại tu',
 			excludeInGroup: true,
 		},
 	],
