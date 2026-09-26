@@ -308,6 +308,7 @@ const articleTagList: tagListType = {
 				tag: 'Diễn giải gần giống nội dung bản quyền',
 				description:
 					'{{Close paraphrasing}} -- chứa các diễn giải gần giống nguồn có bản quyền',
+				description: 'Chứa các diễn giải gần giống nguồn có bản quyền',
 				subgroup: {
 					name: 'closeParaphrasing',
 					parameter: 'source',
