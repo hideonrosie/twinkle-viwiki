@@ -284,6 +284,19 @@ const articleTagList: tagListType = {
 				description: 'Cần được viết lại hoàn toàn để tuân thủ theo các tiêu chuẩn chất lượng của Wikipedia',
 			},
 			{
+				tag: 'Chất lượng kém',
+				description: 'Bài viết có chất lượng kém',
+				subgroup: {
+					name: 'cleanup',
+					parameter: 'lý do',
+					type: 'input',
+					label: 'Nêu lý do bài viết có chất lượng kém: ',
+					tooltip: 'Bắt buộc phải có.',
+					size: 35,
+					required: true,
+				},
+			},
+			{
 				tag: 'Biên tập',
 				description: 'Sửa các lỗi ngữ pháp, chính tả, tính mạch lạc, trau chuốt hành văn tiếng Việt',
 				subgroup: {
