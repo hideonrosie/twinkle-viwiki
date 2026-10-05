@@ -91,7 +91,8 @@ export class Block extends BlockCore {
 			expiry: '1 month',
 			disabletalk: true,
 			nocreate: true,
-			reason: '{{spamblacklistblock}} <!-- cố gắng thêm vào liên kết bị chặn [[Special:Log/spamblacklist]] -->',
+			reason:
+				'{{spamblacklistblock}} <!-- cố gắng thêm vào liên kết bị chặn [[Special:Log/spamblacklist]] -->',
 		},
 		'tor': {
 			expiry: '1 year',
@@ -136,7 +137,8 @@ export class Block extends BlockCore {
 			autoblock: true,
 			nocreate: true,
 			pageParam: true,
-			reason: 'Sử dụng Wikipedia với mục đích [[Wikipedia:Spam|spam]] hoặc [[WP:KHONGQUANGCAO|quảng cáo]]',
+			reason:
+				'Sử dụng Wikipedia với mục đích [[Wikipedia:Spam|spam]] hoặc [[WP:KHONGQUANGCAO|quảng cáo]]',
 			summary: 'Bạn đã bị cấm sửa đổi vì lạm dụng quyền sửa đổi để [[WP:SOAP|spam hoặc quảng cáo]]',
 		},
 		'uw-bioblock': {
@@ -144,7 +146,8 @@ export class Block extends BlockCore {
 			nocreate: true,
 			pageParam: true,
 			reason: 'Vi phạm quy định [[Wikipedia:Tiểu sử người đang sống|tiểu sử người đang sống]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì vi phạm quy định về [[Wikipedia:Tiểu sử người đang sống|tiểu sử người đang sống]] của Wikipedia',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì vi phạm quy định về [[Wikipedia:Tiểu sử người đang sống|tiểu sử người đang sống]] của Wikipedia',
 		},
 		'uw-block': {
 			autoblock: true,
@@ -170,20 +173,23 @@ export class Block extends BlockCore {
 			disabletalk: true,
 			pageParam: true,
 			reasonParam: true,
-			summary: 'Bạn đã bị cấm sửa đổi tại Wikipedia tiếng Việt; đồng thời quyền sửa đổi trang thảo luận thành viên của bạn đã bị thu hồi',
+			summary:
+				'Bạn đã bị cấm sửa đổi tại Wikipedia tiếng Việt; đồng thời quyền sửa đổi trang thảo luận thành viên của bạn đã bị thu hồi',
 			suppressArticleInSummary: true,
 		},
 		'uw-botblock': {
 			forRegisteredOnly: true,
 			pageParam: true,
 			reason: 'Vận hành [[WP:BOT|tập lệnh bot]] [[WP:BOT/YCCQ|chưa được cấp phép]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì có vẻ như bạn đang vận hành một [[WP:BOT|tập lệnh bot]] mà không có [[WP:BRFA|sự phê duyệt]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì có vẻ như bạn đang vận hành một [[WP:BOT|tập lệnh bot]] mà không có [[WP:BRFA|sự phê duyệt]]',
 		},
 		'uw-botublock': {
 			expiry: 'infinity',
 			forRegisteredOnly: true,
 			reason: '{{cb-cấm-tên bot}} <!-- Tên người dùng bot, cấm mềm -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] chỉ ra đây là một tài khoản [[WP:BOT|bot]] chưa được chấp thuận để sửa đổi',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] chỉ ra đây là một tài khoản [[WP:BOT|bot]] chưa được chấp thuận để sửa đổi',
 		},
 		'uw-botuhblock': {
 			autoblock: true,
@@ -191,13 +197,15 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: '{{cb-cấm-tên bot-vp rõ}} <!-- Tên người dùng bot và tài khoản chỉ phá hoại -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]].',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]].',
 		},
 		'uw-causeblock': {
 			expiry: 'infinity',
 			forRegisteredOnly: true,
 			reason: '{{uw-causeblock}} <!-- Tên người dùng đại diện cho tổ chức -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] cho thấy rằng tài khoản đại diện cho một tổ chức, một nhóm người hoặc một trang web cụ thể',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] cho thấy rằng tài khoản đại diện cho một tổ chức, một nhóm người hoặc một trang web cụ thể',
 		},
 		'uw-compblock': {
 			autoblock: true,
@@ -205,7 +213,8 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: '[[WP:BMTK|Tài khoản bị xâm nhập]]',
-			summary: 'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì có dấu hiệu bị [[WP:BMTK|xâm nhập trái phép]]',
+			summary:
+				'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì có dấu hiệu bị [[WP:BMTK|xâm nhập trái phép]]',
 		},
 		'uw-copyrightblock': {
 			autoblock: true,
@@ -232,7 +241,8 @@ export class Block extends BlockCore {
 			autoblock: true,
 			nocreate: true,
 			reason: 'Liên tục kích hoạt [[WP:Bộ lọc sai phạm|bộ lọc sai phạm]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì liên tục sửa đổi gây hại gây kích hoạt [[WP:Bộ lọc sai phạm|bộ lọc sai phạm]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì liên tục sửa đổi gây hại gây kích hoạt [[WP:Bộ lọc sai phạm|bộ lọc sai phạm]]',
 		},
 		'uw-ewblock': {
 			autoblock: true,
@@ -240,20 +250,23 @@ export class Block extends BlockCore {
 			nocreate: true,
 			pageParam: true,
 			reason: '[[WP:Bút chiến|Bút chiến]]',
-			summary: 'Bạn đã bị cấm sửa đổi để ngăn ngừa [[WP:Sửa đổi gây hại|tác hại]] do việc bạn có dính líu đến [[WP:Bút chiến|bút chiến]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi để ngăn ngừa [[WP:Sửa đổi gây hại|tác hại]] do việc bạn có dính líu đến [[WP:Bút chiến|bút chiến]]',
 		},
 		'uw-hblock': {
 			autoblock: true,
 			nocreate: true,
 			pageParam: true,
 			reason: '[[WP:TCCN|Tấn công cá nhân]] hoặc [[WP:Quấy rối|quấy rối]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì đã cố gắng tấn công cá nhân hoặc [[WP:Quấy rối|quấy rối]] thành viên khác',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì đã cố gắng tấn công cá nhân hoặc [[WP:Quấy rối|quấy rối]] thành viên khác',
 		},
 		'uw-ipevadeblock': {
 			forAnonOnly: true,
 			nocreate: true,
 			reason: '[[WP:Quy định cấm thành viên#Lách lệnh cấm|Lách lệnh cấm]]',
-			summary: 'Địa chỉ IP này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
+			summary:
+				'Địa chỉ IP này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
 		},
 		'uw-tempevadeblock': {
 			autoblock: true,
@@ -261,7 +274,8 @@ export class Block extends BlockCore {
 			forTempAccountsOnly: true,
 			nocreate: true,
 			reason: '[[WP:Quy định cấm thành viên#Thoái thác cấm|Lách lệnh cấm]]',
-			summary: 'Tài khoản tạm thời này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
+			summary:
+				'Tài khoản tạm thời này đã bị cấm sửa đổi vì nó được dùng để [[WP:Quy định cấm thành viên#Lách lệnh cấm|lách lệnh cấm trước đó]]',
 		},
 		'uw-lblock': {
 			autoblock: true,
@@ -276,21 +290,24 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: 'Rõ ràng [[WP:KHONGODAY|không ở đây để xây dựng bách khoa toàn thư]]',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì có vẻ như bạn [[WP:KHONGODAY|không hề ở đây để xây dựng bách khoa toàn thư]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì có vẻ như bạn [[WP:KHONGODAY|không hề ở đây để xây dựng bách khoa toàn thư]]',
 		},
 		'uw-npblock': {
 			autoblock: true,
 			nocreate: true,
 			pageParam: true,
 			reason: 'Tạo các trang [[WP:VONGHIA|vô nghĩa]] hoặc không phù hợp',
-			summary: 'Bạn đã bị cấm sửa đổi vì tạo nhiều [[WP:VONGHIA|trang vô nghĩa]] hoặc không phù hợp',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì tạo nhiều [[WP:VONGHIA|trang vô nghĩa]] hoặc không phù hợp',
 		},
 		'uw-pablock': {
 			autoblock: true,
 			expiry: '31 hours',
 			nocreate: true,
 			reason: '[[WP:KCKCN|Tấn công cá nhân]] hoặc [[WP:Quấy rối|quấy rối]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì có hành vi [[WP:KCKCN|tấn công cá nhân]] biên tập viên khác',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì có hành vi [[WP:KCKCN|tấn công cá nhân]] biên tập viên khác',
 		},
 		'uw-sblock': {
 			autoblock: true,
@@ -305,14 +322,17 @@ export class Block extends BlockCore {
 			nocreate: true,
 			pageParam: true,
 			reason: 'Tài khoản chỉ dùng để đăng [[WP:Spam|spam]] hoặc [[WP:KHONGQUANGCAO|quảng cáo]]',
-			summary: 'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì nó được tạo ra chỉ dùng để [[WP:SPAM|spam, quảng cáo hoặc quảng bá]]',
+			summary:
+				'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì nó được tạo ra chỉ dùng để [[WP:SPAM|spam, quảng cáo hoặc quảng bá]]',
 		},
 		'uw-socialmediablock': {
 			autoblock: true,
 			nocreate: true,
 			pageParam: true,
-			reason: 'Sử dụng Wikipedia như một [[WP:KHONGMAYCHUWEB|blog, web cá nhân, mạng xã hội hoặc diễn đàn]]',
-			summary: 'Bạn đã bị cấm sửa đổi vì sử dụng trang bài viết hoặc trang thành viên như một [[WP:KHONGMAYCHUWEB|blog, web cá nhân, mạng xã hội hoặc diễn đàn]]',
+			reason:
+				'Sử dụng Wikipedia như một [[WP:KHONGMAYCHUWEB|blog, web cá nhân, mạng xã hội hoặc diễn đàn]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì sử dụng trang bài viết hoặc trang thành viên như một [[WP:KHONGMAYCHUWEB|blog, web cá nhân, mạng xã hội hoặc diễn đàn]]',
 		},
 		'uw-sockblock': {
 			autoblock: true,
@@ -325,7 +345,8 @@ export class Block extends BlockCore {
 			expiry: 'infinity',
 			forRegisteredOnly: true,
 			reason: '{{uw-softerblock}} <!-- Tên người dùng quảng cáo, cấm mềm -->',
-			summary: 'Bạn đã bị cấm sửa đổi vì [[WP:TND|tên người dùng của bạn]] thể hiện việc tài khoản này đại diện cho một tổ chức hoặc trang web',
+			summary:
+				'Bạn đã bị cấm sửa đổi vì [[WP:TND|tên người dùng của bạn]] thể hiện việc tài khoản này đại diện cho một tổ chức hoặc trang web',
 		},
 		'uw-spamublock': {
 			autoblock: true,
@@ -333,7 +354,8 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: '{{uw-spamublock}} <!-- Tên người dùng và sửa đổi quảng cáo -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì tài khoản chỉ dùng để [[WP:SPAM|spam hoặc quảng cáo]]; đồng thời tên người dùng của bạn cũng vi phạm [[WP:TND|quy định về tên người dùng]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì tài khoản chỉ dùng để [[WP:SPAM|spam hoặc quảng cáo]]; đồng thời tên người dùng của bạn cũng vi phạm [[WP:TND|quy định về tên người dùng]]',
 		},
 		'uw-sockblock2': {
 			autoblock: true,
@@ -342,7 +364,8 @@ export class Block extends BlockCore {
 			nocreate: true,
 			reason: '[[Wikipedia:Tài khoản con rối|Con rối]] của thành viên bị cấm',
 			sig: '~~~~',
-			summary: 'Tài khoản này đã bị cấm vì là [[WP:CONROI|tài khoản con rối]] được tạo ra để vi phạm các quy định của Wikipedia. Nếu bạn tin rằng lệnh cấm này là không đúng, vui lòng làm theo hướng dẫn trên thông báo cấm',
+			summary:
+				'Tài khoản này đã bị cấm vì là [[WP:CONROI|tài khoản con rối]] được tạo ra để vi phạm các quy định của Wikipedia. Nếu bạn tin rằng lệnh cấm này là không đúng, vui lòng làm theo hướng dẫn trên thông báo cấm',
 		},
 		'uw-spoablock': {
 			autoblock: true,
@@ -350,7 +373,8 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: '[[WP:CONROI|Tài khoản con rối]]',
-			summary: 'Tài khoản này đã bị cấm vì là [[WP:CONROI|tài khoản con rối]] được tạo ra để vi phạm các quy định của Wikipedia',
+			summary:
+				'Tài khoản này đã bị cấm vì là [[WP:CONROI|tài khoản con rối]] được tạo ra để vi phạm các quy định của Wikipedia',
 		},
 		'uw-talkrevoked': {
 			disabletalk: true,
@@ -364,13 +388,15 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			reason: '{{uw-ublock}} <!-- Tên người dùng vi phạm quy định -->',
 			reasonParam: true,
-			summary: 'Tài khoản của bạn đã bị cấm sửa đổi vì vi phạm [[WP:TND|quy định về tên người dùng]]',
+			summary:
+				'Tài khoản của bạn đã bị cấm sửa đổi vì vi phạm [[WP:TND|quy định về tên người dùng]]',
 		},
 		'uw-ublock-double': {
 			expiry: 'infinity',
 			forRegisteredOnly: true,
 			reason: '{{uw-ublock-double}} <!-- Tên người dùng gây nhầm lẫn với thành viên khác -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] quá giống với thành viên khác',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] quá giống với thành viên khác',
 		},
 		'uw-ucblock': {
 			autoblock: true,
@@ -387,13 +413,15 @@ export class Block extends BlockCore {
 			nocreate: true,
 			reason: '{{uw-uhblock}} <!-- Tên người dùng vi phạm quy định trắng trợn -->',
 			reasonParam: true,
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]]',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]]',
 		},
 		'uw-ublock-wellknown': {
 			expiry: 'infinity',
 			forRegisteredOnly: true,
 			reason: '{{uw-ublock-wellknown}} <!-- Tên người dùng trùng với tên người nổi bật -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] trùng với tên của một người nổi bật còn sống',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] trùng với tên của một người nổi bật còn sống',
 		},
 		'uw-uhblock-double': {
 			autoblock: true,
@@ -401,7 +429,8 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			reason: '{{uw-uhblock-double}} <!-- Tên người dùng mạo danh biên tập viên Wikipedia khác -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] có dấu hiệu mạo danh biên tập viên Wikipedia khác',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì [[WP:TND|tên người dùng]] có dấu hiệu mạo danh biên tập viên Wikipedia khác',
 		},
 		'uw-upeblock': {
 			autoblock: true,
@@ -409,8 +438,10 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			pageParam: true,
-			reason: '[[WP:PAID|Không công bố sửa đổi nhận thù lao]], vi phạm [[foundation:ToU|Điều khoản Sử dụng]] của WMF',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì đã vi phạm [[WP:PAID|quy định của Wikipedia về đóng góp được trả thù lao không công bố]]',
+			reason:
+				'[[WP:PAID|Không công bố sửa đổi nhận thù lao]], vi phạm [[foundation:ToU|Điều khoản Sử dụng]] của WMF',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì đã vi phạm [[WP:PAID|quy định của Wikipedia về đóng góp được trả thù lao không công bố]]',
 		},
 		'uw-vaublock': {
 			autoblock: true,
@@ -418,8 +449,10 @@ export class Block extends BlockCore {
 			forRegisteredOnly: true,
 			nocreate: true,
 			pageParam: true,
-			reason: '{{uw-vaublock}} <!-- Tên người dùng vi phạm quy định và tài khoản rõ ràng chỉ để phá hoại -->',
-			summary: 'Bạn đã bị cấm sửa đổi vô thời hạn vì tài khoản chỉ để phá hoại và vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]]',
+			reason:
+				'{{uw-vaublock}} <!-- Tên người dùng vi phạm quy định và tài khoản rõ ràng chỉ để phá hoại -->',
+			summary:
+				'Bạn đã bị cấm sửa đổi vô thời hạn vì tài khoản chỉ để phá hoại và vi phạm trắng trợn [[WP:TND|quy định về tên người dùng]]',
 		},
 		'uw-vblock': {
 			autoblock: true,
@@ -436,7 +469,8 @@ export class Block extends BlockCore {
 			nocreate: true,
 			pageParam: true,
 			reason: 'Tài khoản chỉ dùng để [[WP:VAND|phá hoại]]',
-			summary: 'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì nó chỉ được dùng để [[WP:VAND|phá hoại]]',
+			summary:
+				'Tài khoản này đã bị cấm sửa đổi vô thời hạn vì nó chỉ được dùng để [[WP:VAND|phá hoại]]',
 			sig: '~~~~',
 		},
 		'zombie proxy': {
@@ -455,7 +489,8 @@ export class Block extends BlockCore {
 			pageParam: false,
 			reasonParam: true,
 			reason: 'Sử dụng sai mục đích [[WP:CONROI|các tài khoản phụ]]',
-			summary: 'Bạn đã bị [[WP:CBP|cấm tạo tài khoản mới]] vì sử dụng sai mục đích [[WP:SOCK|các tài khoản phụ]]',
+			summary:
+				'Bạn đã bị [[WP:CBP|cấm tạo tài khoản mới]] vì sử dụng sai mục đích [[WP:SOCK|các tài khoản phụ]]',
 		},
 		'uw-acpblockindef': {
 			autoblock: true,
@@ -465,7 +500,8 @@ export class Block extends BlockCore {
 			pageParam: false,
 			reasonParam: true,
 			reason: 'Sử dụng sai mục đích [[WP:CONROI|các tài khoản phụ]]',
-			summary: 'Bạn đã bị [[WP:CBP|cấm tạo tài khoản mới]] vô thời hạn vì sử dụng sai mục đích [[WP:SOCK|các tài khoản phụ]]',
+			summary:
+				'Bạn đã bị [[WP:CBP|cấm tạo tài khoản mới]] vô thời hạn vì sử dụng sai mục đích [[WP:SOCK|các tài khoản phụ]]',
 		},
 		'uw-epblock': {
 			autoblock: true,
@@ -476,7 +512,8 @@ export class Block extends BlockCore {
 			pageParam: false,
 			reasonParam: true,
 			reason: '[[WP:Quấy rối|Quấy rối]] qua thư điện tử',
-			summary: 'Bạn đã bị [[WP:CBP|cấm gửi thư điện tử]] đến thành viên khác vì có hành vi [[WP:Quấy rối|quấy rối]]',
+			summary:
+				'Bạn đã bị [[WP:CBP|cấm gửi thư điện tử]] đến thành viên khác vì có hành vi [[WP:Quấy rối|quấy rối]]',
 		},
 		'uw-ewpblock': {
 			autoblock: true,
@@ -485,7 +522,8 @@ export class Block extends BlockCore {
 			pageParam: false,
 			reasonParam: true,
 			reason: '[[WP:Bút chiến|Bút chiến]]',
-			summary: 'Bạn đã bị [[WP:CBP|cấm sửa đổi tại một số khu vực]] của Wikipedia vì có hành vi [[WP:Bút chiến|bút chiến]]',
+			summary:
+				'Bạn đã bị [[WP:CBP|cấm sửa đổi tại một số khu vực]] của Wikipedia vì có hành vi [[WP:Bút chiến|bút chiến]]',
 		},
 		'uw-pblock': {
 			autoblock: true,
@@ -519,8 +557,7 @@ export class Block extends BlockCore {
 				{ label: 'Cấm trường học', value: 'school block' },
 				{ label: 'Cấm chung (lý do tùy chỉnh)', value: 'uw-block' },
 				{
-					label:
-						'Cấm chung (lý do tùy chỉnh) - IP (chú ý: không thêm bản mẫu vào trang thảo luận)',
+					label: 'Cấm chung (lý do tùy chỉnh) - IP (chú ý: không thêm bản mẫu vào trang thảo luận)',
 					value: 'uw-ablock',
 					selected: true,
 				},
@@ -534,8 +571,7 @@ export class Block extends BlockCore {
 					value: 'uw-talkrevoked',
 				},
 				{
-					label:
-						'Không phải ở đây để xây dựng một bách khoa toàn thư',
+					label: 'Không phải ở đây để xây dựng một bách khoa toàn thư',
 					value: 'uw-nothereblock',
 				},
 				{ label: 'Thêm vào nội dung không nguồn', value: 'uw-ucblock' },
@@ -548,15 +584,15 @@ export class Block extends BlockCore {
 			list: [
 				{
 					label: 'Quảng cáo hoặc spam',
-					value: 'uw-adblock'
+					value: 'uw-adblock',
 				},
 				{
 					label: 'Địa chỉ IP được sử dụng để lách lệnh cấm',
-					value: 'uw-ipevadeblock'
+					value: 'uw-ipevadeblock',
 				},
 				{
 					label: 'Tài khoản tạm thời được sử dụng để lách lệnh cấm',
-					value: 'uw-tempevadeblock'
+					value: 'uw-tempevadeblock',
 				},
 				{
 					label: 'Vi phạm quy định về tiêu sử người đang sống',
@@ -564,11 +600,11 @@ export class Block extends BlockCore {
 				},
 				{
 					label: 'Vi phạm bản quyền',
-					value: 'uw-copyrightblock'
+					value: 'uw-copyrightblock',
 				},
 				{
 					label: 'Tạo các trang vô nghĩa',
-					value: 'uw-npblock'
+					value: 'uw-npblock',
 				},
 				{
 					label: 'Liên tục thực hiện sửa đổi gây kích hoạt bộ lọc',
@@ -576,7 +612,7 @@ export class Block extends BlockCore {
 				},
 				{
 					label: 'Bút chiến',
-					value: 'uw-ewblock'
+					value: 'uw-ewblock',
 				},
 				{
 					label: 'Cấm và thu hồi quyền sửa đổi trang thảo luận',
@@ -584,7 +620,7 @@ export class Block extends BlockCore {
 				},
 				{
 					label: 'Quấy rối',
-					value: 'uw-hblock'
+					value: 'uw-hblock',
 				},
 				{
 					label: 'Đe dọa can thiệp pháp lý',
@@ -603,15 +639,15 @@ export class Block extends BlockCore {
 					value: 'uw-dblock',
 				},
 				{
-					label: 'Tài khoản con rối của thành viên bị cấm (mới)',
+					label: 'Người điều khiển rối / Lạm dụng nhiều tài khoản',
+					value: 'uw-sockblock',
+				},
+				{
+					label: 'Tài khoản con rối (nghi ngờ là rối / qua nhận dạng vịt)',
 					value: 'uw-sockblock2',
 				},
 				{
-					label: 'Con rối (chủ rối)',
-					value: 'uw-sockblock'
-				},
-				{
-					label: 'Con rối (tài khoản rối) (phiên bản cũ)',
+					label: 'Tài khoản con rối (rõ ràng là rối / qua kiểm định tài khoản)',
 					value: 'uw-spoablock',
 				},
 				{
@@ -676,18 +712,15 @@ export class Block extends BlockCore {
 					value: 'uw-uhblock-double',
 				},
 				{
-					label:
-						'Tên người dùng đại diện cho một người nổi tiếng, cấm mềm',
+					label: 'Tên người dùng đại diện cho một người nổi tiếng, cấm mềm',
 					value: 'uw-ublock-wellknown',
 				},
 				{
-					label:
-						'Tên người dùng đại diện cho một tổ chức phi lợi nhuận, cấm mềm',
+					label: 'Tên người dùng đại diện cho một tổ chức phi lợi nhuận, cấm mềm',
 					value: 'uw-causeblock',
 				},
 				{
-					label:
-						'Vi phạm tên người dùng, tài khoản chỉ phá hoại',
+					label: 'Vi phạm tên người dùng, tài khoản chỉ phá hoại',
 					value: 'uw-vaublock',
 				},
 			],
@@ -697,7 +730,7 @@ export class Block extends BlockCore {
 			list: [
 				{
 					label: 'Cấm proxy',
-					value: 'blocked proxy'
+					value: 'blocked proxy',
 				},
 				{
 					label: 'Cấm theo kết quả kiểm định - KĐV tự cấm',
@@ -716,7 +749,8 @@ export class Block extends BlockCore {
 					value: 'colocationwebhost',
 				},
 				{
-					label: 'Tác vụ cấm này do giám sát viên thực hiện - nếu không phải GSV vui lòng không sử dụng',
+					label:
+						'Tác vụ cấm này do giám sát viên thực hiện - nếu không phải GSV vui lòng không sử dụng',
 					value: 'oversightblock',
 				},
 				{
@@ -725,15 +759,15 @@ export class Block extends BlockCore {
 				},
 				{
 					label: 'Nút thoát tor',
-					value: 'tor'
+					value: 'tor',
 				},
 				{
 					label: 'Máy chủ web',
-					value: 'webhostblock'
+					value: 'webhostblock',
 				},
 				{
 					label: 'Proxy hoặc máy tính ma',
-					value: 'zombie proxy'
+					value: 'zombie proxy',
 				},
 			],
 		},
@@ -754,7 +788,7 @@ export class Block extends BlockCore {
 				},
 				{
 					label: 'Bút chiến',
-					value: 'uw-ewpblock'
+					value: 'uw-ewpblock',
 				},
 			],
 		},
@@ -770,8 +804,7 @@ export class Block extends BlockCore {
 					value: 'uw-acpblock',
 				},
 				{
-					label:
-						'Sử dụng các tài khoản phụ sai mục đích - vô thời hạn',
+					label: 'Sử dụng các tài khoản phụ sai mục đích - vô thời hạn',
 					value: 'uw-acpblockindef',
 				},
 			],
@@ -787,20 +820,13 @@ export class Block extends BlockCore {
 	toggle_see_alsos(e: QuickFormEvent) {
 		const checkbox = e.target;
 		const form = checkbox.form!;
-		const seeAlsos = this.seeAlsos as unknown as string[];
+		const seeAlsos = (this.seeAlsos as unknown) as string[];
 		const reason = form.reason.value.replace(
-			new RegExp(
-				'( <!--|;) ' +
-				'xem thêm ' +
-				seeAlsos.join(' và ') +
-				'( -->)?'
-			),
+			new RegExp('( <!--|;) ' + 'xem thêm ' + seeAlsos.join(' và ') + '( -->)?'),
 			''
 		);
 
-		seeAlsos.splice(0, seeAlsos.length, ...seeAlsos.filter(
-			(el) => el !== checkbox.value
-		));
+		seeAlsos.splice(0, seeAlsos.length, ...seeAlsos.filter((el) => el !== checkbox.value));
 
 		if (checkbox.checked) {
 			seeAlsos.push(checkbox.value);
@@ -811,11 +837,9 @@ export class Block extends BlockCore {
 		if (!seeAlsos.length) {
 			form.reason.value = reason;
 		} else if (reason.indexOf('{{') !== -1) {
-			form.reason.value =
-				reason + ' <!-- xem thêm ' + seeAlsoMessage + ' -->';
+			form.reason.value = reason + ' <!-- xem thêm ' + seeAlsoMessage + ' -->';
 		} else {
-			form.reason.value =
-				reason + '; xem ' + seeAlsoMessage;
+			form.reason.value = reason + '; xem ' + seeAlsoMessage;
 		}
 	}
 
@@ -847,10 +871,7 @@ export class Block extends BlockCore {
 			if (!/te?mp|^\s*$|min/.test(params.expiry)) {
 				if (params.indefinite) {
 					text += '|indef=yes';
-				} else if (
-					!params.blank_duration &&
-					!new Morebits.date(params.expiry).isValid()
-				) {
+				} else if (!params.blank_duration && !new Morebits.date(params.expiry).isValid()) {
 					let translatedExpiry = String(params.expiry)
 						.replace(/seconds?/i, 'giây')
 						.replace(/minutes?/i, 'phút')
@@ -882,9 +903,7 @@ export class Block extends BlockCore {
 					if (params.pagerestrictions.length) {
 						text +=
 							'pages (' +
-							mw.language.listToText(
-								params.pagerestrictions.map((p: string) => '[[:' + p + ']]')
-							);
+							mw.language.listToText(params.pagerestrictions.map((p: string) => '[[:' + p + ']]'));
 
 						text += params.namespacerestrictions.length ? ') và certain ' : ')';
 					}

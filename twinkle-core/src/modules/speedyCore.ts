@@ -57,9 +57,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 	portletName = 'Xóa nhanh';
 	portletId = 'twinkle-csd';
-	portletTooltip = (Morebits.userIsSysop || Morebits.userIsInGroup('eliminator'))
-		? 'Xóa nhanh trang này theo WP:XN'
-		: 'Đề xuất xóa nhanh trang này theo WP:XN';
+	portletTooltip =
+		Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')
+			? 'Xóa nhanh trang này theo WP:XN'
+			: 'Đề xuất xóa nhanh trang này theo WP:XN';
 	windowTitle = 'Chọn tiêu chí xóa nhanh';
 
 	constructor() {
@@ -86,7 +87,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 				type: 'checkbox',
 				list: [
 					{
-						label: "Chỉ gán thẻ, không xóa",
+						label: 'Chỉ gán thẻ, không xóa',
 						value: 'tag_only',
 						name: 'tag_only',
 						tooltip: 'Chỉ gán thẻ xóa nhanh, không xóa trang',
@@ -140,7 +141,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 							value: 'deleteTalkPage',
 							name: 'deleteTalkPage',
 							tooltip:
-								"Xóa thêm trang thảo luận. Lựa chọn này sẽ bị bỏ qua nếu bạn chọn tiêu chí TT8 (đã chuyển sang Wikimedia Commons).",
+								'Xóa thêm trang thảo luận. Lựa chọn này sẽ bị bỏ qua nếu bạn chọn tiêu chí TT8 (đã chuyển sang Wikimedia Commons).',
 							checked: getPref('deleteTalkPageOnDelete'),
 							event: (event) => event.stopPropagation(),
 						},
@@ -203,9 +204,10 @@ export abstract class SpeedyCore extends TwinkleModule {
 					label: 'Thông báo cho người tạo trang nếu có thể',
 					value: 'notify',
 					name: 'notify',
-					tooltip:
-						'Thông báo sẽ được gửi đến người tạo trang nếu bạn kích hoạt chức năng này',
-					checked: !(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) || !(this.hasCSD || getPref('deleteSysopDefaultToDelete')),
+					tooltip: 'Thông báo sẽ được gửi đến người tạo trang nếu bạn kích hoạt chức năng này',
+					checked:
+						!(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')) ||
+						!(this.hasCSD || getPref('deleteSysopDefaultToDelete')),
 					event: (event) => event.stopPropagation(),
 				},
 				{
@@ -220,8 +222,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 					label: 'Đánh dấu với nhiều tiêu chí',
 					value: 'multiple',
 					name: 'multiple',
-					tooltip:
-						'Khi được chọn, bạn có thể chọn nhiều tiêu chí áp dụng cho trang. ',
+					tooltip: 'Khi được chọn, bạn có thể chọn nhiều tiêu chí áp dụng cho trang. ',
 					event: (event) => {
 						this.modeChanged(event.target.form);
 						event.stopPropagation();
@@ -274,7 +275,6 @@ export abstract class SpeedyCore extends TwinkleModule {
 			if (delCount) {
 				let message = 'Trang này đã từng bị xóa ' + delCount + ' lần trước đó';
 				if (delCount > 1) {
-					message += 's';
 					if (response.continue) {
 						message = 'Hơn ' + message;
 					}
@@ -544,7 +544,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		this.preprocessParamInputs();
 	}
 
-	preprocessParamInputs() { }
+	preprocessParamInputs() {}
 
 	/**
 	 * Creates this.params.templateParams, an array of objects each object
@@ -630,7 +630,13 @@ export abstract class SpeedyCore extends TwinkleModule {
 				notifytext += '|' + (idx + 2) + '=' + norm.toUpperCase();
 			});
 		} else if (params.normalizeds[0] === 'db') {
-			notifytext = '\n{{subst:db-reason-' + (params.warnUser ? 'deleted' : 'notice') + '|1=' + Morebits.pageNameNorm;
+			notifytext =
+				'\n{{subst:db-reason-' +
+				(params.warnUser ? 'deleted' : 'notice') +
+				'|1=' +
+				Morebits.pageNameNorm +
+				'|2=' +
+				params.templateParams[0]['1'];
 		} else {
 			notifytext = '\n{{subst:db-csd-' + (params.warnUser ? 'deleted' : 'notice') + '-custom|1=';
 			// Get rid of this by tweaking the template!
@@ -676,7 +682,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			let statelem = pageobj.getStatusElement();
 
 			if (!pageobj.exists()) {
-				statelem.error("Trang không tồn tại, có vẻ nó đã bị xóa");
+				statelem.error('Trang không tồn tại, có vẻ nó đã bị xóa');
 				return $.Deferred().reject();
 			}
 
@@ -689,11 +695,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 			// This won't make use of the db-multiple template but it probably should
 			if (
 				tag &&
-				!confirm(
-					'Trang này đã có thẻ xóa nhanh {{' +
-					tag[1] +
-					'}}. Bạn có muốn thêm một thẻ xóa nhanh khác?'
-				)
+				!confirm('Trang này đã có thẻ xóa nhanh {{' + tag[1] + '}}. Bạn có muốn thêm một thẻ xóa nhanh khác?')
 			) {
 				return $.Deferred().reject();
 			}
@@ -703,14 +705,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 				/\{\{((?:article for deletion|proposed deletion|prod blp|template for discussion)\/dated|[cfm]fd\b)/i.exec(
 					text
 				) || /#invoke:(RfD)/.exec(text);
-			if (
-				xfd &&
-				!confirm(
-					'Trang này đã có một thẻ xóa {{' +
-					xfd[1] +
-					'}}. Bạn có muốn thêm thẻ xóa nhanh?'
-				)
-			) {
+			if (xfd && !confirm('Trang này đã có một thẻ xóa {{' + xfd[1] + '}}. Bạn có muốn thêm thẻ xóa nhanh?')) {
 				return $.Deferred().reject();
 			}
 
@@ -839,18 +834,12 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 			// don't notify users when their user talk page is nominated/deleted
 		} else if (initialContrib === mw.config.get('wgTitle') && mw.config.get('wgNamespaceNumber') === 3) {
-			Morebits.status.warn(
-				'Ghi chú',
-				'Người tạo là người tạo trang của chính họ, bỏ qua thông báo'
-			);
+			Morebits.status.warn('Ghi chú', 'Người tạo là người tạo trang của chính họ, bỏ qua thông báo');
 			initialContrib = null;
 
 			// quick hack to prevent excessive unwanted notifications, per request. Should actually be configurable on recipient page...
 		} else if (initialContrib === 'SongVĩ.Bot' && params.normalizeds[0] === 'f2') {
-			Morebits.status.warn(
-				'Ghi chú',
-				'Người tạo là bot, bỏ qua thông báo'
-			);
+			Morebits.status.warn('Ghi chú', 'Người tạo là bot, bỏ qua thông báo');
 			initialContrib = null;
 
 			// Check for already existing tags
@@ -920,11 +909,8 @@ export abstract class SpeedyCore extends TwinkleModule {
 
 	parseDeletionReason() {
 		let params = this.params;
-		if (!params.normalizeds.length && params.normalizeds[0] === 'db') {
-			params.deleteReason = prompt(
-				'Nhập lý do xóa để ghi vào nhật trình xóa:',
-				''
-			);
+		if (params.normalizeds.length === 1 && params.normalizeds[0] === 'db') {
+			params.deleteReason = prompt('Nhập lý do xóa để ghi vào nhật trình xóa:', params.templateParams[0]['1']);
 			return $.Deferred().resolve();
 		} else {
 			let code = this.getTaggingCode();
@@ -951,7 +937,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 		} else if (!params.deleteReason || !params.deleteReason.trim()) {
 			Morebits.status.error(
 				'Đang hỏi lý do',
-				"Bạn chưa cung cấp lý do. Tôi không biết... với những hành động thờ ơ của quản trị viên... Tôi bỏ cuộc..."
+				'Bạn chưa cung cấp lý do. Tôi không biết... với những hành động thờ ơ của quản trị viên... Tôi bỏ cuộc...'
 			);
 			return $.Deferred().reject();
 		}
@@ -1021,7 +1007,11 @@ export abstract class SpeedyCore extends TwinkleModule {
 				snapshot.forEach(function (value) {
 					let title = value.title;
 					let page = new Page(title, 'Đang xóa trang đổi hướng "' + title + '"');
-					page.setEditSummary('[[WP:XN#C8|C8]]: [[Wikipedia:Trang đổi hướng|Trang đổi hướng]] đến trang đã bị xóa "' + Morebits.pageNameNorm + '"');
+					page.setEditSummary(
+						'[[WP:XN#C8|C8]]: [[Wikipedia:Trang đổi hướng|Trang đổi hướng]] đến trang đã bị xóa "' +
+							Morebits.pageNameNorm +
+							'"'
+					);
 					page.setChangeTags(Twinkle.changeTags);
 					page.deletePage().then(onsuccess);
 				});
@@ -1073,7 +1063,9 @@ export abstract class SpeedyCore extends TwinkleModule {
 			'Đây là nhật trình của tất cả đề nghị [[Wikipedia:Tiêu chí xóa nhanh|xóa nhanh]] được thực hiện bởi thành viên này bằng cách sử dụng mô đun CSD của [[WP:TW|Twinkle]].\n\n' +
 			'Nếu bạn không muốn giữ nhật trình này nữa, bạn có thể tắt nó bằng cách sử dụng [[Wikipedia:Twinkle/Preferences|bảng cài đặt Twinkle]], và ' +
 			'đề cử trang này để xóa nhanh chóng dưới dạng [[WP:TV1|XN TV1]].' +
-			(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator') ? '\n\nChú ý: Nhật trình này không theo dõi các thao tác xóa nhanh ngay lập tức được thực hiện bằng Twinkle.' : '');
+			(Morebits.userIsSysop || Morebits.userIsInGroup('eliminator')
+				? '\n\nChú ý: Nhật trình này không theo dõi các thao tác xóa nhanh ngay lập tức được thực hiện bằng Twinkle.'
+				: '');
 
 		let extraInfo = '';
 
@@ -1160,7 +1152,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 	 * If validation fails, returns a string to be shown to user via alert(), if validation
 	 * succeeds, doesn't return anything.
 	 */
-	validateInputs(): string | void { }
+	validateInputs(): string | void {}
 
 	static userPreferences() {
 		return {
@@ -1172,78 +1164,182 @@ export abstract class SpeedyCore extends TwinkleModule {
 					type: 'enum',
 					enumValues: {
 						buttonClick: 'Khi nhấn vào nút tiêu chí',
-						radioClick: 'Khi nhấn vào nút tick (radio button)'
+						radioClick: 'Khi nhấn vào nút tick (radio button)',
 					},
-					default: 'buttonClick'
+					default: 'buttonClick',
 				},
 				{
 					name: 'watchSpeedyPages',
 					label: 'Thêm trang vào danh sách theo dõi khi sử dụng tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['g3', 'g5', 'g10', 'g11', 'g12']
+					default: ['g3', 'g5', 'g10', 'g11', 'g12'],
 				},
 				{
 					name: 'watchSpeedyExpiry',
 					label: 'Thời gian theo dõi trang',
 					type: 'enum',
 					enumValues: Config.watchlistEnums,
-					default: '1 month'
+					default: '1 month',
 				},
 				{
 					name: 'markSpeedyPagesAsPatrolled',
 					label: 'Đánh dấu tuần tra các trang được gắn thẻ Xóa nhanh',
 					type: 'boolean',
-					default: false
+					default: false,
 				},
 				{
 					name: 'promptForSpeedyDeletionSummary',
 					label: 'Cho phép nhập lý do xóa tùy chỉnh khi sử dụng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: []
+					default: [],
 				},
 				{
 					name: 'warnUserOnSpeedyDelete',
 					label: 'Thông báo cho người tạo trang khi tiến hành xóa trang bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
+					default: [
+						'db',
+						'c1',
+						'c2',
+						'c3',
+						'c4',
+						'c6',
+						'c9',
+						'c11',
+						'c12',
+						'c13',
+						'c14',
+						'c15',
+						'bv1',
+						'bv2',
+						'bv3',
+						'bv4',
+						'tt1',
+						'tt2',
+						'tt3',
+						'tt4',
+						'tt5',
+						'tt6',
+						'tt7',
+						'tt8',
+						'tt9',
+						'tt10',
+						'tt11',
+						'dh2',
+						'dh3',
+						'dh4',
+						'ctt1',
+						'ctt2',
+						'tv3',
+						'tl1',
+						'tl2',
+					],
 				},
 				{
 					name: 'notifyUserOnSpeedyDeletionNomination',
 					label: 'Thông báo cho người tạo trang khi gắn thẻ Xóa nhanh bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt1', 'tt2', 'tt3', 'tt4', 'tt5', 'tt6', 'tt7', 'tt8', 'tt9', 'tt10', 'tt11', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
+					default: [
+						'db',
+						'c1',
+						'c2',
+						'c3',
+						'c4',
+						'c6',
+						'c9',
+						'c11',
+						'c12',
+						'c13',
+						'c14',
+						'c15',
+						'bv1',
+						'bv2',
+						'bv3',
+						'bv4',
+						'tt1',
+						'tt2',
+						'tt3',
+						'tt4',
+						'tt5',
+						'tt6',
+						'tt7',
+						'tt8',
+						'tt9',
+						'tt10',
+						'tt11',
+						'dh2',
+						'dh3',
+						'dh4',
+						'ctt1',
+						'ctt2',
+						'tv3',
+						'tl1',
+						'tl2',
+					],
 				},
 				{
 					name: 'welcomeUserOnSpeedyDeletionNotification',
 					label: 'Hoan nghênh người tạo trang cùng lúc với việc thông báo Xóa nhanh cho các tiêu chí',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: ['db', 'c1', 'c2', 'c3', 'c4', 'c6', 'c9', 'c11', 'c12', 'c13', 'c14', 'c15', 'bv1', 'bv2', 'bv3', 'bv4', 'tt2', 'tt3', 'tt7', 'tt9', 'tt10', 'tt11', 'dh1', 'dh2', 'dh3', 'dh4', 'ctt1', 'ctt2', 'tv3', 'tl1', 'tl2']
+					default: [
+						'db',
+						'c1',
+						'c2',
+						'c3',
+						'c4',
+						'c6',
+						'c9',
+						'c11',
+						'c12',
+						'c13',
+						'c14',
+						'c15',
+						'bv1',
+						'bv2',
+						'bv3',
+						'bv4',
+						'tt2',
+						'tt3',
+						'tt7',
+						'tt9',
+						'tt10',
+						'tt11',
+						'dh1',
+						'dh2',
+						'dh3',
+						'dh4',
+						'ctt1',
+						'ctt2',
+						'tv3',
+						'tl1',
+						'tl2',
+					],
 				},
 				{
 					name: 'logSpeedyNominations',
 					label: 'Ghi lại đề nghị xóa nhanh vào nhật trình thành viên',
 					type: 'boolean',
-					default: true
+					default: true,
 				},
 				{
 					name: 'speedyLogPageName',
 					label: 'Tên trang nhật trình đề nghị xóa nhanh (tính từ thư mục thành viên)',
 					helptip: 'Ví dụ: "Nhật trình xóa nhanh". Đặt tên theo định dạng "Thành viên:<tên>/[tên bạn nhập ở đây]".',
 					type: 'string',
-					default: 'Nhật trình xóa nhanh'
+					default: 'Nhật trình xóa nhanh',
 				},
 				{
 					name: 'noLogOnSpeedyNomination',
 					label: 'Không ghi nhật trình khi đề nghị xóa nhanh bằng các tiêu chí này',
 					type: 'set',
 					setValues: Config.commonSets.csdCriteria,
-					default: []
-				}
+					default: [],
+				},
 			] as Preference[],
 		};
 	}
