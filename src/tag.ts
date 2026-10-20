@@ -314,9 +314,19 @@ const articleTagList: tagListType = {
 				tag: 'Định dạng',
 				description: 'Cần định dạng',
 			},
+			{
+				tag: 'Wiki hóa',
+				description: 'Cần chỉnh sửa bài viết theo đúng định dạng của Wikipedia',
+			},
 		],
 
 		'Nội dung không hợp lệ': [
+			{
+				tag: 'Vi phạm bản quyền',
+				description:
+					'Sao chép nguyên văn từ trang mạng/sách vở đã giữ bản quyền mà chưa thấy sự cho phép của tác giả',
+				excludeInGroup: true,
+			},
 			{
 				tag: 'Diễn giải gần giống nội dung bản quyền',
 				description: 'Chứa các diễn giải gần giống nguồn có bản quyền',
@@ -1102,6 +1112,7 @@ class ArticleMode extends TagMode {
 				break;
 			}
 
+			case 'Diễn giải gần giống nội dung bản quyền':
 			case 'Close paraphrasing':
 				currentTag += '|source=' + params.closeParaphrasing;
 				break;
@@ -1127,6 +1138,7 @@ class ArticleMode extends TagMode {
 				}
 				break;
 
+			case 'Cần chuyên gia':
 			case 'Expert needed':
 				if (params.expertNeeded) {
 					currentTag += '|1=' + params.expertNeeded;
