@@ -1,6 +1,6 @@
 
 
-describe('index.js', async function () {
+describe('index.js', function () {
 
 	it('works!', async () => {
 

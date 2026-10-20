@@ -1,5 +1,4 @@
 import './test_base';
-import 'jquery-ui-dist/jquery-ui';
 
 import { Dialog } from '../src/Dialog';
 

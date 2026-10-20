@@ -7262,6 +7262,9 @@ Morebits.TaskManager = function(context) {
  * @param {number} height - The maximum allowable height for the content area.
  */
 Morebits.SimpleWindow = function SimpleWindow(width, height) {
+	width = typeof width === 'number' && !isNaN(width) ? width : (parseInt(width, 10) || 800);
+	height = typeof height === 'number' && !isNaN(height) ? height : (parseInt(height, 10) || 600);
+
 	const $dialog = $('<div>').addClass('morebits-dialog').attr('role', 'dialog').attr('tabindex', -1);
 
 	const $titleBar = $('<div>').addClass('morebits-dialog-titlebar').append(
@@ -7283,12 +7286,17 @@ Morebits.SimpleWindow = function SimpleWindow(width, height) {
 
 	const $resizer = $('<div>').addClass('morebits-dialog-resizer');
 
+	const dialogWidth = Math.min(width, $(window).width() - 20);
+	const dialogMaxHeight = height + 20;
+	const dialogTop = Math.max(window.scrollY + 10, window.scrollY + $(window).height() / 2 - dialogMaxHeight / 2);
+	const dialogLeft = Math.max(0, window.scrollX + $(window).width() / 2 - dialogWidth / 2);
+
 	$dialog.append($titleBar, $content, $buttonPane, $resizer)
-		.css('width', Math.min(parseInt(width || 800, 10), $(window).width()))
+		.css('width', dialogWidth)
 		.css('height', 'auto')
-		.css('max-height', height + 20)
-		.css('top', Math.max(0, window.scrollY + $(window).height() / 2 - (height + 20) / 2)) // Centre it (assume max height)
-		.css('left', Math.max(0, window.scrollX + $(window).width() / 2 - $dialog.width() / 2)); // Centre it
+		.css('max-height', dialogMaxHeight)
+		.css('top', dialogTop)
+		.css('left', dialogLeft);
 
 	$dialog.on('focus', () => this.focus()).on('keydown', (e) => {
 		if (e.key === 'Escape') {
@@ -7391,6 +7399,18 @@ Morebits.SimpleWindow.prototype = {
 			// CSS :has() selector can be used in the future which is easier and more reliable.
 			this.$dialog.find('.quickform').addClass('has-scrollbox');
 		}
+
+		// Ensure dialog has valid top and left coordinates
+		const top = parseFloat(this.$dialog.css('top'));
+		if (isNaN(top)) {
+			const h = this.height || 600;
+			this.$dialog.css('top', Math.max(window.scrollY + 10, window.scrollY + $(window).height() / 2 - (h + 20) / 2));
+		}
+		const left = parseFloat(this.$dialog.css('left'));
+		if (isNaN(left)) {
+			this.$dialog.css('left', Math.max(0, window.scrollX + $(window).width() / 2 - this.$dialog.width() / 2));
+		}
+
 		this.$dialog.appendTo(document.body);
 		// Put focus on the first form element in the dialog, or on dialog itself.
 		const $firstField = this.$dialog.find('input, select, textarea').first();

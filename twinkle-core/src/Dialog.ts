@@ -9,8 +9,8 @@ export type footerLinks = Record<string, string>;
  * a method to set footer links at once
  */
 export class Dialog extends Morebits.simpleWindow {
-	constructor(width: number, height: number) {
-		super(width, height);
+	constructor(width?: number, height?: number) {
+		super(width || 800, height || 600);
 		this.setScriptName(Twinkle.scriptName);
 	}
 	setFooterLinks(links: footerLinks) {

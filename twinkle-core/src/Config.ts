@@ -62,6 +62,8 @@ const defaultConfig = {
 
 	// CSD
 	speedySelectionStyle: 'buttonClick',
+	speedyWindowWidth: 800,
+	speedyWindowHeight: 500,
 	watchSpeedyPages: ['c3', 'c5', 'c12'],
 	watchSpeedyExpiry: '1 month',
 	markSpeedyPagesAsPatrolled: false,

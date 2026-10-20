@@ -69,7 +69,7 @@ export abstract class SpeedyCore extends TwinkleModule {
 	}
 
 	makeWindow() {
-		this.dialog = new Dialog(getPref('speedyWindowWidth'), getPref('speedyWindowHeight'));
+		this.dialog = new Dialog(getPref('speedyWindowWidth') || 800, getPref('speedyWindowHeight') || 500);
 		this.dialog.setTitle(this.windowTitle);
 		this.dialog.setFooterLinks(this.footerlinks);
 
@@ -1167,6 +1167,18 @@ export abstract class SpeedyCore extends TwinkleModule {
 						radioClick: 'Khi nhấn vào nút tick (radio button)',
 					},
 					default: 'buttonClick',
+				},
+				{
+					name: 'speedyWindowWidth',
+					label: 'Chiều rộng cửa sổ Xóa nhanh (pixel)',
+					type: 'integer',
+					default: 800,
+				},
+				{
+					name: 'speedyWindowHeight',
+					label: 'Chiều cao cửa sổ Xóa nhanh (pixel)',
+					type: 'integer',
+					default: 500,
 				},
 				{
 					name: 'watchSpeedyPages',
