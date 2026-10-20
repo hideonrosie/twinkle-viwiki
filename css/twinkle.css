@@ -1,9 +1,40 @@
+/* Define CSS variables */
+html {
+	--twinkle-bgcolor-dialog: #f0f8ff;
+	--twinkle-bgcolor-titlebar: #bccadf;
+}
+
+@media screen {
+	html.skin-theme-clientpref-night {
+		--twinkle-bgcolor-dialog: #141c26;
+		--twinkle-bgcolor-titlebar: #1c2a52;
+	}
+}
+
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+@media screen and (prefers-color-scheme: dark) {
+	html.skin-theme-clientpref-os {
+		--twinkle-bgcolor-dialog: #141c26;
+		--twinkle-bgcolor-titlebar: #1c2a52;
+	}
+}
+
 /**
  * Explicitly set width of TW menu so that we can use a hidden peer gadget
  * to add space where the TW menu would go before it loads.
  */
 .skin-vector .vector-menu-dropdown #p-twinkle {
 	width: 3.24em;
+}
+
+/**
+ * In skin vector-2022, open the TW menu when mouse hovers over it. Credit to
+ * [[en:User:Nardog]] for this fix.
+ */
+#p-twinkle:hover > .vector-menu-content {
+	opacity: 1;
+	visibility: visible;
+	height: auto;
 }
 
 /* The additional box on user skin.js and twinklepreferences.js pages */
@@ -13,6 +44,7 @@
 	padding: 0.6em;
 	margin: 0.5em auto;
 	text-align: center;
+	color: inherit;
 }
 
 /* twinkleoptions.js */
@@ -25,4 +57,66 @@
 /* skin-specific js */
 #twinkle-config-headerbox.config-userskin-box {
 	width: 60%;
+}
+
+/* WP:TWPREFS */
+#twinkle-config-content input[type=checkbox] {
+	margin-right: 2px;
+}
+
+/* Twinkle config */
+#twinkle-config {
+	border: 1px solid #666;
+	background: var(--twinkle-bgcolor-dialog, #f0f8ff);
+	color: inherit;
+}
+
+#twinkle-config label {
+	color: var(--color-base, #202122);
+}
+
+#twinkle-config-titlebar {
+	background: var(--twinkle-bgcolor-titlebar, #bccadf);
+	color: inherit;
+}
+
+#twinkle-config-buttonpane {
+	background: var(--twinkle-bgcolor-titlebar, #bccadf);
+	color: inherit;
+	padding: 0.5em;
+}
+
+.twinkle-config-helptip {
+	font-size: 90%;
+	color: var(--color-subtle, #54595d);
+}
+
+/* Flexbox gap not supported by old Safari versions. Rendering without gap is okay. */
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+.twinkle-ombox {
+	display: flex;
+	align-items: center;
+	gap: 0.9em;
+	padding-left: 0.9em;
+	margin: 4px 10%;
+	background: var(--background-color-neutral-subtle, #f8f9fa);
+	border: 1px solid #f28500;
+}
+
+#p-twinkle-dropdown {
+	display: flex;
+	min-width: 40px;
+}
+
+@media screen {
+	html.skin-theme-clientpref-night #twinkle-config-headerbox {
+		background: #532b18;
+	}
+}
+
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+@media screen and (prefers-color-scheme: dark) {
+	html.skin-theme-clientpref-os #twinkle-config-headerbox {
+		background: #532b18;
+	}
 }
