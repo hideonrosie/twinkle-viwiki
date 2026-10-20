@@ -34,7 +34,7 @@ module.exports = {
 		],
 	},
 	resolve: {
-		extensions: ['.js', '.ts'],
+		extensions: ['.ts', '.js'],
 		alias: fs.existsSync(path.resolve(__dirname, 'twinkle-core')) ? {
 			'twinkle-core': path.resolve(__dirname, 'twinkle-core'),
 		} : {},
