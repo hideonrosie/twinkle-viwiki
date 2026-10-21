@@ -3543,8 +3543,9 @@ Morebits.wiki.Page = function(pageName, status) {
 				type: 'patrol', // as long as we're querying, might as well get a token
 				list: 'recentchanges', // check if the page is unpatrolled
 				titles: ctx.pageName,
-				rcprop: 'patrolled',
+				rcprop: 'patrolled|ids',
 				rctitle: ctx.pageName,
+				rctype: 'new',
 				rclimit: 1,
 				format: 'json'
 			};
@@ -3573,8 +3574,9 @@ Morebits.wiki.Page = function(pageName, status) {
 	 * @see {@link https://www.mediawiki.org/wiki/Extension:PageTriage} Referred to as "review" on-wiki.
 	 */
 	this.triage = function() {
-		// Fall back to patrol if not a valid triage namespace
-		if (!mw.config.get('pageTriageNamespaces').includes(new mw.Title(ctx.pageName).getNamespaceId())) {
+		// Fall back to patrol if not a valid triage namespace or PageTriage is not installed
+		const pageTriageNamespaces = mw.config.get('pageTriageNamespaces');
+		if (!Array.isArray(pageTriageNamespaces) || !pageTriageNamespaces.includes(new mw.Title(ctx.pageName).getNamespaceId())) {
 			this.patrol();
 		} else {
 			if (!Morebits.userIsSysop && !Morebits.userIsInGroup('patroller')) {
@@ -4305,22 +4307,29 @@ Morebits.wiki.Page = function(pageName, status) {
 		// Didn't need to load the page
 		if (ctx.rcid) {
 			query.rcid = ctx.rcid;
-			query.token = mw.user.tokens.get('patrolToken');
+			query.token = mw.user.tokens.get('patrolToken') || mw.user.tokens.get('csrfToken');
 		} else {
 			const response = ctx.patrolApi.getResponse().query;
+			const rc = response && response.recentchanges && response.recentchanges[0];
 
-			// Don't patrol if not unpatrolled
-			if (!response.recentchanges[0].unpatrolled) {
+			// Don't patrol if page is already patrolled or not found in recentchanges
+			if (!rc || typeof rc.unpatrolled === 'undefined') {
 				return;
 			}
 
-			const lastrevid = response.pages[0].lastrevid;
-			if (!lastrevid) {
-				return;
+			if (rc.rcid) {
+				query.rcid = rc.rcid;
+			} else if (rc.revid) {
+				query.revid = rc.revid;
+			} else {
+				const lastrevid = response.pages && response.pages[0] && response.pages[0].lastrevid;
+				if (!lastrevid) {
+					return;
+				}
+				query.revid = lastrevid;
 			}
-			query.revid = lastrevid;
 
-			const token = response.tokens.csrftoken;
+			const token = (response.tokens && (response.tokens.patroltoken || response.tokens.csrftoken)) || mw.user.tokens.get('patrolToken') || mw.user.tokens.get('csrfToken');
 			if (!token) {
 				return;
 			}
